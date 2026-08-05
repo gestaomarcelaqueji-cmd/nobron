@@ -1,0 +1,69 @@
+.section {
+  padding: clamp(6rem, 11vw, 10rem) clamp(1.2rem, 5vw, 5rem);
+  background: var(--branding-bg);
+}
+
+.container {
+  display: grid;
+  width: min(100%, var(--branding-width));
+  margin: auto;
+  grid-template-columns: minmax(280px, 0.7fr) minmax(0, 1.3fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: start;
+}
+
+.stickyCopy {
+  position: sticky;
+  top: 8rem;
+}
+
+.stickyCopy > span {
+  color: var(--branding-subtle);
+  font-size: 0.68rem;
+  font-weight: 760;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.stickyCopy h2 {
+  margin: 1.2rem 0 0;
+  font-size: clamp(2.6rem, 4.4vw, 4.9rem);
+  font-weight: 520;
+  letter-spacing: -0.06em;
+  line-height: 0.98;
+}
+
+.stickyCopy p {
+  margin: 1.5rem 0 0;
+  color: var(--branding-muted);
+  line-height: 1.65;
+}
+
+.list { border-top: 1px solid var(--branding-line-strong); }
+
+.item {
+  display: grid;
+  min-height: 112px;
+  padding: 1.5rem 0;
+  grid-template-columns: 70px 1fr;
+  align-items: center;
+  border-bottom: 1px solid var(--branding-line);
+}
+
+.item span {
+  color: var(--branding-subtle);
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.item p {
+  max-width: 650px;
+  margin: 0;
+  font-size: clamp(1.05rem, 1.45vw, 1.35rem);
+  line-height: 1.4;
+}
+
+@media (max-width: 800px) {
+  .container { grid-template-columns: 1fr; }
+  .stickyCopy { position: static; }
+}

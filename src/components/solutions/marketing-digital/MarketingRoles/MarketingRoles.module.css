@@ -1,0 +1,220 @@
+.section {
+  padding:
+    clamp(7rem, 12vw, 12rem)
+    clamp(1rem, 4vw, 4rem);
+  border-bottom: 1px solid var(--marketing-line);
+  background: #ffffff;
+}
+
+.inner {
+  width: min(100%, 1500px);
+  margin: auto;
+}
+
+.heading {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.42fr) minmax(0, 1.25fr);
+  gap: clamp(2rem, 6vw, 7rem);
+}
+
+.heading > span {
+  padding-top: 0.7rem;
+  color: var(--marketing-subtle);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.58rem;
+  font-weight: 760;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.heading h2 {
+  max-width: 1050px;
+  margin: 0;
+  font-size: clamp(2.8rem, 5.6vw, 6.2rem);
+  font-weight: 500;
+  letter-spacing: -0.068em;
+  line-height: 0.96;
+  text-wrap: balance;
+}
+
+.heading p {
+  grid-column: 2;
+  max-width: 760px;
+  margin: 0;
+  color: var(--marketing-muted);
+  font-size: clamp(1rem, 1.25vw, 1.12rem);
+  line-height: 1.7;
+}
+
+.experience {
+  display: grid;
+  min-height: 580px;
+  margin-top: clamp(5rem, 9vw, 8rem);
+  grid-template-columns: minmax(260px, 0.55fr) minmax(0, 1.2fr);
+  border-top: 1px solid var(--marketing-ink);
+  border-bottom: 1px solid var(--marketing-line);
+}
+
+.roleNavigation {
+  border-right: 1px solid var(--marketing-line);
+}
+
+.roleButton {
+  display: grid;
+  width: 100%;
+  min-height: 96px;
+  padding: 1rem 1.2rem;
+  grid-template-columns: 44px 1fr;
+  align-items: center;
+  border: 0;
+  border-bottom: 1px solid var(--marketing-line);
+  background: transparent;
+  color: var(--marketing-ink);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.roleButton:last-child {
+  border-bottom: 0;
+}
+
+.roleButton[aria-pressed="true"] {
+  background: var(--marketing-ink);
+  color: #ffffff;
+}
+
+.roleButton span {
+  color: currentColor;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.5rem;
+  opacity: 0.5;
+}
+
+.roleButton strong {
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  font-weight: 540;
+  letter-spacing: -0.025em;
+}
+
+.roleContent {
+  display: flex;
+  padding: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.roleContent > div {
+  width: 100%;
+}
+
+.roleNumber {
+  color: var(--marketing-subtle);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.54rem;
+}
+
+.roleContent h3 {
+  margin: 1.2rem 0 0;
+  font-size: clamp(3rem, 7vw, 7.5rem);
+  font-weight: 500;
+  letter-spacing: -0.075em;
+  line-height: 0.9;
+}
+
+.roleContent p {
+  max-width: 760px;
+  margin: clamp(2rem, 4vw, 3.2rem) 0 0;
+  color: var(--marketing-muted);
+  font-size: clamp(1rem, 1.45vw, 1.3rem);
+  line-height: 1.6;
+}
+
+.examples {
+  display: flex;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.examples span {
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--marketing-line);
+  border-radius: 999px;
+  color: rgba(8, 9, 10, 0.7);
+  font-size: 0.68rem;
+}
+
+.support {
+  max-width: 980px;
+  margin: clamp(4rem, 7vw, 6rem) 0 0 auto;
+  font-size: clamp(1.45rem, 2.65vw, 2.75rem);
+  font-weight: 470;
+  letter-spacing: -0.042em;
+  line-height: 1.18;
+  text-align: right;
+  text-wrap: balance;
+}
+
+@media (max-width: 900px) {
+  .heading {
+    grid-template-columns: 1fr;
+  }
+
+  .heading p {
+    grid-column: auto;
+  }
+
+  .experience {
+    min-height: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .roleNavigation {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-right: 0;
+    border-bottom: 1px solid var(--marketing-line);
+  }
+
+  .roleButton {
+    min-height: 84px;
+    grid-template-columns: 1fr;
+    border-right: 1px solid var(--marketing-line);
+    border-bottom: 0;
+  }
+
+  .roleButton:last-child {
+    border-right: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .section {
+    padding: 6rem 1rem;
+  }
+
+  .roleNavigation {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .roleButton:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--marketing-line);
+  }
+
+  .roleButton:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .roleContent {
+    min-height: 430px;
+  }
+
+  .roleContent h3 {
+    font-size: 3.4rem;
+  }
+
+  .support {
+    font-size: 1.45rem;
+    text-align: left;
+  }
+}

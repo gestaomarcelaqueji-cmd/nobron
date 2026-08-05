@@ -1,0 +1,47 @@
+.benefits-marquee {
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.benefits-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.benefits-marquee:hover .benefits-marquee__track {
+  animation-play-state: paused;
+}
+
+.benefit-chip {
+  display: flex;
+  min-width: 205px;
+  min-height: 104px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 0 24px;
+  border-right: 1px solid var(--line);
+  color: #354154;
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
+.benefit-chip svg {
+  width: 24px;
+  color: var(--blue);
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 560px) {
+
+  .benefit-chip {
+    min-width: 176px;
+    min-height: 86px;
+  }
+}

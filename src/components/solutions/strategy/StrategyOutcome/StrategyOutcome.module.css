@@ -1,0 +1,123 @@
+.section {
+  padding: clamp(6rem, 12vw, 10rem) clamp(1.25rem, 5vw, 5rem);
+  background: var(--strategy-bg);
+}
+
+.container {
+  width: min(100%, var(--strategy-width));
+  margin: 0 auto;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.46fr) minmax(0, 1.54fr);
+  gap: clamp(2rem, 6vw, 7rem);
+}
+
+.eyebrow {
+  padding-top: 0.55rem;
+  color: var(--strategy-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 930px;
+  margin: 0;
+  font-size: clamp(2.7rem, 4.8vw, 5.6rem);
+  font-weight: 530;
+  letter-spacing: -0.062em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.description {
+  grid-column: 2;
+  max-width: 630px;
+  margin: 1.4rem 0 0;
+  color: var(--strategy-muted);
+  line-height: 1.65;
+}
+
+.rows {
+  margin-top: clamp(4rem, 8vw, 7rem);
+  border-top: 1px solid var(--strategy-line-strong);
+}
+
+.rowHeader {
+  display: grid;
+  padding: 0.9rem 0;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  color: var(--strategy-subtle);
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.rowHeader span:last-child {
+  text-align: right;
+}
+
+.row {
+  display: grid;
+  min-height: 7.5rem;
+  padding: 1.2rem 0;
+  grid-template-columns: minmax(0, 1fr) 4rem minmax(0, 1fr);
+  align-items: center;
+  border-top: 1px solid var(--strategy-line);
+}
+
+.row:last-child {
+  border-bottom: 1px solid var(--strategy-line);
+}
+
+.from,
+.to {
+  font-size: clamp(1.35rem, 2.35vw, 2.5rem);
+  letter-spacing: -0.04em;
+}
+
+.from {
+  color: var(--strategy-subtle);
+}
+
+.to {
+  justify-self: end;
+  text-align: right;
+  font-weight: 580;
+}
+
+.arrow {
+  display: grid;
+  width: 2.6rem;
+  height: 2.6rem;
+  place-items: center;
+  justify-self: center;
+  border-radius: 50%;
+  background: var(--strategy-ink);
+  color: #ffffff;
+}
+
+@media (max-width: 760px) {
+  .header {
+    grid-template-columns: 1fr;
+  }
+
+  .description {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .row {
+    grid-template-columns: 1fr 2.7rem 1fr;
+  }
+
+  .arrow {
+    width: 2rem;
+    height: 2rem;
+  }
+}

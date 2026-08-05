@@ -1,0 +1,15 @@
+.page {
+  --marketing-ink: #08090a;
+  --marketing-muted: rgba(8, 9, 10, 0.64);
+  --marketing-subtle: rgba(8, 9, 10, 0.38);
+  --marketing-line: rgba(8, 9, 10, 0.11);
+  --marketing-surface: #f5f5f2;
+  --marketing-surface-strong: #ecece7;
+  --marketing-dark: #050505;
+  --marketing-accent: #275efe;
+  --marketing-cyan: #16b7d7;
+
+  overflow: clip;
+  background: #ffffff;
+  color: var(--marketing-ink);
+}

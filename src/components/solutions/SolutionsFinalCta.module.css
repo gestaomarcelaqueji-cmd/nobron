@@ -1,0 +1,306 @@
+.section {
+  position: relative;
+  display: flex;
+  min-height: 70svh;
+  padding:
+    clamp(4.5rem, 8vh, 6.5rem)
+    clamp(1.15rem, 5vw, 5.5rem)
+    5rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* =========================================================
+   ELEMENTOS DE FUNDO DESATIVADOS
+========================================================= */
+
+.grid,
+.glow,
+.orbit {
+  display: none;
+}
+
+/* =========================================================
+   COPY
+========================================================= */
+
+.copy {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  width: min(100%, 960px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  color: var(--solutions-subtle);
+  font-size: 0.67rem;
+  font-weight: 740;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before,
+.eyebrow::after {
+  width: clamp(1.4rem, 4vw, 3rem);
+  height: 1px;
+  background: rgba(10, 11, 13, 0.18);
+  content: "";
+}
+
+.title {
+  display: flex;
+  width: min(100%, 18ch);
+  flex-direction: column;
+  align-items: center;
+  margin: clamp(1.2rem, 2.5vh, 1.8rem) auto 0;
+  color: var(--solutions-ink);
+  font-size: clamp(2.5rem, 4.5vw, 4.8rem);
+  font-weight: 520;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.title span {
+  display: block;
+  white-space: normal;
+}
+
+.description {
+  max-width: 680px;
+  margin: clamp(1.4rem, 3vh, 2rem) auto 0;
+  color: var(--solutions-muted);
+  font-size: clamp(0.98rem, 1.15vw, 1.1rem);
+  line-height: 1.65;
+}
+
+/* =========================================================
+   ACTION
+========================================================= */
+
+.action {
+  display: inline-flex;
+  min-height: 56px;
+  margin-top: clamp(1.8rem, 4vh, 2.5rem);
+  padding: 0.32rem 0.38rem 0.32rem 1.4rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1.35rem;
+  border-radius: 999px;
+  background: var(--solutions-ink);
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.09em;
+  text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: 0 16px 38px rgba(10, 11, 13, 0.14);
+  transition:
+    transform 240ms ease,
+    box-shadow 240ms ease;
+}
+
+.action:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 48px rgba(10, 11, 13, 0.2);
+}
+
+.actionIcon {
+  display: grid;
+  width: 44px;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--solutions-ink);
+  font-size: 0.86rem;
+  transition: transform 240ms ease;
+}
+
+.action:hover .actionIcon {
+  transform: rotate(45deg);
+}
+
+/* =========================================================
+   SUPPORT
+========================================================= */
+
+.support {
+  display: flex;
+  margin-top: clamp(1.4rem, 3vh, 2rem);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  color: var(--solutions-subtle);
+  font-size: 0.59rem;
+  font-weight: 720;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.support span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.support span:not(:last-child)::after {
+  width: 4px;
+  height: 4px;
+  margin: 0 0.9rem;
+  border-radius: 50%;
+  background: rgba(36, 107, 253, 0.55);
+  content: "";
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+  position: absolute;
+  z-index: 3;
+  right: clamp(1.15rem, 5vw, 5.5rem);
+  bottom: 1.5rem;
+  left: clamp(1.15rem, 5vw, 5.5rem);
+  display: flex;
+  padding-top: 1.1rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid var(--solutions-line);
+  color: var(--solutions-subtle);
+  font-size: 0.66rem;
+}
+
+.footer a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 220ms ease;
+}
+
+.footer a:hover {
+  color: var(--solutions-ink);
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .section {
+    min-height: 68svh;
+  }
+
+  .title {
+    max-width: 17ch;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 680px) {
+  .section {
+    min-height: 75svh;
+    padding:
+      4.5rem
+      1rem
+      5rem;
+  }
+
+  .copy {
+    width: 100%;
+  }
+
+  .eyebrow {
+    font-size: 0.6rem;
+  }
+
+  .eyebrow::before,
+  .eyebrow::after {
+    width: 1.2rem;
+  }
+
+  .title {
+    width: 100%;
+    max-width: 14ch;
+    font-size: clamp(2.2rem, 9.5vw, 3.2rem);
+    line-height: 1;
+    letter-spacing: -0.045em;
+  }
+
+  .description {
+    max-width: 31rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .action {
+    width: 100%;
+    max-width: 390px;
+    padding-left: 1.2rem;
+    justify-content: space-between;
+  }
+
+  .support {
+    max-width: 320px;
+    gap: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .support span:not(:last-child)::after {
+    display: none;
+  }
+
+  .footer {
+    right: 1rem;
+    bottom: 1.2rem;
+    left: 1rem;
+    font-size: 0.59rem;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+  .section {
+    min-height: 72svh;
+  }
+
+  .title {
+    max-width: 14ch;
+    font-size: clamp(2rem, 9vw, 2.7rem);
+  }
+
+  .footer span {
+    max-width: 150px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .action,
+  .actionIcon {
+    transition: none;
+  }
+}

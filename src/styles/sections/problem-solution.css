@@ -1,0 +1,229 @@
+.problem-section {
+  overflow: clip;
+  background: #f7f8fb;
+}
+
+.problem-intro {
+  max-width: 900px;
+  margin-bottom: 54px;
+}
+
+.problem-intro p {
+  margin: 0 0 10px;
+  color: var(--blue);
+  font-weight: 800;
+}
+
+.problem-intro h2 {
+  margin: 0;
+  font-family: var(--font-display), Arial, sans-serif;
+  font-size: clamp(2.3rem, 4.6vw, 4.8rem);
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 74px minmax(0, 1fr);
+  align-items: center;
+  gap: 22px;
+}
+
+.comparison-card {
+  min-width: 0;
+  min-height: 570px;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.comparison-card--chaos {
+  background: linear-gradient(145deg, #f4f5f8, #fff);
+}
+
+.comparison-card--solution {
+  background: linear-gradient(145deg, #fff, #eef3ff);
+}
+
+.comparison-card__heading {
+  min-height: 122px;
+}
+
+.comparison-card__heading > span {
+  display: inline-flex;
+  margin-bottom: 10px;
+  color: var(--blue);
+  font-size: 0.74rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.comparison-card__heading h3 {
+  margin: 0;
+  font-family: var(--font-display), Arial, sans-serif;
+  font-size: clamp(1.65rem, 2.5vw, 2.55rem);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+}
+
+.comparison-arrow {
+  display: flex;
+  width: 58px;
+  height: 58px;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  border-radius: 50%;
+  background: var(--blue);
+  color: white;
+  box-shadow: 0 16px 30px rgba(20, 92, 255, 0.25);
+}
+
+.scatter-scene {
+  position: relative;
+  min-height: 360px;
+}
+
+.scatter-item,
+.scatter-photo {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #d8dee8;
+  border-radius: 13px;
+  background: rgba(255,255,255,0.94);
+  box-shadow: 0 12px 24px rgba(37, 49, 74, 0.12);
+}
+
+.scatter-item {
+  padding: 10px 12px;
+  color: #485467;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.scatter-item svg {
+  width: 19px;
+  color: var(--blue);
+}
+
+.scatter-item--instagram { top: 18px; left: 18px; padding: 10px; }
+.scatter-item--instagram svg { color: #d94888; }
+.scatter-item--phone { top: 170px; left: 0; }
+.scatter-item--question { top: 35px; right: 2px; }
+.scatter-item--message { top: 155px; right: -8px; }
+.scatter-item--map { bottom: 12px; left: 40%; padding: 10px; }
+.scatter-item--review { bottom: 30px; right: 6px; }
+.scatter-item--review svg { color: #ffb020; fill: currentColor; }
+
+.scatter-photo {
+  width: 112px;
+  height: 78px;
+  padding: 6px;
+  transform: rotate(-6deg);
+}
+
+.scatter-photo i {
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
+  background:
+    linear-gradient(135deg, rgba(20,92,255,.2), rgba(255,178,60,.22)),
+    repeating-linear-gradient(90deg, #cfd7e3 0 10px, #8995a8 10px 12px);
+}
+
+.scatter-photo--one { top: 88px; left: 27%; }
+.scatter-photo--two { top: 205px; left: 29%; transform: rotate(7deg); }
+.scatter-photo--three { top: 95px; right: 26%; transform: rotate(9deg) scale(.86); }
+
+.scatter-paths {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.scatter-paths path {
+  fill: none;
+  stroke: #9ba6b6;
+  stroke-width: 2;
+  stroke-dasharray: 7 9;
+  opacity: .65;
+}
+
+.inline-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin-top: 28px;
+  padding: 26px 28px;
+  border: 1px solid rgba(20, 92, 255, 0.17);
+  border-radius: 22px;
+  background: linear-gradient(100deg, #edf3ff, #fff);
+}
+
+.inline-cta div {
+  display: grid;
+  gap: 5px;
+}
+
+.inline-cta strong {
+  font-family: var(--font-display), Arial, sans-serif;
+  font-size: 1.15rem;
+}
+
+.inline-cta span {
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+@media (max-width: 1100px) {
+
+  .comparison-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-arrow {
+    rotate: 90deg;
+  }
+}
+
+@media (max-width: 820px) {
+
+  .comparison-card {
+    min-height: auto;
+    padding: 22px;
+  }
+
+  .scatter-scene {
+    min-height: 320px;
+    transform: scale(.92);
+  }
+
+  .inline-cta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 560px) {
+  .problem-intro h2 {
+    font-size: clamp(2.15rem, 11vw, 3.3rem);
+  }
+
+  .comparison-card__heading {
+    min-height: auto;
+    margin-bottom: 22px;
+  }
+
+  .scatter-scene {
+    margin: -18px;
+    transform: scale(.78);
+  }
+}

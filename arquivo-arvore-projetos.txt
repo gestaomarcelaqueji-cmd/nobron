@@ -1,0 +1,36 @@
+projeto/
++-- src/app/
+¦   +-- layout.tsx
+¦   +-- page.tsx
+¦   +-- landing-page/page.tsx
+¦   +-- prototipo-gratuito/page.tsx
+¦   +-- solucoes/
+¦       +-- page.tsx
+¦       +-- [slug]/page.tsx
++-- src/components/
+¦   +-- HeroImmersive/
+¦   ¦   +-- HeroImmersive.tsx
+¦   ¦   +-- HeroImmersive.module.css
+¦   ¦   +-- GlobalNetworkBackground.tsx
+¦   ¦   +-- useHeroZoomTransition.ts
+¦   +-- home/
+¦   ¦   +-- HomeAfterHero.tsx
+¦   +-- layout/
+¦   ¦   +-- Header.tsx
+¦   ¦   +-- Footer.tsx
+¦   ¦   +-- FloatingHeader.tsx
+¦   +-- sections/
+¦   ¦   +-- HeroSection.tsx
+¦   ¦   +-- PricingSection.tsx
+¦   ¦   +-- FinalCta.tsx
+¦   +-- ui/
+¦   +-- solutions/
+¦       +-- SolutionsHero.tsx
+¦       +-- DisconnectedStructure.tsx
+¦       +-- StructureStory.tsx
+¦       +-- EntryPaths.tsx
+¦       +-- ServicesDirectory.tsx
+¦       +-- DiagnosticSection.tsx
+¦       +-- SolutionsFinalCta.tsx
++-- src/data/
++-- src/styles/

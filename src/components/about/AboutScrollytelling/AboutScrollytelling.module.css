@@ -1,0 +1,549 @@
+.section {
+  position: relative;
+  height: 1250svh;
+  background: #020304;
+  color: #ffffff;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100svh;
+  min-height: 620px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 28% 46%,
+      rgba(48, 64, 88, 0.3),
+      transparent 34%
+    ),
+    linear-gradient(
+      180deg,
+      #040507 0%,
+      #020304 72%,
+      #010203 100%
+    );
+  isolation: isolate;
+}
+
+.background {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.018) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+  mask-image:
+    radial-gradient(
+      circle at 32% 46%,
+      #000 0%,
+      rgba(0, 0, 0, 0.82) 48%,
+      transparent 88%
+    );
+}
+
+.halo {
+  position: absolute;
+  top: 51%;
+  left: 5%;
+  width: min(52vw, 820px);
+  aspect-ratio: 0.82;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(241, 250, 255, 0.56) 0%,
+      rgba(151, 190, 255, 0.22) 28%,
+      rgba(88, 111, 160, 0.07) 53%,
+      transparent 75%
+    );
+  filter: blur(18px);
+  transform: translateY(-50%);
+  will-change: opacity;
+}
+
+.scene {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  transform-origin: 32% 47%;
+  will-change: transform;
+}
+
+.formLayer {
+  position: absolute;
+  z-index: 2;
+  inset: -8% -18% -8% -15%;
+  transform-origin: 56% 49%;
+  will-change:
+    transform,
+    opacity;
+}
+
+.intelligenceSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.silhouetteLayer {
+  position: absolute;
+  z-index: 3;
+  top: clamp(-15rem, -20vh, -10rem);
+  left: min(-14%, -8rem);
+  width: min(58vw, 900px);
+  transform-origin: 32% 24%;
+  will-change:
+    transform,
+    opacity;
+}
+
+.silhouetteImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  background: transparent;
+  object-fit: contain;
+  filter:
+    drop-shadow(
+      0 0 30px
+      rgba(207, 235, 255, 0.24)
+    );
+  pointer-events: none;
+  user-select: none;
+}
+
+.leftShade {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  background:
+    linear-gradient(
+      270deg,
+      rgba(2, 3, 4, 0.995) 0%,
+      rgba(2, 3, 4, 0.97) 27%,
+      rgba(2, 3, 4, 0.7) 46%,
+      rgba(2, 3, 4, 0.08) 70%,
+      transparent 100%
+    );
+  pointer-events: none;
+}
+
+.copySlot {
+  position: absolute;
+  z-index: 7;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  width: min(46vw, 720px);
+  min-height: min(68svh, 660px);
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+}
+
+.copyStage {
+  position: relative;
+  top: auto;
+  left: auto;
+  display: flex;
+  width: 100%;
+  max-height: min(72svh, 690px);
+  flex-direction: column;
+  justify-content: center;
+  will-change:
+    transform,
+    opacity,
+    filter;
+}
+
+.eyebrow {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.8rem;
+  color: rgba(197, 247, 255, 0.64);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+  font-size: 0.53rem;
+  font-weight: 760;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  width: 3.2rem;
+  height: 1px;
+  background: rgba(190, 242, 255, 0.5);
+  content: "";
+}
+
+.copyStage h1 {
+  max-width: 680px;
+  margin:
+    clamp(1.35rem, 2.5vw, 1.95rem)
+    0
+    0;
+  color: #f7f8fa;
+  font-size: clamp(2.7rem, 4.65vw, 5.2rem);
+  font-weight: 465;
+  letter-spacing: -0.067em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.copyStage[data-dense="true"] h1 {
+  font-size: clamp(2.45rem, 4.15vw, 4.55rem);
+}
+
+.paragraphs {
+  display: grid;
+  max-width: 610px;
+  margin-top: clamp(1.3rem, 2.4vw, 1.8rem);
+  gap: 0.8rem;
+}
+
+.paragraphs p,
+.introParagraph,
+.studyGroup p {
+  margin: 0;
+  color: rgba(236, 241, 247, 0.64);
+  font-size: clamp(0.9rem, 1.05vw, 1rem);
+  line-height: 1.62;
+  text-wrap: balance;
+}
+
+.introParagraph {
+  max-width: 610px;
+  margin-top: 1.3rem;
+}
+
+.studyGroups {
+  display: grid;
+  max-width: 670px;
+  margin-top: 1.35rem;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.5rem;
+}
+
+.studyGroup {
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.studyGroup strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.82rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.studyGroup p {
+  font-size: clamp(0.76rem, 0.82vw, 0.84rem);
+  line-height: 1.5;
+}
+
+.traits {
+  display: flex;
+  max-width: 640px;
+  margin-top: clamp(1.5rem, 3vw, 2.2rem);
+  flex-wrap: wrap;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.traits span {
+  padding: 0.85rem 1rem 0.85rem 0;
+  margin-right: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(238, 244, 249, 0.68);
+  font-size: 0.86rem;
+}
+
+
+.scrollHint {
+  position: absolute;
+  z-index: 8;
+  right: clamp(1rem, 4vw, 4rem);
+  bottom: clamp(1rem, 3vh, 2rem);
+  align-items: center;
+  gap: 0.9rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+  font-size: 0.46rem;
+  font-weight: 720;
+  letter-spacing: 0.12em;
+}
+
+.scrollHint i {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: 2.5rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.scrollHint i::after {
+  position: absolute;
+  top: -55%;
+  left: 0;
+  width: 1px;
+  height: 52%;
+  background: rgba(215, 252, 255, 0.88);
+  content: "";
+  animation: aboutScroll 1.75s ease-in-out infinite;
+}
+
+.intro {
+  position: absolute;
+  z-index: 20;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  padding: clamp(1.5rem, 5vw, 5rem);
+  inset: 0;
+  place-items: center;
+  border: 0;
+  background: #000000;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: center;
+}
+
+.intro p {
+  display: flex;
+  max-width: 1100px;
+  margin: 0;
+  align-items: center;
+  flex-direction: column;
+}
+
+.intro span,
+.intro strong {
+  display: block;
+  font-size: clamp(2.2rem, 4.7vw, 5.25rem);
+  font-weight: 430;
+  letter-spacing: -0.058em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.intro strong {
+  margin-top: 0.18em;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+@keyframes aboutScroll {
+  0% {
+    transform: translateY(0);
+  }
+
+  65%,
+  100% {
+    transform: translateY(300%);
+  }
+}
+
+@media (max-width: 1120px) {
+  .copySlot {
+    width: min(48vw, 620px);
+  }
+
+  .silhouetteLayer {
+    top: clamp(-8rem, -12vh, -5rem);
+    left: min(-18%, -9rem);
+    width: min(70vw, 860px);
+  }
+
+  .copyStage h1 {
+    font-size: clamp(2.45rem, 4.7vw, 4.7rem);
+  }
+}
+
+@media (max-width: 760px) {
+  .section {
+    height: 1320svh;
+  }
+
+  .sticky {
+    min-height: 620px;
+  }
+
+  .scene {
+    transform-origin: 42% 35%;
+  }
+
+  .formLayer {
+    inset: -8% -55% 18% -60%;
+  }
+
+  .silhouetteLayer {
+    right: auto;
+    top: clamp(-5rem, -8vh, -2rem);
+    left: min(-30%, -10rem);
+    width: 124vw;
+  }
+
+  .halo {
+    top: 36%;
+    left: -15%;
+    width: 98vw;
+  }
+
+  .leftShade {
+    background:
+      linear-gradient(
+        180deg,
+        transparent 0%,
+        transparent 36%,
+        rgba(2, 3, 4, 0.7) 53%,
+        rgba(2, 3, 4, 0.97) 72%,
+        #020304 100%
+      );
+  }
+
+  .copySlot {
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    width: min(94vw, 540px);
+    min-height: min(56svh, 430px);
+    transform: translate(-50%, -50%);
+  }
+
+  .copyStage {
+    max-height: min(56svh, 430px);
+    justify-content: center;
+  }
+
+  .copyStage h1,
+  .copyStage[data-dense="true"] h1 {
+    font-size: clamp(2.05rem, 8.8vw, 3.4rem);
+  }
+
+  .paragraphs p,
+  .introParagraph {
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .studyGroups {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem 1rem;
+  }
+
+  .studyGroup strong {
+    font-size: 0.72rem;
+  }
+
+  .studyGroup p {
+    font-size: 0.68rem;
+    line-height: 1.42;
+  }
+
+  .traits span {
+    padding-top: 0.62rem;
+    padding-bottom: 0.62rem;
+    font-size: 0.75rem;
+  }
+
+  .scrollHint {
+    right: auto;
+    bottom: 1rem;
+    left: 1rem;
+  }
+
+  .scrollHint span {
+    display: none;
+  }
+}
+
+@media (max-height: 740px) and (min-width: 761px) {
+  .sticky {
+    min-height: 550px;
+  }
+
+  .copySlot {
+    min-height: 520px;
+  }
+
+  .copyStage {
+    max-height: 76svh;
+  }
+
+  .copyStage h1,
+  .copyStage[data-dense="true"] h1 {
+    font-size: clamp(2.15rem, 3.8vw, 3.85rem);
+  }
+
+  .paragraphs p,
+  .introParagraph {
+    font-size: 0.83rem;
+    line-height: 1.5;
+  }
+
+  .studyGroup p {
+    font-size: 0.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    height: 100svh;
+    min-height: 760px;
+  }
+
+  .scene,
+  .formLayer,
+  .silhouetteLayer {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .formLayer {
+    opacity: 0.2 !important;
+  }
+
+  .intro,
+  .scrollHint {
+    display: none;
+  }
+
+  .scrollHint i::after {
+    animation: none;
+  }
+}

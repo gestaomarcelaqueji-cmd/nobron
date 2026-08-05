@@ -1,0 +1,359 @@
+.section {
+  position: relative;
+  display: flex;
+  min-height: 100svh;
+  padding:
+    clamp(7.5rem, 12vh, 10rem)
+    clamp(1.15rem, 5vw, 5.5rem)
+    clamp(2rem, 5vh, 4rem);
+  align-items: stretch;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 84% 16%,
+      rgba(36, 107, 253, 0.09),
+      transparent 29%
+    ),
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #fbfcff 58%,
+      #f7f9fd 100%
+    );
+}
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.backgroundGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      rgba(10, 11, 13, 0.032) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(10, 11, 13, 0.032) 1px,
+      transparent 1px
+    );
+  background-size: 72px 72px;
+  mask-image:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.88),
+      rgba(0, 0, 0, 0.3) 67%,
+      transparent 100%
+    );
+  pointer-events: none;
+}
+
+.ambientLight {
+  position: absolute;
+  top: -16rem;
+  right: -18rem;
+  width: clamp(38rem, 58vw, 66rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(36, 107, 253, 0.11),
+      rgba(36, 107, 253, 0.025) 47%,
+      transparent 72%
+    );
+  filter: blur(42px);
+  pointer-events: none;
+}
+
+.verticalLine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 72%;
+  width: 1px;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 4%,
+      rgba(36, 107, 253, 0.17) 34%,
+      rgba(10, 11, 13, 0.05) 72%,
+      transparent
+    );
+  pointer-events: none;
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: min(100%, 1540px);
+  min-height: calc(
+    100svh - clamp(7.5rem, 12vh, 10rem) - clamp(2rem, 5vh, 4rem)
+  );
+  margin: 0 auto;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro {
+  display: grid;
+  width: 100%;
+  margin: auto 0;
+  padding: clamp(2rem, 6vh, 5rem) 0;
+  grid-template-columns:
+    minmax(0, 1.35fr)
+    minmax(280px, 0.65fr);
+  gap: clamp(3rem, 7vw, 8rem);
+  align-items: end;
+}
+
+.heading {
+  min-width: 0;
+}
+
+.eyebrow {
+  display: inline-flex;
+  margin-bottom: clamp(1.8rem, 4vh, 3rem);
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--solutions-subtle);
+  font-size: 0.67rem;
+  font-weight: 750;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  width: 1.9rem;
+  height: 1px;
+  background: var(--solutions-ink);
+  content: "";
+}
+
+.title {
+  max-width: 13ch;
+  margin: 0;
+  color: var(--solutions-ink);
+  font-size: clamp(3.6rem, 7.4vw, 8.8rem);
+  font-weight: 530;
+  line-height: 0.88;
+  letter-spacing: -0.078em;
+}
+
+.title span {
+  display: block;
+  color: rgba(10, 11, 13, 0.3);
+}
+
+.introContent {
+  padding-bottom: 0.65rem;
+}
+
+.description {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--solutions-muted);
+  font-size: clamp(1rem, 1.2vw, 1.14rem);
+  line-height: 1.72;
+}
+
+/* =========================================================
+   SEQUENCE
+========================================================= */
+
+.sequence {
+  display: flex;
+  width: 100%;
+  padding-top: clamp(1.3rem, 2.5vh, 2rem);
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(10, 11, 13, 0.11);
+}
+
+.sequenceItem {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+}
+
+.sequenceIndex {
+  margin-right: 0.65rem;
+  color: rgba(10, 11, 13, 0.3);
+  font-size: 0.52rem;
+  font-weight: 750;
+  letter-spacing: 0.1em;
+}
+
+.sequenceName {
+  color: var(--solutions-subtle);
+  font-size: clamp(0.57rem, 0.72vw, 0.68rem);
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sequenceLine {
+  width: 100%;
+  height: 1px;
+  margin: 0 clamp(0.8rem, 1.8vw, 1.8rem);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 11, 13, 0.06),
+      rgba(36, 107, 253, 0.35),
+      rgba(10, 11, 13, 0.06)
+    );
+}
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .title {
+    max-width: 12ch;
+  }
+
+  .introContent {
+    max-width: 42rem;
+    padding-bottom: 0;
+  }
+
+  .verticalLine {
+    left: auto;
+    right: 18%;
+  }
+
+  .sequence {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    padding-top: 0;
+    border-top: 0;
+    background: rgba(10, 11, 13, 0.09);
+  }
+
+  .sequenceItem {
+    position: relative;
+    min-height: 66px;
+    padding: 0 1rem;
+    background: rgba(255, 255, 255, 0.94);
+  }
+
+  .sequenceLine {
+    display: none;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 680px) {
+  .section {
+    min-height: 100svh;
+    padding:
+      7rem
+      1rem
+      1.5rem;
+  }
+
+  .container {
+    min-height: calc(100svh - 8.5rem);
+  }
+
+  .intro {
+    margin: 0;
+    padding: clamp(2.5rem, 9vh, 5rem) 0 3.5rem;
+    gap: 2rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 1.7rem;
+    font-size: 0.62rem;
+  }
+
+  .title {
+    max-width: none;
+    font-size: clamp(3.1rem, 15vw, 5.2rem);
+    line-height: 0.9;
+  }
+
+  .description {
+    max-width: 31rem;
+    font-size: 0.97rem;
+    line-height: 1.65;
+  }
+
+  .sequence {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sequenceItem {
+    min-height: 60px;
+    padding: 0 0.8rem;
+  }
+
+  .sequenceIndex {
+    margin-right: 0.5rem;
+    font-size: 0.48rem;
+  }
+
+  .sequenceName {
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+  }
+
+  .verticalLine {
+    right: 14%;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 390px) {
+  .title {
+    font-size: clamp(2.8rem, 14.5vw, 3.8rem);
+  }
+
+  .sequenceItem {
+    padding: 0 0.65rem;
+  }
+
+  .sequenceIndex {
+    display: none;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .section *,
+  .section *::before,
+  .section *::after {
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,162 @@
+/* =========================================================
+   STATUS
+========================================================= */
+
+.statusCard {
+  width: min(720px, 100%);
+  margin: 0 auto;
+  padding: clamp(54px, 8vw, 90px) 20px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+}
+
+.statusCard h2 {
+  max-width: 680px;
+  margin: 14px auto 0;
+  color: #202631;
+  font-family: var(--font-display), Arial, sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.6rem);
+  line-height: 0.96;
+  letter-spacing: -0.06em;
+  text-wrap: balance;
+}
+
+.statusCard > p {
+  max-width: 600px;
+  margin: 18px auto 0;
+  color: #727d8c;
+  font-size: 0.94rem;
+  line-height: 1.65;
+  text-wrap: balance;
+}
+
+.statusEyebrow {
+  display: block;
+  margin-top: 20px;
+  color: var(--blue, #145cff);
+  font-size: 0.68rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.loader {
+  display: block;
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 20px;
+  color: var(--blue, #145cff);
+  animation: status-spin 0.9s linear infinite;
+}
+
+@keyframes status-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.successIcon {
+  display: grid;
+  width: 68px;
+  height: 68px;
+  margin: 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #e9f8f2;
+  color: #159a68;
+}
+
+.successIcon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.whatsappConfirmation {
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 64px;
+  margin: 28px auto 0;
+  padding: 12px 18px;
+  gap: 11px;
+  align-items: center;
+  border: 1px solid rgba(21, 154, 104, 0.16);
+  border-radius: 16px;
+  background: rgba(240, 250, 246, 0.8);
+}
+
+.whatsappConfirmation svg {
+  width: 21px;
+  flex: 0 0 auto;
+  color: #159a68;
+}
+
+.whatsappConfirmation span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #6c7785;
+  font-size: 0.73rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.whatsappConfirmation strong {
+  color: #34404e;
+  font-size: 0.9rem;
+}
+
+.statusCard .statusNote {
+  max-width: 520px;
+  margin-top: 18px;
+  color: #8b95a2;
+  font-size: 0.72rem;
+  line-height: 1.55;
+}
+
+.successActions {
+  display: flex;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+@media (max-width: 560px) {
+  .statusCard {
+    padding: 48px 6px 64px;
+  }
+
+  .statusCard h2 {
+    font-size: clamp(2.35rem, 11vw, 3.25rem);
+  }
+
+  .statusCard > p {
+    font-size: 0.88rem;
+  }
+
+  .whatsappConfirmation {
+    width: 100%;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .successActions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .successActions > * {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader {
+    animation: none;
+  }
+}

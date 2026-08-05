@@ -1,0 +1,206 @@
+.section {
+  padding: clamp(6rem, 10vw, 9rem) clamp(1.2rem, 4vw, 4rem);
+  background: #07090a;
+  color: #f7fbfc;
+}
+
+.header {
+  display: grid;
+  width: min(100%, var(--branding-width));
+  margin: 0 auto clamp(3rem, 6vw, 5rem);
+  grid-template-columns: 0.4fr 1.1fr;
+  gap: 2rem;
+}
+
+.layerMeta {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  color: rgba(255,255,255,0.45);
+  font-size: 0.67rem;
+  font-weight: 760;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.layerMeta span {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 50%;
+  color: var(--branding-violet);
+}
+
+.heading h2 {
+  max-width: 880px;
+  margin: 0;
+  font-size: clamp(2.6rem, 4.4vw, 5.2rem);
+  font-weight: 520;
+  letter-spacing: -0.065em;
+  line-height: 0.98;
+}
+
+.heading p {
+  max-width: 690px;
+  margin: 1.5rem 0 0;
+  color: rgba(255,255,255,0.62);
+  line-height: 1.65;
+}
+
+.experience {
+  display: grid;
+  width: min(100%, 1500px);
+  margin: auto;
+  grid-template-columns: 1.2fr 0.8fr;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.letterField,
+.colorPanel {
+  position: relative;
+  min-height: min(72svh, 750px);
+  overflow: hidden;
+}
+
+.letterField {
+  border-right: 1px solid rgba(255,255,255,0.12);
+  background:
+    radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--active-color) 18%, transparent), transparent 36%),
+    #030405;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.fieldHeader,
+.colorHeader {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  min-height: 46px;
+  padding: 0 1rem;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.36);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+}
+
+.letter {
+  position: absolute;
+  z-index: 2;
+  display: inline-flex;
+  width: 6.6%;
+  height: 15.5%;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.55);
+  font-size: clamp(1.8rem, 3.3vw, 4.8rem);
+  line-height: 1;
+  transition: color 140ms ease, opacity 140ms ease, transform 140ms ease, font-weight 140ms ease;
+  will-change: transform, opacity;
+}
+
+.fieldWord {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: -0.11em;
+  left: 0;
+  color: rgba(255,255,255,0.025);
+  font-size: clamp(5rem, 12vw, 12rem);
+  font-weight: 800;
+  letter-spacing: -0.08em;
+  text-align: center;
+  pointer-events: none;
+}
+
+.colorPanel {
+  display: flex;
+  padding-top: 46px;
+  flex-direction: column;
+  background: #0b0d0e;
+}
+
+.colorHeader strong {
+  color: rgba(255,255,255,0.76);
+  font-weight: 500;
+}
+
+.colorBars {
+  display: flex;
+  min-height: 56%;
+  padding: 1.5rem 1.5rem 0;
+  align-items: flex-end;
+  gap: 0.55rem;
+}
+
+.colorBar {
+  position: relative;
+  display: flex;
+  height: calc(55% + var(--lift) * 35%);
+  min-width: 0;
+  padding: 0;
+  flex: 1;
+  align-items: flex-end;
+  border: 0;
+  border-radius: 0;
+  background: var(--color);
+  cursor: pointer;
+  transform: translateY(calc((1 - var(--lift)) * 28px));
+  transition: height 300ms cubic-bezier(.22,1,.36,1), transform 300ms cubic-bezier(.22,1,.36,1), flex 300ms ease;
+}
+
+.colorBar:hover,
+.colorBar:focus-visible {
+  flex: 1.35;
+  outline: 1px solid rgba(255,255,255,0.8);
+  outline-offset: 3px;
+}
+
+.colorName,
+.colorCode {
+  position: absolute;
+  left: 50%;
+  color: #fff;
+  font-size: 0.58rem;
+  font-weight: 760;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.45);
+  transform: translateX(-50%) rotate(-90deg);
+  white-space: nowrap;
+}
+
+.colorName { bottom: 4.2rem; }
+.colorCode { bottom: 1.5rem; opacity: 0.7; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+.wordmarkPreview {
+  width: 78%;
+  aspect-ratio: 1681 / 402;
+  margin: auto auto 2.8rem;
+  -webkit-mask: url('/brand/nobron-wordmark-mask.png') center / contain no-repeat;
+  mask: url('/brand/nobron-wordmark-mask.png') center / contain no-repeat;
+  filter: drop-shadow(0 0 25px rgba(255,255,255,0.08));
+}
+
+@media (max-width: 980px) {
+  .header { grid-template-columns: 1fr; }
+  .experience { grid-template-columns: 1fr; }
+  .letterField { border-right: 0; border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .letterField, .colorPanel { min-height: 620px; }
+}
+
+@media (max-width: 620px) {
+  .section { padding-right: 1rem; padding-left: 1rem; }
+  .letterField { min-height: 520px; }
+  .colorPanel { min-height: 560px; }
+  .colorBars { gap: 0.3rem; padding-right: 0.8rem; padding-left: 0.8rem; }
+  .colorName { display: none; }
+  .colorCode { font-size: 0.5rem; }
+}

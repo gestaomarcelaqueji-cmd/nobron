@@ -1,0 +1,24 @@
+.page {
+  --tech-bg: #ffffff;
+  --tech-ink: #070809;
+  --tech-muted: rgba(7, 8, 9, 0.58);
+  --tech-subtle: rgba(7, 8, 9, 0.36);
+  --tech-line: rgba(7, 8, 9, 0.12);
+  --tech-line-strong: rgba(7, 8, 9, 0.24);
+  --tech-soft: #f5f6f5;
+  --tech-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  overflow: clip;
+  background: var(--tech-bg);
+  color: var(--tech-ink);
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.page a {
+  color: inherit;
+}

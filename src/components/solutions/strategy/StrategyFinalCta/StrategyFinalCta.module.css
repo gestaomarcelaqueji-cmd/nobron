@@ -1,0 +1,118 @@
+.section {
+  position: relative;
+  display: flex;
+  min-height: 82svh;
+  padding: clamp(6rem, 12vw, 9rem) clamp(1.25rem, 5vw, 5rem) 2rem;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--strategy-dark);
+  color: #ffffff;
+}
+
+.container {
+  width: min(100%, 1080px);
+  margin: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--strategy-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 1000px;
+  margin: 1.3rem auto 0;
+  font-size: clamp(3rem, 6.2vw, 7.2rem);
+  font-weight: 520;
+  letter-spacing: -0.07em;
+  line-height: 0.94;
+  text-wrap: balance;
+}
+
+.description {
+  max-width: 700px;
+  margin: 1.8rem auto 0;
+  color: var(--strategy-dark-muted);
+  font-size: clamp(1rem, 1.35vw, 1.22rem);
+  line-height: 1.7;
+}
+
+.actions {
+  display: flex;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem;
+}
+
+.primaryAction,
+.secondaryAction {
+  display: inline-flex;
+  min-height: 3.6rem;
+  padding: 0 1.35rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.primaryAction {
+  background: #ffffff;
+  color: var(--strategy-ink) !important;
+}
+
+.primaryAction:hover {
+  transform: translateY(-2px);
+  background: #e8faff;
+}
+
+.secondaryAction {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+
+.secondaryAction:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.footerLine {
+  display: flex;
+  width: min(100%, var(--strategy-width));
+  margin: clamp(4rem, 8vh, 7rem) auto 0;
+  padding-top: 1.2rem;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+  .section {
+    min-height: 75svh;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .primaryAction,
+  .secondaryAction {
+    width: 100%;
+  }
+}

@@ -1,0 +1,72 @@
+.term,
+.compactTerm {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.compactTerm {
+  gap: 0.32rem;
+}
+
+.termLabel {
+  font: inherit;
+}
+
+.termButton {
+  display: inline-grid;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba(7, 8, 9, 0.28);
+  border-radius: 50%;
+  background: #ffffff;
+  color: #070809;
+  cursor: help;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.65rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.compactTerm .termButton {
+  width: 1.05rem;
+  height: 1.05rem;
+  font-size: 0.56rem;
+}
+
+.termButton:focus-visible {
+  outline: 2px solid #070809;
+  outline-offset: 3px;
+}
+
+.termPopover {
+  position: fixed;
+  z-index: 1000;
+  display: block;
+  max-width: calc(100vw - 24px);
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(7, 8, 9, 0.18);
+  border-radius: 0.75rem;
+  background: #ffffff;
+  color: #070809;
+  box-shadow: 0 18px 54px rgba(7, 8, 9, 0.16);
+  font-size: 0.76rem;
+  font-weight: 480;
+  line-height: 1.5;
+  pointer-events: none;
+  overflow-wrap: anywhere;
+  transform: translateY(-100%);
+}
+
+.termPopover[data-placement="bottom"] {
+  transform: none;
+}
+
+@media (max-width: 700px) {
+  .termPopover {
+    font-size: 0.73rem;
+  }
+}

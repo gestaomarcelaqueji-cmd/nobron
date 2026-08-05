@@ -1,0 +1,33 @@
+.page {
+  --strategy-bg: #f4f5f6;
+  --strategy-surface: #ffffff;
+  --strategy-surface-soft: #eceff1;
+  --strategy-ink: #0c0d0e;
+  --strategy-muted: #62686d;
+  --strategy-subtle: #8a9095;
+  --strategy-line: rgba(12, 13, 14, 0.13);
+  --strategy-line-strong: rgba(12, 13, 14, 0.24);
+  --strategy-accent: #00a6c8;
+  --strategy-accent-soft: rgba(0, 166, 200, 0.12);
+  --strategy-dark: #08090a;
+  --strategy-dark-muted: rgba(255, 255, 255, 0.64);
+  --strategy-width: 1240px;
+
+  min-height: 100vh;
+  overflow: clip;
+  background: var(--strategy-bg);
+  color: var(--strategy-ink);
+}
+
+.page * {
+  box-sizing: border-box;
+}
+
+.page :global(a) {
+  color: inherit;
+}
+
+.page :global(button),
+.page :global(a) {
+  -webkit-tap-highlight-color: transparent;
+}

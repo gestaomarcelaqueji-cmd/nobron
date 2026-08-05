@@ -1,0 +1,119 @@
+.section {
+  display: grid;
+  width: min(100%, 1500px);
+  min-height: 150svh;
+  margin: auto;
+  padding: clamp(6rem, 10vw, 10rem) clamp(1.2rem, 5vw, 5rem);
+  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+  gap: clamp(3rem, 8vw, 9rem);
+  border-bottom: 1px solid var(--tech-line);
+}
+
+.stickyCopy {
+  position: sticky;
+  top: clamp(6rem, 14vh, 10rem);
+  align-self: start;
+  max-width: 690px;
+}
+
+.stickyCopy > span {
+  color: var(--tech-subtle);
+  font-family: var(--tech-mono);
+  font-size: 0.64rem;
+  font-weight: 760;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.stickyCopy h2 {
+  margin: 1.2rem 0 0;
+  font-size: clamp(2.8rem, 5vw, 5.8rem);
+  font-weight: 540;
+  letter-spacing: -0.065em;
+  line-height: 0.96;
+  text-wrap: balance;
+}
+
+.stickyCopy p {
+  max-width: 640px;
+  margin: 1.6rem 0 0;
+  color: var(--tech-muted);
+  font-size: clamp(0.98rem, 1.2vw, 1.08rem);
+  line-height: 1.65;
+}
+
+.stickyCopy > strong {
+  display: block;
+  max-width: 620px;
+  margin-top: 1.4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--tech-ink);
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+  font-weight: 620;
+  line-height: 1.5;
+}
+
+.wordStream {
+  padding: 24svh 0;
+  margin: 0;
+  list-style: none;
+}
+
+.wordStream li {
+  display: grid;
+  min-height: 15svh;
+  grid-template-columns: 3.2rem minmax(0, 1fr);
+  align-items: center;
+  border-bottom: 1px solid var(--tech-line);
+  color: var(--tech-ink);
+}
+
+.wordStream li span {
+  color: var(--tech-subtle);
+  font-family: var(--tech-mono);
+  font-size: 0.56rem;
+  font-weight: 760;
+}
+
+.wordStream li strong {
+  font-size: clamp(2.4rem, 5vw, 6rem);
+  font-weight: 560;
+  letter-spacing: -0.065em;
+  line-height: 0.95;
+  text-transform: lowercase;
+}
+
+@media (max-width: 900px) {
+  .section {
+    min-height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .stickyCopy {
+    position: relative;
+    top: auto;
+  }
+
+  .wordStream {
+    padding: 2rem 0 0;
+  }
+
+  .wordStream li {
+    min-height: 7rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .wordStream li {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+  }
+
+  .wordStream li strong {
+    font-size: clamp(2.3rem, 13vw, 4rem);
+  }
+}

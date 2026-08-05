@@ -1,0 +1,509 @@
+.section {
+  position: relative;
+  padding:
+    clamp(6rem, 10vw, 9rem)
+    clamp(1.2rem, 4vw, 4rem)
+    clamp(3.5rem, 7vw, 6rem);
+  overflow: hidden;
+  background: var(--branding-dark);
+  color: #f7fbfc;
+}
+
+/* =========================================================
+   CABEÇALHO
+========================================================= */
+
+.header {
+  display: flex;
+  width: min(100%, var(--branding-width));
+  margin:
+    0
+    auto
+    clamp(2.4rem, 5vw, 4rem);
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.header span {
+  color: rgba(255, 255, 255, 0.44);
+  font-size: 0.66rem;
+  font-weight: 760;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.header p {
+  max-width: 650px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: clamp(0.96rem, 1.2vw, 1.12rem);
+  line-height: 1.65;
+}
+
+/* =========================================================
+   PALCO
+========================================================= */
+
+.stage {
+  position: relative;
+  width: min(100%, 1450px);
+  min-height: clamp(540px, 72svh, 780px);
+  margin: auto;
+  overflow: hidden;
+  border: 0;
+  border-radius: clamp(1rem, 2vw, 1.75rem);
+  outline: none;
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(39, 94, 254, 0.12),
+      transparent 34%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.025),
+      transparent 38%
+    ),
+    #020303;
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  cursor: crosshair;
+  isolation: isolate;
+  touch-action: pan-y;
+  transition: box-shadow 300ms ease;
+}
+
+.stage[data-active="true"],
+.stage:focus-visible {
+  box-shadow:
+    0 45px 120px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.stage[data-dragging="true"] {
+  cursor: grabbing;
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.grid {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  opacity: 0.3;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.07) 1px,
+      transparent 1px
+    );
+  background-size:
+    clamp(34px, 4vw, 62px)
+    clamp(34px, 4vw, 62px);
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      #000 14%,
+      #000 86%,
+      transparent 100%
+    );
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      #000 14%,
+      #000 86%,
+      transparent 100%
+    );
+}
+
+.grid::before,
+.grid::after {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+}
+
+.grid::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1) 20%,
+      rgba(255, 255, 255, 0.1) 80%,
+      transparent
+    );
+}
+
+.grid::after {
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(255, 255, 255, 0.1) 20%,
+      rgba(255, 255, 255, 0.1) 80%,
+      transparent
+    );
+}
+
+/* =========================================================
+   INFORMAÇÕES TÉCNICAS
+========================================================= */
+
+.stageStatus {
+  position: absolute;
+  z-index: 3;
+  top: 1.15rem;
+  left: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: rgba(255, 255, 255, 0.42);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+  font-size: 0.59rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+}
+
+.statusPoint {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: #24d6e8;
+  box-shadow:
+    0 0 0 4px rgba(36, 214, 232, 0.09),
+    0 0 14px rgba(36, 214, 232, 0.5);
+  animation: statusPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.86);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.coordinates {
+  position: absolute;
+  z-index: 3;
+  top: 1.1rem;
+  right: 1.2rem;
+  display: flex;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.38);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+  font-size: 0.61rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+}
+
+.legend {
+  position: absolute;
+  z-index: 3;
+  right: 1.2rem;
+  bottom: 1.15rem;
+  display: flex;
+  gap: 1rem;
+  color: rgba(255, 255, 255, 0.26);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+  font-size: 0.54rem;
+  letter-spacing: 0.08em;
+}
+
+/* =========================================================
+   SVG
+========================================================= */
+
+.statement {
+  position: absolute;
+  z-index: 1;
+  inset: 7% 3%;
+  width: 94%;
+  height: 86%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* =========================================================
+   TEXTOS
+========================================================= */
+
+.firstText,
+.secondText {
+  font-family: var(--font-display), Manrope, Arial, sans-serif;
+  font-size: 7.4px;
+  font-weight: 610;
+  letter-spacing: -0.018em;
+  paint-order: stroke fill;
+}
+
+.firstText {
+  fill: rgba(255, 255, 255, 0.22);
+  stroke: none;
+}
+
+.secondText {
+  stroke: none;
+  filter:
+    drop-shadow(
+      0 8px 22px rgba(39, 94, 254, 0.14)
+    );
+}
+
+/* =========================================================
+   LINHAS TÉCNICAS
+========================================================= */
+
+.axisLine,
+.controlLine,
+.tangentLine {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.axisLine {
+  stroke: rgba(255, 255, 255, 0.075);
+  stroke-width: 1px;
+  stroke-dasharray: 3 5;
+}
+
+.controlLine {
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 1px;
+  stroke-dasharray: 4 4;
+}
+
+.tangentLine {
+  stroke: rgba(139, 92, 246, 0.28);
+  stroke-width: 1px;
+  stroke-dasharray: 2 4;
+}
+
+.curve {
+  fill: none;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* =========================================================
+   PONTOS
+========================================================= */
+
+.anchor {
+  fill: #020303;
+  stroke: rgba(255, 255, 255, 0.88);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+
+.handle {
+  fill: #8b5cf6;
+  stroke: rgba(255, 255, 255, 0.92);
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+}
+
+.focusPoint {
+  fill: #24d6e8;
+  stroke: #ffffff;
+  stroke-width: 1px;
+  vector-effect: non-scaling-stroke;
+  filter:
+    drop-shadow(
+      0 0 7px rgba(36, 214, 232, 0.8)
+    );
+}
+
+.cursorGlow {
+  fill: rgba(36, 214, 232, 0.16);
+  filter: blur(5px);
+}
+
+/* =========================================================
+   INSTRUÇÃO
+========================================================= */
+
+.instruction {
+  position: absolute;
+  z-index: 3;
+  bottom: 1.15rem;
+  left: 50%;
+  max-width: 80%;
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 0.61rem;
+  font-weight: 720;
+  letter-spacing: 0.13em;
+  text-align: center;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+}
+
+.touchInstruction {
+  display: none;
+}
+
+.screenReaderOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+  .header {
+    margin-bottom: 2.4rem;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .stage {
+    min-height: clamp(500px, 66svh, 660px);
+  }
+
+  .statement {
+    inset: 6% 2%;
+    width: 96%;
+    height: 88%;
+  }
+
+  .legend {
+    display: none;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+  .section {
+    padding:
+      5rem
+      1rem
+      3.5rem;
+  }
+
+  .header {
+    gap: 1rem;
+  }
+
+  .header p {
+    font-size: 0.95rem;
+  }
+
+  .stage {
+    min-height: 520px;
+    border-radius: 1rem;
+    cursor: default;
+  }
+
+  .statement {
+    inset: 8% 1%;
+    width: 98%;
+    height: 84%;
+  }
+
+  .firstText,
+  .secondText {
+    font-size: 6.8px;
+  }
+
+  .coordinates {
+    gap: 0.6rem;
+    font-size: 0.54rem;
+  }
+
+  .stageStatus {
+    font-size: 0.53rem;
+  }
+
+  .instruction {
+    width: calc(100% - 2rem);
+    max-width: none;
+    font-size: 0.55rem;
+    line-height: 1.5;
+  }
+}
+
+/* =========================================================
+   DISPOSITIVOS SEM HOVER
+========================================================= */
+
+@media (hover: none) {
+  .pointerInstruction {
+    display: none;
+  }
+
+  .touchInstruction {
+    display: inline;
+  }
+}
+
+/* =========================================================
+   MOVIMENTO REDUZIDO
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .stage,
+  .statusPoint {
+    transition: none;
+    animation: none;
+  }
+
+  .cursorGlow {
+    display: none;
+  }
+}

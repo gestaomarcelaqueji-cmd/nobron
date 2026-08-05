@@ -1,0 +1,92 @@
+.section {
+  padding: clamp(6rem, 12vw, 10rem) clamp(1.25rem, 5vw, 5rem);
+  background: var(--strategy-bg);
+}
+
+.header {
+  width: min(100%, var(--strategy-width));
+  margin: 0 auto clamp(3rem, 7vw, 6rem);
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--strategy-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 1000px;
+  margin: 1.2rem auto 0;
+  font-size: clamp(2.5rem, 4.5vw, 5.3rem);
+  font-weight: 540;
+  letter-spacing: -0.06em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.description {
+  max-width: 660px;
+  margin: 1.7rem auto 0;
+  color: var(--strategy-muted);
+  font-size: 1.04rem;
+  line-height: 1.7;
+}
+
+.grid {
+  display: grid;
+  width: min(100%, var(--strategy-width));
+  margin: 0 auto;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--strategy-line);
+  border-left: 1px solid var(--strategy-line);
+}
+
+.card {
+  display: flex;
+  min-height: 20rem;
+  padding: clamp(1.6rem, 3vw, 2.5rem);
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--strategy-line);
+  border-bottom: 1px solid var(--strategy-line);
+  background: rgba(255, 255, 255, 0.34);
+  transition: background-color 200ms ease;
+}
+
+.card:hover {
+  background: var(--strategy-surface);
+}
+
+.number {
+  color: var(--strategy-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.card p {
+  max-width: 330px;
+  margin: 3rem 0 0;
+  font-size: clamp(1.2rem, 1.55vw, 1.5rem);
+  font-weight: 590;
+  letter-spacing: -0.025em;
+  line-height: 1.35;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 580px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 15rem;
+  }
+}

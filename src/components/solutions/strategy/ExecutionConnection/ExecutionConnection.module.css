@@ -1,0 +1,130 @@
+.section {
+  padding: clamp(6rem, 12vw, 10rem) clamp(1.25rem, 5vw, 5rem);
+  background: var(--strategy-surface);
+}
+
+.container {
+  width: min(100%, var(--strategy-width));
+  margin: 0 auto;
+}
+
+.header {
+  max-width: 970px;
+}
+
+.eyebrow {
+  color: var(--strategy-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 1.2rem 0 0;
+  font-size: clamp(2.8rem, 4.9vw, 5.7rem);
+  font-weight: 530;
+  letter-spacing: -0.062em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.description {
+  max-width: 700px;
+  margin: 1.7rem 0 0;
+  color: var(--strategy-muted);
+  font-size: 1.04rem;
+  line-height: 1.7;
+}
+
+.grid {
+  display: grid;
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  border-top: 1px solid var(--strategy-line);
+  border-left: 1px solid var(--strategy-line);
+}
+
+.card {
+  display: flex;
+  min-height: 19rem;
+  padding: 1.5rem;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--strategy-line);
+  border-bottom: 1px solid var(--strategy-line);
+  background: var(--strategy-bg);
+  text-decoration: none;
+  transition:
+    transform 220ms ease,
+    background-color 220ms ease,
+    color 220ms ease;
+}
+
+.card:nth-child(1),
+.card:nth-child(2) {
+  grid-column: span 3;
+}
+
+.card:nth-child(n + 3) {
+  grid-column: span 2;
+}
+
+.card:hover {
+  z-index: 1;
+  background: var(--strategy-ink);
+  color: #ffffff;
+  transform: translateY(-4px);
+}
+
+.cardTopline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--strategy-subtle);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.card:hover .cardTopline {
+  color: var(--strategy-accent);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  font-weight: 590;
+  letter-spacing: -0.04em;
+}
+
+.card p {
+  max-width: 360px;
+  margin: 0.8rem 0 0;
+  color: var(--strategy-muted);
+  line-height: 1.55;
+  transition: color 220ms ease;
+}
+
+.card:hover p {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+@media (max-width: 820px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card:nth-child(n) {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 540px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 15rem;
+  }
+}

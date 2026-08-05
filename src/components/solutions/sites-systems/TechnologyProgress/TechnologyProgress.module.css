@@ -1,0 +1,113 @@
+.section {
+  min-height: 260svh;
+  border-bottom: 1px solid var(--tech-line);
+  background: #ffffff;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  display: grid;
+  min-height: 100svh;
+  padding: clamp(5rem, 9vh, 8rem) clamp(1.2rem, 5vw, 5rem);
+  grid-template-columns: minmax(260px, 0.45fr) minmax(420px, 1fr) minmax(260px, 0.55fr);
+  gap: clamp(2rem, 5vw, 6rem);
+  align-items: center;
+  overflow: hidden;
+}
+
+.copy > span {
+  color: var(--tech-subtle);
+  font-family: var(--tech-mono);
+  font-size: 0.64rem;
+  font-weight: 760;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.copy h2 {
+  margin: 1rem 0 0;
+  font-size: clamp(2.8rem, 5vw, 6rem);
+  font-weight: 540;
+  letter-spacing: -0.066em;
+  line-height: 0.94;
+}
+
+.words {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.words li {
+  display: grid;
+  min-height: clamp(3.5rem, 7vh, 5.5rem);
+  grid-template-columns: 2.8rem minmax(0, 1fr);
+  align-items: center;
+  border-bottom: 1px solid var(--tech-line);
+}
+
+.words li span {
+  color: var(--tech-subtle);
+  font-family: var(--tech-mono);
+  font-size: 0.52rem;
+  font-weight: 760;
+}
+
+.words li strong {
+  font-size: clamp(1.35rem, 2.8vw, 3.2rem);
+  font-weight: 570;
+  letter-spacing: -0.052em;
+  line-height: 1;
+}
+
+.explanation {
+  padding-left: clamp(1rem, 3vw, 3rem);
+  border-left: 1px solid var(--tech-line-strong);
+}
+
+.explanation p {
+  margin: 0;
+  color: var(--tech-muted);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.explanation strong {
+  display: block;
+  margin-top: 1.4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--tech-ink);
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  font-weight: 620;
+  line-height: 1.5;
+}
+
+@media (max-width: 1000px) {
+  .section { min-height: auto; }
+  .sticky {
+    position: relative;
+    grid-template-columns: 1fr;
+  }
+
+  .words {
+    margin-top: 1rem;
+  }
+
+  .explanation {
+    padding: 1.5rem 0 0;
+    border-top: 1px solid var(--tech-line-strong);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .sticky {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .words li strong {
+    font-size: 1.55rem;
+  }
+}

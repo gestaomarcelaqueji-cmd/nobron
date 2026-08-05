@@ -1,0 +1,32 @@
+.page {
+  --branding-bg: #f3f4f4;
+  --branding-surface: #ffffff;
+  --branding-ink: #08090a;
+  --branding-muted: #686d72;
+  --branding-subtle: #999fa5;
+  --branding-line: rgba(8, 9, 10, 0.11);
+  --branding-line-strong: rgba(8, 9, 10, 0.22);
+  --branding-dark: #020303;
+  --branding-dark-surface: #0a0c0d;
+  --branding-dark-line: rgba(255, 255, 255, 0.12);
+  --branding-accent: #275efe;
+  --branding-cyan: #24d6e8;
+  --branding-violet: #8b5cf6;
+  --branding-coral: #ff6b5f;
+  --branding-width: 1240px;
+
+  width: 100%;
+  overflow: clip;
+  background: var(--branding-bg);
+  color: var(--branding-ink);
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.page a {
+  color: inherit;
+}

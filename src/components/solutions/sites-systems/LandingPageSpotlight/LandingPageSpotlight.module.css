@@ -1,0 +1,606 @@
+.section {
+  position: relative;
+  height: 190svh;
+  background: #050505;
+  color: #ffffff;
+}
+
+/* =========================================================
+   ÁREA FIXA
+========================================================= */
+
+.sticky {
+  position: sticky;
+  top: 0;
+  display: flex;
+  width: 100%;
+  height: 100svh;
+  padding:
+    clamp(1rem, 2vw, 2rem)
+    clamp(0.75rem, 3vw, 3rem);
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(255, 255, 255, 0.035),
+      transparent 44%
+    ),
+    #050505;
+}
+
+/* =========================================================
+   TÍTULO DE FUNDO
+========================================================= */
+
+/*
+ * O wrapper faz a centralização.
+ * O elemento interno recebe apenas as animações do Motion.
+ *
+ * Isso evita o conflito entre:
+ * transform: translateX(-50%)
+ * e o transform gerado pelo Motion.
+ */
+
+.backgroundTitleWrapper {
+  position: absolute;
+  z-index: 0;
+  top: clamp(4.5rem, 8vh, 7rem);
+  right: 0;
+  left: 0;
+  display: flex;
+  padding: 0 clamp(0.5rem, 2vw, 2rem);
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.backgroundTitle {
+  width: max-content;
+  color: rgba(255, 255, 255, 0.085);
+  font-size: clamp(3.5rem, 13.1vw, 13rem);
+  font-weight: 670;
+  letter-spacing: -0.075em;
+  line-height: 0.8;
+  text-align: center;
+  white-space: nowrap;
+  transform-origin: center;
+  user-select: none;
+  will-change:
+    transform,
+    opacity;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.card {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: min(100%, 1320px);
+  min-height: min(74svh, 780px);
+  padding:
+    clamp(3rem, 6vh, 5.5rem)
+    clamp(1.5rem, 6vw, 6rem)
+    clamp(1.5rem, 3vh, 2.2rem);
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: clamp(2.5rem, 6vw, 6rem);
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(245, 247, 250, 0.94),
+      transparent 36%
+    ),
+    #ffffff;
+  color: #0a0a0a;
+  box-shadow:
+    0 -30px 90px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(0, 0, 0, 0.04);
+  transform-origin: bottom center;
+  will-change: transform;
+}
+
+.card::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(60%, 580px);
+  height: 1px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 0, 0, 0.18),
+      transparent
+    );
+  content: "";
+  transform: translateX(-50%);
+}
+
+.cardContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: min(100%, 1040px);
+  margin: auto;
+  align-items: center;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  will-change:
+    transform,
+    opacity;
+}
+
+/* =========================================================
+   CABEÇALHO
+========================================================= */
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.eyebrow {
+  color: rgba(10, 10, 10, 0.7);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+  font-size: clamp(0.56rem, 0.7vw, 0.68rem);
+  font-weight: 760;
+  letter-spacing: 0.23em;
+  text-transform: uppercase;
+}
+
+.headerLine {
+  display: block;
+  width: 4.5rem;
+  height: 1px;
+  margin-top: 1.15rem;
+  background: rgba(10, 10, 10, 0.16);
+}
+
+/* =========================================================
+   TÍTULO
+========================================================= */
+
+.card h2 {
+  max-width: 980px;
+  margin:
+    clamp(2rem, 4vh, 3.4rem)
+    auto
+    0;
+  color: #0a0a0a;
+  font-size: clamp(2.6rem, 5.8vw, 6.3rem);
+  font-weight: 540;
+  letter-spacing: -0.07em;
+  line-height: 0.95;
+  text-wrap: balance;
+}
+
+.card h2 span {
+  display: block;
+}
+
+/* =========================================================
+   OFERTA
+========================================================= */
+
+.offer {
+  display: grid;
+  width: min(100%, 1000px);
+  margin-top: clamp(2.8rem, 6vh, 5rem);
+  grid-template-columns:
+    minmax(280px, 0.9fr)
+    1px
+    minmax(280px, 0.75fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  will-change:
+    transform,
+    opacity;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1.4rem);
+}
+
+.price > span {
+  color: #0a0a0a;
+  font-size: clamp(4rem, 9vw, 9.5rem);
+  font-weight: 450;
+  letter-spacing: -0.09em;
+  line-height: 0.8;
+  white-space: nowrap;
+}
+
+.price strong {
+  max-width: 4.2rem;
+  color: #0a0a0a;
+  font-size: clamp(0.8rem, 1.2vw, 1.35rem);
+  font-weight: 760;
+  letter-spacing: -0.025em;
+  line-height: 0.88;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.offerDivider {
+  width: 1px;
+  height: clamp(5rem, 9vh, 8rem);
+  background:
+    linear-gradient(
+      180deg,
+      transparent,
+      rgba(10, 10, 10, 0.18),
+      transparent
+    );
+}
+
+.condition {
+  max-width: 430px;
+  margin: 0;
+  color: rgba(10, 10, 10, 0.74);
+  font-size: clamp(1rem, 1.55vw, 1.45rem);
+  font-weight: 450;
+  letter-spacing: -0.028em;
+  line-height: 1.25;
+  text-align: left;
+  text-wrap: balance;
+}
+
+/* =========================================================
+   BOTÃO
+========================================================= */
+
+.linkWrapper {
+  display: flex;
+  width: 100%;
+  margin-top: clamp(2.6rem, 5vh, 4.5rem);
+  align-items: center;
+  justify-content: center;
+  will-change:
+    transform,
+    opacity;
+}
+
+.link,
+.link:link,
+.link:visited {
+  position: relative;
+  display: inline-flex;
+  width: min(100%, 330px);
+  min-height: 4rem;
+  padding: 0 1.65rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  overflow: hidden;
+  border: 1px solid #0a0a0a;
+  border-radius: 999px;
+  background: #0a0a0a;
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 650;
+  text-decoration: none;
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.18);
+  transition:
+    width 350ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    background-color 220ms ease;
+}
+
+.link::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(
+      105deg,
+      transparent 25%,
+      rgba(255, 255, 255, 0.16) 50%,
+      transparent 75%
+    );
+  content: "";
+  transform: translateX(-115%);
+  transition:
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.linkText,
+.linkArrow {
+  position: relative;
+  z-index: 2;
+  color: #ffffff !important;
+}
+
+.linkText {
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+
+.linkArrow {
+  font-size: 1.3rem;
+  font-weight: 380;
+  line-height: 1;
+  transition:
+    transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.link:hover {
+  width: min(100%, 350px);
+  background: #000000;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow:
+    0 20px 46px rgba(0, 0, 0, 0.23);
+}
+
+.link:hover::before {
+  transform: translateX(115%);
+}
+
+.link:hover .linkArrow {
+  color: #ffffff !important;
+  transform: translateX(6px);
+}
+
+.link:focus-visible {
+  outline: 2px solid #0a0a0a;
+  outline-offset: 4px;
+}
+
+/* =========================================================
+   RODAPÉ DO CARD
+========================================================= */
+
+.cardFooter {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  padding-top: 1.3rem;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 4vw, 4rem);
+  border-top: 1px solid rgba(10, 10, 10, 0.08);
+  color: rgba(10, 10, 10, 0.28);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+  font-size: 0.47rem;
+  font-weight: 720;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.cardFooter span {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 4vw, 4rem);
+}
+
+.cardFooter span:not(:last-child)::after {
+  display: block;
+  width: clamp(2rem, 5vw, 5rem);
+  height: 1px;
+  background: rgba(10, 10, 10, 0.12);
+  content: "";
+}
+
+/* =========================================================
+   NOTEBOOK
+========================================================= */
+
+@media (max-width: 1100px) {
+  .card {
+    min-height: 76svh;
+  }
+
+  .card h2 {
+    font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+  }
+
+  .offer {
+    gap: 2rem;
+  }
+
+  .price > span {
+    font-size: clamp(4rem, 9vw, 7rem);
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 720px) {
+  .section {
+    height: 175svh;
+  }
+
+  .sticky {
+    padding:
+      0.65rem
+      0.65rem
+      1rem;
+  }
+
+  .backgroundTitleWrapper {
+    top: 6rem;
+    padding: 0 0.3rem;
+  }
+
+  .backgroundTitle {
+    font-size: clamp(3.2rem, 13vw, 5rem);
+    letter-spacing: -0.07em;
+  }
+
+  .card {
+    min-height: 79svh;
+    padding:
+      3rem
+      1.25rem
+      1.2rem;
+    border-radius:
+      2.6rem
+      2.6rem
+      2rem
+      2rem;
+  }
+
+  .card h2 {
+    margin-top: 2rem;
+    font-size: clamp(2.5rem, 11.5vw, 4.1rem);
+    line-height: 0.98;
+  }
+
+  .offer {
+    display: flex;
+    margin-top: 2.6rem;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  .price {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .price > span {
+    font-size: clamp(4.8rem, 22vw, 7.2rem);
+  }
+
+  .price strong {
+    max-width: none;
+    font-size: 0.72rem;
+    letter-spacing: 0.11em;
+    line-height: 1;
+    text-align: center;
+  }
+
+  .offerDivider {
+    width: min(100%, 18rem);
+    height: 1px;
+    background:
+      linear-gradient(
+        90deg,
+        transparent,
+        rgba(10, 10, 10, 0.18),
+        transparent
+      );
+  }
+
+  .condition {
+    max-width: 320px;
+    font-size: 1rem;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .linkWrapper {
+    margin-top: 2rem;
+  }
+
+  .link,
+  .link:link,
+  .link:visited {
+    min-height: 3.7rem;
+  }
+
+  .cardFooter {
+    gap: 0.7rem;
+    font-size: 0.4rem;
+  }
+
+  .cardFooter span {
+    gap: 0;
+  }
+
+  .cardFooter span::after {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   TELAS BAIXAS
+========================================================= */
+
+@media (max-height: 760px) and (min-width: 721px) {
+  .card {
+    min-height: 79svh;
+    padding-top: 2.2rem;
+    padding-bottom: 1rem;
+  }
+
+  .card h2 {
+    margin-top: 1.6rem;
+    font-size: clamp(2.6rem, 5vw, 4.5rem);
+  }
+
+  .offer {
+    margin-top: 2rem;
+  }
+
+  .price > span {
+    font-size: clamp(4rem, 7vw, 6.5rem);
+  }
+
+  .linkWrapper {
+    margin-top: 2rem;
+  }
+}
+
+/* =========================================================
+   MOVIMENTO REDUZIDO
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    height: auto;
+    min-height: 100svh;
+  }
+
+  .sticky {
+    position: relative;
+    min-height: 100svh;
+  }
+
+  .card,
+  .cardContent,
+  .offer,
+  .linkWrapper,
+  .backgroundTitle {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .link,
+  .link::before,
+  .linkArrow {
+    transition: none;
+  }
+}

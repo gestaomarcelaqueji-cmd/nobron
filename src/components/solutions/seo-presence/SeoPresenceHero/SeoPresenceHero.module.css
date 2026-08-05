@@ -1,0 +1,130 @@
+.section {
+  position: relative;
+  display: flex;
+  min-height: clamp(420px, 58svh, 650px);
+  padding:
+    clamp(7rem, 12vh, 9rem)
+    clamp(1rem, 4vw, 4rem)
+    clamp(3.5rem, 7vh, 5.5rem);
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--seo-line);
+  background: #ffffff;
+  color: var(--seo-ink);
+}
+
+.inner {
+  display: flex;
+  width: min(100%, 1600px);
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.titleStage {
+  position: relative;
+  width: 100%;
+  cursor: default;
+  user-select: none;
+}
+
+.titleSvg {
+  display: block;
+  width: 100%;
+  height: clamp(120px, 16vw, 245px);
+  overflow: visible;
+}
+
+.fragment {
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.titleText {
+  fill: var(--seo-ink);
+  font-family:
+    var(--font-geist-sans),
+    var(--font-sans),
+    Arial,
+    Helvetica,
+    sans-serif;
+  font-size: 190px;
+  font-weight: 610;
+  letter-spacing: -9px;
+}
+
+.description {
+  width: min(100%, 1120px);
+  margin: clamp(1.2rem, 2.5vw, 2rem) auto 0;
+  color: rgba(8, 9, 10, 0.56);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    monospace;
+  font-size: clamp(0.64rem, 0.76vw, 0.77rem);
+  font-weight: 520;
+  letter-spacing: 0.025em;
+  line-height: 1.75;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  border: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 1000px) {
+  .section {
+    min-height: 520px;
+  }
+
+  .titleText {
+    font-size: 184px;
+  }
+
+  .description {
+    max-width: 850px;
+  }
+}
+
+@media (max-width: 700px) {
+  .section {
+    min-height: 440px;
+    padding: 6.5rem 1rem 3.5rem;
+  }
+
+  .titleSvg {
+    height: 115px;
+  }
+
+  .titleText {
+    font-size: 180px;
+    letter-spacing: -8px;
+  }
+
+  .description {
+    max-width: 36rem;
+    margin-top: 1rem;
+    font-size: 0.62rem;
+    line-height: 1.7;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fragment {
+    will-change: auto;
+  }
+}

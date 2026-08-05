@@ -1,0 +1,133 @@
+.section {
+  padding:
+    clamp(7rem, 12vw, 12rem)
+    clamp(1rem, 4vw, 4rem);
+  border-bottom: 1px solid var(--seo-line);
+  background: #ffffff;
+}
+
+.inner {
+  display: flex;
+  width: min(100%, 1200px);
+  margin: auto;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--seo-subtle);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.58rem;
+  font-weight: 760;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.diagram {
+  display: grid;
+  width: min(100%, 760px);
+  margin-top: clamp(3rem, 6vw, 5rem);
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+}
+
+.diagram > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.diagram > div:last-child {
+  justify-content: flex-end;
+}
+
+.diagram span {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.54rem;
+  font-weight: 760;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.diagram i {
+  display: block;
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, var(--seo-line), var(--seo-ink));
+}
+
+.diagram > div:last-child i {
+  background: linear-gradient(90deg, var(--seo-ink), var(--seo-line));
+}
+
+.diagram strong {
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--seo-ink);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 680;
+}
+
+.inner h2 {
+  max-width: 1000px;
+  margin: clamp(3rem, 6vw, 5rem) 0 0;
+  font-size: clamp(2.8rem, 5.6vw, 6.2rem);
+  font-weight: 500;
+  letter-spacing: -0.068em;
+  line-height: 0.96;
+  text-wrap: balance;
+}
+
+.inner p {
+  max-width: 720px;
+  margin: 1.8rem 0 0;
+  color: var(--seo-muted);
+  font-size: clamp(1rem, 1.25vw, 1.12rem);
+  line-height: 1.7;
+}
+
+.link,
+.link:link,
+.link:visited {
+  display: inline-flex;
+  min-height: 3.8rem;
+  margin-top: 2.5rem;
+  padding: 0 1.4rem;
+  align-items: center;
+  gap: 1.5rem;
+  border-radius: 999px;
+  background: var(--seo-ink);
+  color: #ffffff;
+  text-decoration: none;
+  transition: transform 220ms ease;
+}
+
+.link:hover {
+  transform: translateY(-2px);
+}
+
+.link span:first-child {
+  font-size: 0.82rem;
+  font-weight: 640;
+}
+
+.link span:last-child {
+  color: #ffffff;
+  font-size: 1.15rem;
+}
+
+@media (max-width: 620px) {
+  .section {
+    padding: 6rem 1rem;
+  }
+
+  .diagram {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .diagram > div {
+    display: none;
+  }
+}

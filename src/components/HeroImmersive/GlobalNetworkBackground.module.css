@@ -1,0 +1,544 @@
+/* =========================================================
+   GLOBAL NETWORK BACKGROUND
+========================================================= */
+
+.background {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 36% 72%,
+      rgba(37, 99, 235, 0.055),
+      transparent 20%
+    ),
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #fdfdfd 58%,
+      #f8f9fb 100%
+    );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   MAPA
+========================================================= */
+
+.map {
+  position: absolute;
+  inset: 50% auto auto 50%;
+
+  width: 100%;
+  min-width: 1050px;
+  height: 100%;
+  min-height: 620px;
+
+  overflow: visible;
+
+  transform:
+    translate(-50%, -50%)
+    scale(1.035);
+}
+
+.ambientGlow {
+  position: absolute;
+  left: 35%;
+  top: 69%;
+
+  width: min(31rem, 44vw);
+  aspect-ratio: 1;
+
+  border-radius: 999px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(37, 99, 235, 0.08),
+      rgba(37, 99, 235, 0.015) 48%,
+      transparent 72%
+    );
+
+  filter: blur(52px);
+
+  transform:
+    translate(-50%, -50%);
+}
+
+/* =========================================================
+   PAÍSES
+========================================================= */
+
+.countries {
+  opacity: 0.96;
+}
+
+.country {
+  fill: rgba(148, 163, 184, 0.055);
+
+  stroke: rgba(100, 116, 139, 0.24);
+  stroke-width: 0.7;
+
+  transition:
+    fill 180ms ease,
+    stroke 180ms ease;
+}
+
+.brazil {
+  fill: rgba(37, 99, 235, 0.115);
+
+  stroke: rgba(37, 99, 235, 0.58);
+  stroke-width: 1.08;
+
+  filter:
+    drop-shadow(
+      0 0 7px rgba(37, 99, 235, 0.11)
+    );
+}
+
+.graticule {
+  fill: none;
+
+  stroke: rgba(100, 116, 139, 0.055);
+  stroke-width: 0.55;
+  stroke-dasharray: 2 10;
+}
+
+/* =========================================================
+   ROTAS
+========================================================= */
+
+.routes {
+  isolation: isolate;
+}
+
+.routeBase {
+  fill: none;
+
+  stroke: rgba(71, 85, 105, 0.13);
+  stroke-width: 0.95;
+  stroke-linecap: round;
+}
+
+.routeAnimated {
+  fill: none;
+
+  stroke: url("#routeGradient");
+  stroke-width: 1.35;
+  stroke-linecap: round;
+
+  /*
+   * Em vez de desenhar toda a linha com muito brilho,
+   * um segmento percorre a rota.
+   */
+  stroke-dasharray: 155 845;
+  stroke-dashoffset: 1000;
+
+  opacity: 0;
+
+  filter: url("#softRouteGlow");
+
+  animation:
+    routeFlow
+    var(--route-duration)
+    linear
+    infinite;
+
+  animation-delay:
+    var(--route-delay);
+}
+
+/* =========================================================
+   ÍCONES EM MOVIMENTO
+========================================================= */
+
+.serviceTraveler {
+  opacity: 0;
+
+  animation:
+    travelerVisibility
+    var(--route-duration)
+    linear
+    infinite;
+
+  animation-delay:
+    var(--route-delay);
+}
+
+.serviceChip {
+  color: #111827;
+
+  filter:
+    drop-shadow(
+      0 7px 14px rgba(15, 23, 42, 0.12)
+    );
+}
+
+.serviceChipSurface {
+  fill: rgba(255, 255, 255, 0.94);
+
+  stroke: rgba(15, 23, 42, 0.14);
+  stroke-width: 0.85;
+}
+
+.serviceIcon {
+  color: #111827;
+}
+
+.serviceLabel {
+  fill: #111827;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.065em;
+
+  user-select: none;
+}
+
+/* =========================================================
+   DESTINOS
+========================================================= */
+
+.destination {
+  opacity: 0;
+
+  animation:
+    destinationArrival
+    var(--route-duration)
+    ease-in-out
+    infinite;
+
+  animation-delay:
+    var(--route-delay);
+}
+
+.destinationRing {
+  fill: none;
+
+  stroke: rgba(71, 85, 105, 0.38);
+  stroke-width: 0.9;
+
+  transform-box: fill-box;
+  transform-origin: center;
+
+  animation:
+    destinationPulse
+    2.8s
+    ease-out
+    infinite;
+}
+
+.destinationCore {
+  fill: #ffffff;
+
+  stroke: rgba(37, 99, 235, 0.78);
+  stroke-width: 1.35;
+
+  filter:
+    drop-shadow(
+      0 0 4px rgba(37, 99, 235, 0.25)
+    );
+}
+
+/* =========================================================
+   ORIGEM NO PARANÁ
+========================================================= */
+
+.paranaHub {
+  filter: url("#paranaHubGlow");
+}
+
+.hubAura {
+  opacity: 0.62;
+}
+
+.hubOuter {
+  fill: #ffffff;
+
+  stroke: rgba(37, 99, 235, 0.82);
+  stroke-width: 1.35;
+}
+
+.hubInner {
+  fill: #2563eb;
+}
+
+.hubPulse {
+  fill: none;
+
+  stroke: rgba(37, 99, 235, 0.46);
+  stroke-width: 1.1;
+
+  transform-box: fill-box;
+  transform-origin: center;
+
+  animation:
+    hubPulse
+    3.8s
+    ease-out
+    infinite;
+}
+
+.hubPulseSecond {
+  animation-delay: 1.9s;
+}
+
+/* =========================================================
+   FADES
+========================================================= */
+
+.edgeFadeLeft,
+.edgeFadeRight {
+  position: absolute;
+  z-index: 2;
+  inset-block: 0;
+
+  width: 8%;
+
+  pointer-events: none;
+}
+
+.edgeFadeLeft {
+  left: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ffffff 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+}
+
+.edgeFadeRight {
+  right: 0;
+
+  background:
+    linear-gradient(
+      270deg,
+      #ffffff 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+}
+
+/*
+ * Mantém a logotipo preta legível,
+ * mas sem esconder completamente o mapa.
+ */
+.contentFade {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 47%;
+
+  width: min(35rem, 51vw);
+  height: 12rem;
+
+  border-radius: 999px;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255, 255, 255, 0.56) 0%,
+      rgba(255, 255, 255, 0.24) 42%,
+      rgba(255, 255, 255, 0) 74%
+    );
+
+  filter: blur(17px);
+
+  transform:
+    translate(-50%, -50%);
+}
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+
+@keyframes routeFlow {
+  0% {
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+
+  6% {
+    opacity: 0.2;
+  }
+
+  14% {
+    opacity: 0.88;
+  }
+
+  84% {
+    opacity: 0.72;
+  }
+
+  94% {
+    opacity: 0.24;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes travelerVisibility {
+  0% {
+    opacity: 0;
+  }
+
+  7% {
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  82% {
+    opacity: 1;
+  }
+
+  94% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes destinationArrival {
+  0%,
+  73% {
+    opacity: 0;
+  }
+
+  84%,
+  92% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes destinationPulse {
+  0% {
+    transform: scale(0.65);
+    opacity: 0.62;
+  }
+
+  100% {
+    transform: scale(2.25);
+    opacity: 0;
+  }
+}
+
+@keyframes hubPulse {
+  0% {
+    transform: scale(0.65);
+    opacity: 0.72;
+  }
+
+  100% {
+    transform: scale(3.7);
+    opacity: 0;
+  }
+}
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 900px) {
+  .map {
+    left: 44%;
+
+    width: 1120px;
+    min-width: 1120px;
+    height: 650px;
+    min-height: 650px;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.055);
+  }
+
+  .contentFade {
+    width: 76vw;
+  }
+
+  .routeAnimated {
+    stroke-width: 1.2;
+  }
+
+  .country {
+    stroke-width: 0.6;
+  }
+
+  .serviceChip {
+    transform: scale(0.92);
+  }
+}
+
+@media (max-width: 600px) {
+  .map {
+    left: 37%;
+
+    width: 990px;
+    min-width: 990px;
+    height: 610px;
+    min-height: 610px;
+  }
+
+  .edgeFadeLeft,
+  .edgeFadeRight {
+    width: 4%;
+  }
+
+  .serviceChip {
+    transform: scale(0.82);
+  }
+}
+
+/* =========================================================
+   ACESSIBILIDADE
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .routeAnimated,
+  .serviceTraveler,
+  .destination,
+  .destinationRing,
+  .hubPulse {
+    animation: none;
+  }
+
+  .routeAnimated {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    opacity: 0.26;
+  }
+
+  .serviceTraveler {
+    display: none;
+  }
+
+  .destination {
+    opacity: 0.55;
+  }
+
+  .hubPulse {
+    opacity: 0;
+  }
+}

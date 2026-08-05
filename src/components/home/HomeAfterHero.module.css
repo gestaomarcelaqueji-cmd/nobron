@@ -1,0 +1,220 @@
+.section {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  padding: clamp(6rem, 12vw, 11rem) clamp(1.25rem, 5vw, 5.5rem);
+  background:
+    radial-gradient(circle at 82% 4%, rgba(124, 132, 143, 0.1), transparent 28rem),
+    #fff;
+  color: #15181f;
+}
+
+.shell {
+  width: min(100%, 82rem);
+  margin-inline: auto;
+}
+
+.heading {
+  display: grid;
+  max-width: 71rem;
+  gap: 1.45rem;
+}
+
+.kicker {
+  margin: 0;
+  color: #4f5660;
+  font-size: 0.73rem;
+  font-weight: 760;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.heading h2 {
+  max-width: 69rem;
+  margin: 0;
+  font-family: var(--font-display), Arial, sans-serif;
+  font-size: clamp(3rem, 7.2vw, 7.2rem);
+  font-weight: 520;
+  letter-spacing: -0.073em;
+  line-height: 0.9;
+  text-wrap: balance;
+}
+
+.heading h2 span {
+  color: #a7adb7;
+}
+
+.intro {
+  max-width: 42rem;
+  margin: 0;
+  color: #606873;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.7;
+}
+
+.pillars {
+  display: grid;
+  margin-top: clamp(4rem, 8vw, 7.5rem);
+  border-block: 1px solid #e5e7eb;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.pillar {
+  position: relative;
+  min-height: 20rem;
+  padding: 2.2rem clamp(1.2rem, 2.6vw, 2.7rem) 2.5rem;
+}
+
+.pillar + .pillar {
+  border-left: 1px solid #e5e7eb;
+}
+
+.pillar > svg {
+  width: 2rem;
+  height: 2rem;
+  margin-top: 4.2rem;
+  color: #6f7782;
+  stroke-width: 1.45;
+}
+
+.number {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  color: #afb5be;
+  font-size: 0.73rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.pillar h3 {
+  margin: 1.6rem 0 0;
+  font-family: var(--font-display), Arial, sans-serif;
+  font-size: clamp(1.45rem, 2vw, 1.9rem);
+  font-weight: 620;
+  letter-spacing: -0.045em;
+}
+
+.pillar p {
+  max-width: 21rem;
+  margin: 0.85rem 0 0;
+  color: #69717c;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.actions {
+  display: flex;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.primaryAction,
+.secondaryAction {
+  display: inline-flex;
+  min-height: 3.5rem;
+  padding: 0.9rem 1.2rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.primaryAction {
+  background: #171a20;
+  color: #fff;
+}
+
+.primaryAction svg {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 180ms ease;
+}
+
+.secondaryAction {
+  border: 1px solid #d9dde3;
+  color: #272c34;
+}
+
+.primaryAction:hover,
+.primaryAction:focus-visible,
+.secondaryAction:hover,
+.secondaryAction:focus-visible {
+  transform: translateY(-2px);
+}
+
+.primaryAction:hover svg,
+.primaryAction:focus-visible svg {
+  transform: translateX(0.2rem);
+}
+
+.secondaryAction:hover,
+.secondaryAction:focus-visible {
+  border-color: #b8bec8;
+  background: #f5f6f8;
+}
+
+.primaryAction:focus-visible,
+.secondaryAction:focus-visible {
+  outline: 3px solid rgba(92, 100, 111, 0.32);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .section {
+    padding-block: 5rem 6.5rem;
+  }
+
+  .pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .pillar {
+    min-height: auto;
+    padding: 2rem 0 2.4rem;
+  }
+
+  .pillar + .pillar {
+    border-top: 1px solid #e5e7eb;
+    border-left: 0;
+  }
+
+  .pillar > svg {
+    margin-top: 2.8rem;
+  }
+
+  .number {
+    top: 2rem;
+    right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .actions a {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryAction,
+  .secondaryAction,
+  .primaryAction svg {
+    transition: none;
+  }
+}

@@ -1,0 +1,156 @@
+.section {
+  padding: clamp(6rem, 12vw, 10rem) clamp(1.25rem, 5vw, 5rem);
+  background: var(--strategy-surface);
+}
+
+.container {
+  display: grid;
+  width: min(100%, var(--strategy-width));
+  margin: 0 auto;
+  grid-template-columns: minmax(300px, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: start;
+}
+
+.copy {
+  position: sticky;
+  top: 8rem;
+}
+
+.eyebrow {
+  color: var(--strategy-accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 620px;
+  margin: 1.2rem 0 0;
+  font-size: clamp(2.6rem, 4.4vw, 5rem);
+  font-weight: 540;
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.description {
+  max-width: 570px;
+  margin: 1.8rem 0 0;
+  color: var(--strategy-muted);
+  font-size: 1.06rem;
+  line-height: 1.72;
+}
+
+.statement {
+  display: flex;
+  margin-top: 2.5rem;
+  padding-top: 1.4rem;
+  flex-direction: column;
+  gap: 0.3rem;
+  border-top: 1px solid var(--strategy-line);
+  font-size: 0.95rem;
+}
+
+.statement span {
+  color: var(--strategy-subtle);
+}
+
+.statement strong {
+  font-weight: 700;
+}
+
+.decisions {
+  border-top: 1px solid var(--strategy-line-strong);
+}
+
+.decisionHeader {
+  display: grid;
+  padding: 0.9rem 0;
+  grid-template-columns: 1fr 1fr;
+  color: var(--strategy-subtle);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.decisionHeader span:last-child {
+  text-align: right;
+}
+
+.decision {
+  position: relative;
+  display: grid;
+  min-height: 9.5rem;
+  padding: 1.6rem 3.7rem 1.6rem 0;
+  grid-template-columns: 3.2rem minmax(150px, 0.75fr) minmax(200px, 1.25fr);
+  gap: 1rem;
+  align-items: center;
+  border-top: 1px solid var(--strategy-line);
+}
+
+.decision:last-child {
+  border-bottom: 1px solid var(--strategy-line);
+}
+
+.number {
+  color: var(--strategy-accent);
+  font-size: 0.73rem;
+  font-weight: 800;
+}
+
+.decision h3 {
+  margin: 0;
+  font-size: clamp(1.15rem, 1.5vw, 1.45rem);
+  font-weight: 680;
+  letter-spacing: -0.025em;
+}
+
+.decision p {
+  margin: 0;
+  color: var(--strategy-muted);
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+.marker {
+  position: absolute;
+  right: 0;
+  display: grid;
+  width: 2.35rem;
+  height: 2.35rem;
+  place-items: center;
+  border: 1px solid var(--strategy-line);
+  border-radius: 50%;
+  color: var(--strategy-subtle);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .copy {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .decision {
+    min-height: auto;
+    padding: 1.4rem 3rem 1.4rem 0;
+    grid-template-columns: 2.3rem 1fr;
+  }
+
+  .decision p {
+    grid-column: 2;
+  }
+
+  .decisionHeader {
+    display: none;
+  }
+}

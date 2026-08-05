@@ -1,0 +1,448 @@
+.section {
+  position: relative;
+  display: flex;
+  min-height: 100svh;
+  padding:
+    clamp(7.5rem, 12vh, 9rem)
+    clamp(1.25rem, 5vw, 5rem)
+    clamp(2.5rem, 5vh, 3.5rem);
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--strategy-line);
+  background: var(--strategy-bg);
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: min(100%, 1180px);
+  margin: auto;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.eyebrow {
+  display: inline-flex;
+  margin-bottom: clamp(1.5rem, 2.5vh, 2rem);
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  color: var(--strategy-muted);
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before,
+.eyebrow::after {
+  width: 1.8rem;
+  height: 1px;
+  background: var(--strategy-line-strong);
+  content: "";
+}
+
+/* =========================================================
+   TÍTULO COM MASK REVEAL
+========================================================= */
+
+.title {
+  display: flex;
+  max-width: 1080px;
+  margin: 0;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  color: var(--strategy-ink);
+  font-size: clamp(3.15rem, 4.9vw, 5rem);
+  font-weight: 520;
+  letter-spacing: -0.065em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.wordMask {
+  display: inline-flex;
+  margin-right: 0.22em;
+  padding-bottom: 0.08em;
+  overflow: hidden;
+}
+
+.wordMask:last-child {
+  margin-right: 0;
+}
+
+.word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* =========================================================
+   DESCRIÇÃO
+========================================================= */
+
+.description {
+  max-width: 690px;
+  margin: clamp(1.6rem, 3vh, 2.2rem) auto 0;
+  color: var(--strategy-muted);
+  font-size: clamp(1rem, 1.25vw, 1.16rem);
+  line-height: 1.65;
+  text-wrap: balance;
+}
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+.actions {
+  display: flex;
+  margin-top: clamp(1.8rem, 3vh, 2.4rem);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.primaryAction,
+.secondaryAction {
+  display: inline-flex;
+  min-height: 3.45rem;
+  padding: 0 1.3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 680;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.primaryAction {
+  border: 1px solid var(--strategy-ink);
+  background: var(--strategy-ink);
+  color: #ffffff !important;
+  box-shadow: 0 12px 30px rgba(12, 13, 14, 0.1);
+}
+
+.primaryAction:hover {
+  transform: translateY(-2px);
+  background: #202326;
+  box-shadow: 0 16px 36px rgba(12, 13, 14, 0.14);
+}
+
+.secondaryAction {
+  border: 1px solid var(--strategy-line-strong);
+  background: transparent;
+  color: var(--strategy-ink);
+}
+
+.secondaryAction:hover {
+  transform: translateY(-2px);
+  border-color: var(--strategy-ink);
+  background: var(--strategy-surface);
+}
+
+.actionIcon,
+.secondaryIcon {
+  display: inline-flex;
+  width: 1.65rem;
+  height: 1.65rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  transition: transform 180ms ease;
+}
+
+.actionIcon {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.secondaryIcon {
+  background: var(--strategy-surface);
+}
+
+.primaryAction:hover .actionIcon {
+  transform: translate(2px, -2px);
+}
+
+.secondaryAction:hover .secondaryIcon {
+  transform: translateY(2px);
+}
+
+/* =========================================================
+   LINHA ESTRATÉGICA
+========================================================= */
+
+.direction {
+  position: relative;
+  width: min(100%, 760px);
+  margin-top: clamp(3rem, 6vh, 4.5rem);
+  padding-top: 1.3rem;
+}
+
+.directionLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--strategy-line-strong);
+  transform-origin: left center;
+}
+
+.directionItems {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.directionItem {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+}
+
+.directionItem::before {
+  position: absolute;
+  top: -1.55rem;
+  left: 50%;
+  width: 0.45rem;
+  height: 0.45rem;
+  border: 2px solid var(--strategy-bg);
+  border-radius: 50%;
+  background: var(--strategy-ink);
+  box-shadow: 0 0 0 1px var(--strategy-line-strong);
+  content: "";
+  transform: translateX(-50%);
+}
+
+.directionNumber {
+  color: var(--strategy-accent);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.directionItem strong {
+  color: var(--strategy-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* =========================================================
+   SCROLL
+========================================================= */
+
+.scrollIndicator {
+  position: absolute;
+  right: clamp(1.5rem, 4vw, 4rem);
+  bottom: clamp(1.5rem, 3vh, 2.5rem);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--strategy-subtle);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.scrollTrack {
+  position: relative;
+  display: block;
+  width: 2.8rem;
+  height: 1px;
+  overflow: hidden;
+  background: var(--strategy-line-strong);
+}
+
+.scrollTrack::after {
+  position: absolute;
+  inset: 0;
+  background: var(--strategy-ink);
+  content: "";
+  animation: scrollMovement 2.2s ease-in-out infinite;
+  transform: translateX(-100%);
+}
+
+@keyframes scrollMovement {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  45%,
+  55% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* =========================================================
+   NOTEBOOKS MENORES
+========================================================= */
+
+@media (max-width: 1100px) and (max-height: 760px) {
+  .section {
+    min-height: 100svh;
+    padding-top: 7rem;
+    padding-bottom: 2rem;
+  }
+
+  .title {
+    max-width: 940px;
+    font-size: clamp(3rem, 4.5vw, 4.2rem);
+  }
+
+  .description {
+    margin-top: 1.4rem;
+  }
+
+  .actions {
+    margin-top: 1.5rem;
+  }
+
+  .direction {
+    margin-top: 2.8rem;
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 820px) {
+  .section {
+    min-height: auto;
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+  }
+
+  .title {
+    max-width: 720px;
+    font-size: clamp(3rem, 8vw, 4.4rem);
+  }
+
+  .scrollIndicator {
+    display: none;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 640px) {
+  .section {
+    padding:
+      7rem
+      1.15rem
+      3.5rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 1.35rem;
+    font-size: 0.64rem;
+  }
+
+  .eyebrow::before,
+  .eyebrow::after {
+    width: 1rem;
+  }
+
+  .title {
+    max-width: 100%;
+    font-size: clamp(2.85rem, 13vw, 4rem);
+    letter-spacing: -0.06em;
+    line-height: 0.98;
+  }
+
+  .description {
+    max-width: 33rem;
+    margin-top: 1.5rem;
+    font-size: 0.96rem;
+    line-height: 1.65;
+  }
+
+  .actions {
+    width: 100%;
+    margin-top: 1.8rem;
+    flex-direction: column;
+  }
+
+  .primaryAction,
+  .secondaryAction {
+    width: 100%;
+  }
+
+  .direction {
+    margin-top: 3.5rem;
+  }
+
+  .directionItems {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 0.7rem;
+  }
+
+  .directionLine {
+    top: 0;
+  }
+
+  .directionItems::after {
+    position: absolute;
+    top: calc(50% + 0.5rem);
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--strategy-line);
+    content: "";
+  }
+
+  .directionItem {
+    z-index: 1;
+    min-height: 1.4rem;
+    background: var(--strategy-bg);
+  }
+
+  .directionItem:nth-child(3)::before,
+  .directionItem:nth-child(4)::before {
+    top: -0.75rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .title {
+    font-size: clamp(2.65rem, 12.5vw, 3.6rem);
+  }
+
+  .directionItem {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollTrack::after {
+    animation: none;
+  }
+}

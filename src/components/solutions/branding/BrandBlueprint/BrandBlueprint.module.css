@@ -1,0 +1,271 @@
+.section {
+  padding: clamp(6rem, 10vw, 9rem) clamp(1.2rem, 4vw, 4rem);
+  background: var(--branding-dark);
+  color: #f7fbfc;
+}
+
+.container {
+  display: grid;
+  width: min(100%, 1500px);
+  margin: auto;
+  grid-template-columns: minmax(280px, 0.42fr) minmax(0, 1.58fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.copy { max-width: 430px; }
+
+.layerMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: rgba(255,255,255,0.44);
+  font-size: 0.67rem;
+  font-weight: 760;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.layerMeta span {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 50%;
+  color: var(--branding-cyan);
+}
+
+.copy h2 {
+  margin: 1.5rem 0 0;
+  font-size: clamp(2.6rem, 4.4vw, 5.2rem);
+  font-weight: 520;
+  letter-spacing: -0.065em;
+  line-height: 0.98;
+}
+
+.copy > p {
+  margin: 1.5rem 0 0;
+  color: rgba(255,255,255,0.62);
+  line-height: 1.65;
+}
+
+.tags {
+  display: flex;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tags span {
+  padding: 0.55rem 0.72rem;
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 999px;
+  color: rgba(255,255,255,0.58);
+  font-size: 0.67rem;
+}
+
+.stage {
+  --reveal-x: 50%;
+  --reveal-y: 50%;
+  --reveal-size: 0px;
+  position: relative;
+  min-height: min(72svh, 760px);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+  background:
+    radial-gradient(circle at var(--reveal-x) var(--reveal-y), rgba(39, 94, 254, 0.15), transparent 22%),
+    #050708;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.microHeader {
+  position: absolute;
+  z-index: 8;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  padding: 0.9rem 1rem;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.38);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px),
+    linear-gradient(rgba(36,214,232,0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36,214,232,0.09) 1px, transparent 1px);
+  background-size: 26px 26px, 26px 26px, 130px 130px, 130px 130px;
+}
+
+.majorAxisX,
+.majorAxisY {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  background: rgba(36,214,232,0.25);
+}
+
+.majorAxisX { width: 100%; height: 1px; transform: translate(-50%,-50%); }
+.majorAxisY { width: 1px; height: 100%; transform: translate(-50%,-50%); }
+
+.safeArea {
+  position: absolute;
+  z-index: 2;
+  inset: 22% 8%;
+  border: 1px dashed rgba(255,255,255,0.22);
+}
+
+.wordmarkOutline,
+.wordmarkGhost,
+.wordmarkReveal {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  left: 50%;
+  width: 78%;
+  aspect-ratio: 1681 / 402;
+  transform: translate(-50%, -50%);
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.wordmarkOutline {
+  background: rgba(255,255,255,0.88);
+  -webkit-mask-image: url('/brand/nobron-wordmark-outline.png');
+  mask-image: url('/brand/nobron-wordmark-outline.png');
+}
+
+.wordmarkGhost {
+  z-index: 3;
+  background: rgba(255,255,255,0.035);
+  -webkit-mask-image: url('/brand/nobron-wordmark-mask.png');
+  mask-image: url('/brand/nobron-wordmark-mask.png');
+}
+
+.wordmarkReveal {
+  z-index: 5;
+  background:
+    linear-gradient(110deg, #ffffff 0%, #24d6e8 28%, #275efe 58%, #8b5cf6 82%, #ff6b5f 100%);
+  -webkit-mask-image:
+    radial-gradient(circle var(--reveal-size) at var(--reveal-x) var(--reveal-y), #000 0 62%, transparent 78%),
+    url('/brand/nobron-wordmark-mask.png');
+  mask-image:
+    radial-gradient(circle var(--reveal-size) at var(--reveal-x) var(--reveal-y), #000 0 62%, transparent 78%),
+    url('/brand/nobron-wordmark-mask.png');
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+  filter: drop-shadow(0 0 24px rgba(36,214,232,0.28));
+  transition: opacity 160ms ease;
+}
+
+.controls {
+  position: absolute;
+  z-index: 6;
+  inset: 17% 5%;
+  width: 90%;
+  height: 66%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.controls path,
+.controls line {
+  fill: none;
+  stroke: rgba(139,92,246,0.42);
+  stroke-width: 1;
+  stroke-dasharray: 5 5;
+}
+
+.controls circle {
+  fill: #050708;
+  stroke: rgba(255,255,255,0.78);
+  stroke-width: 1.5;
+}
+
+.measureTop,
+.measureSide {
+  position: absolute;
+  z-index: 7;
+  color: rgba(255,255,255,0.36);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.58rem;
+}
+
+.measureTop {
+  top: 18%;
+  right: 11%;
+  left: 11%;
+  border-top: 1px solid rgba(255,255,255,0.18);
+}
+
+.measureTop span { position: absolute; top: -1.2rem; left: 50%; transform: translateX(-50%); }
+
+.measureSide {
+  top: 25%;
+  right: 7%;
+  bottom: 25%;
+  border-right: 1px solid rgba(255,255,255,0.18);
+}
+
+.measureSide span {
+  position: absolute;
+  top: 50%;
+  right: -2.1rem;
+  transform: rotate(90deg) translateY(-50%);
+}
+
+.cursorLabel {
+  position: absolute;
+  z-index: 10;
+  padding: 0.32rem 0.46rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(5,7,8,0.82);
+  color: rgba(255,255,255,0.7);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.52rem;
+  pointer-events: none;
+  transform: translate(14px, 14px);
+}
+
+.instruction {
+  position: absolute;
+  z-index: 9;
+  bottom: 1.1rem;
+  left: 50%;
+  color: rgba(255,255,255,0.42);
+  font-size: 0.61rem;
+  font-weight: 720;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 1000px) {
+  .container { grid-template-columns: 1fr; }
+  .copy { max-width: 720px; }
+}
+
+@media (max-width: 620px) {
+  .section { padding-right: 1rem; padding-left: 1rem; }
+  .stage { min-height: 58svh; }
+  .wordmarkOutline, .wordmarkGhost, .wordmarkReveal { width: 90%; }
+  .cursorLabel { display: none; }
+  .instruction { width: 88%; text-align: center; }
+}
