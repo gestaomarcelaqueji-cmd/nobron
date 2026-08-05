@@ -1,4 +1,4 @@
-# noBRon — Landing Page Estratégica
+# noBRon
 
 Projeto completo em Next.js, TypeScript, Tailwind CSS, Motion e GSAP, construído a partir do conceito visual aprovado.
 
