@@ -3,7 +3,12 @@ import type { Metadata } from "next";
 import { AboutPageHeader } from "@/components/about/AboutScrollytelling/AboutPageHeader";
 import { AboutScrollytelling } from "@/components/about/AboutScrollytelling/AboutScrollytelling";
 
-import styles from "./page.module.css";
+import desktopStyles from "./page.desktop.module.css";
+import mobileStyles from "./page.mobile.module.css";
+
+const styles = {
+  page: `${desktopStyles.page} ${mobileStyles.page}`,
+};
 
 export const metadata: Metadata = {
   title: "Sobre | noBRon",

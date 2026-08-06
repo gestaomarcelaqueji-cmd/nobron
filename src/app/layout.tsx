@@ -4,7 +4,6 @@ import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { FloatingHeader } from "@/components/layout/FloatingHeader";
 import { MotionProvider } from "@/components/layout/MotionProvider";
-import { GlobalFooter } from "@/components/layout/GlobalFooter/GlobalFooter";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-display" });
@@ -22,7 +21,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <MotionProvider>
           <FloatingHeader />
           {children}
-          <GlobalFooter />
         </MotionProvider>
       </body>
     </html>

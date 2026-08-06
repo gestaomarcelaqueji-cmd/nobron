@@ -6,7 +6,12 @@ import { ServicesDirectory } from "@/components/solutions/ServicesDirectory";
 import { SolutionsFinalCta } from "@/components/solutions/SolutionsFinalCta";
 import { SolutionsHero } from "@/components/solutions/SolutionsHero";
 
-import styles from "./solutions-page.module.css";
+import desktopStyles from "./solutions-page.desktop.module.css";
+import mobileStyles from "./solutions-page.mobile.module.css";
+
+const styles = {
+  page: `${desktopStyles.page} ${mobileStyles.page}`,
+};
 
 export const metadata: Metadata = {
   title: "Soluções | noBRon",

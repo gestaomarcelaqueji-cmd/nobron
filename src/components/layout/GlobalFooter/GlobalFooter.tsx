@@ -70,37 +70,7 @@ export function GlobalFooter() {
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
-        <div className={styles.contact}>
-          <div className={styles.contactCopy}>
-            <span className={styles.eyebrow}>
-              CONTATO
-            </span>
-
-            <h2>
-              Não precisa saber o nome da solução.
-            </h2>
-
-            <p>
-              Explique o cenário. A direção vem depois.
-            </p>
-          </div>
-
-          <Link
-            className={styles.contactLink}
-            href="/contato"
-          >
-            <span>Conversar</span>
-
-            <span
-              aria-hidden="true"
-              className={styles.contactArrow}
-            >
-              ↗
-            </span>
-          </Link>
-        </div>
-
-        <div className={styles.directory}>
+        <div className={styles.top}>
           <div className={styles.brand}>
             <Link
               aria-label="noBRon — página inicial"
@@ -138,23 +108,10 @@ export function GlobalFooter() {
             © {currentYear} noBRon.
           </p>
 
-          <div className={styles.bottomNavigation}>
-            <Link href="/contato">
-              Contato
-            </Link>
-
-            <a href="#top">
-              Voltar ao início
-            </a>
-          </div>
+          <Link className={styles.contactLink} href="/contato">
+            Contato
+          </Link>
         </div>
-      </div>
-
-      <div
-        aria-hidden="true"
-        className={styles.wordmark}
-      >
-        noBRon
       </div>
     </footer>
   );

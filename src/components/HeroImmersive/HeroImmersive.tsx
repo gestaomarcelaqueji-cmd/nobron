@@ -417,7 +417,6 @@ export function HeroImmersive() {
             aria-hidden="true"
           >
             <span className={styles.scrollDot} />
-            <span>{HERO_IMMERSIVE.scrollLabel}</span>
           </motion.div>
 
           {!prefersReducedMotion && <div className={styles.exitLight} aria-hidden="true" />}
@@ -461,30 +460,7 @@ export function HeroImmersive() {
                   duration: prefersReducedMotion ? 0.06 : 0.95,
                   ease: [0.76, 0, 0.24, 1],
                 }}
-                aria-live="polite"
-              >
-                <motion.span
-                  initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: prefersReducedMotion ? 0 : 0.28 }}
-                >
-                  Entrando em
-                </motion.span>
-                <motion.strong
-                  initial={
-                    prefersReducedMotion
-                      ? false
-                      : { opacity: 0, y: 20, scale: 0.96 }
-                  }
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{
-                    delay: prefersReducedMotion ? 0 : 0.34,
-                    duration: prefersReducedMotion ? 0 : 0.48,
-                  }}
-                >
-                  {pendingRoute.label}
-                </motion.strong>
-              </motion.div>
+              />
             )}
           </AnimatePresence>
         </motion.div>

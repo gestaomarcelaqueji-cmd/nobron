@@ -1,0 +1,13 @@
+.page {
+  --contact-ink: #08090a;
+  --contact-muted: rgba(8, 9, 10, 0.62);
+  --contact-subtle: rgba(8, 9, 10, 0.38);
+  --contact-line: rgba(8, 9, 10, 0.11);
+  --contact-surface: #f4f4f1;
+  --contact-blue: #275efe;
+  --contact-dark: #050505;
+
+  overflow: clip;
+  background: #ffffff;
+  color: var(--contact-ink);
+}
