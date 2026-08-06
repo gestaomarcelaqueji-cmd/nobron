@@ -142,20 +142,94 @@ export function NeuralScene({
         const starField = createStarfield();
         scene.add(starField);
 
-        const controls = new OrbitControls(camera, renderer.domElement);
+        const controls = new OrbitControls(
+          camera,
+          renderer.domElement,
+        );
+
         controls.enableDamping = true;
-        controls.dampingFactor = 0.05;
-        controls.rotateSpeed = 0.5;
+        controls.dampingFactor = isCoarsePointer
+          ? 0.075
+          : 0.05;
+
+        controls.rotateSpeed = isCoarsePointer
+          ? 0.38
+          : 0.5;
+
         controls.minDistance = 2.8;
         controls.maxDistance = 100;
+
         controls.autoRotate = true;
         controls.autoRotateSpeed = 0.15;
+
         controls.enableZoom = false;
         controls.enablePan = false;
-        controls.enableRotate = !isCoarsePointer;
-        renderer.domElement.style.touchAction = "pan-y";
+
+        /*
+         * Antes a rotação era desativada em celulares.
+         * Agora o toque horizontal gira a rede.
+         */
+        controls.enableRotate = true;
+
+        if (isCoarsePointer) {
+          controls.touches.ONE =
+            THREE.TOUCH.ROTATE;
+        }
+
+        /*
+         * O navegador continua controlando o scroll vertical.
+         * Movimentos horizontais ficam disponíveis para a cena.
+         */
+        renderer.domElement.style.touchAction =
+          isCoarsePointer
+            ? "pan-y"
+            : "auto";
 
         let targetCameraProgress = THREE.MathUtils.clamp(cameraProgress.get(), 0, 1);
+
+        let isUserInteracting = false;
+
+        let interactionReleaseTimer:
+          | number
+          | null = null;
+
+        function handleControlsStart() {
+          isUserInteracting = true;
+
+          if (
+            interactionReleaseTimer !== null
+          ) {
+            window.clearTimeout(
+              interactionReleaseTimer,
+            );
+
+            interactionReleaseTimer = null;
+          }
+
+          controls.autoRotate = false;
+        }
+
+        function handleControlsEnd() {
+          /*
+           * Pequeno atraso para a câmera não voltar
+           * imediatamente à rotação automática.
+           */
+          interactionReleaseTimer =
+            window.setTimeout(() => {
+              isUserInteracting = false;
+              interactionReleaseTimer = null;
+            }, 650);
+        }
+
+        controls.addEventListener(
+          "start",
+          handleControlsStart,
+        );
+
+        controls.addEventListener(
+          "end",
+          handleControlsEnd,
+        );
         let currentCameraProgress = targetCameraProgress;
         const stopCameraProgress = cameraProgress.on("change", (value) => {
             targetCameraProgress = THREE.MathUtils.clamp(value, 0, 1);
@@ -1543,7 +1617,8 @@ export function NeuralScene({
                 phaseReaches("observing") &&
                 currentCameraProgress < 0.12 &&
                 !activePortalId &&
-                !selectedPortalId;
+                !selectedPortalId &&
+                !isUserInteracting;
             controls.autoRotateSpeed = THREE.MathUtils.lerp(
                 0.15,
                 0.38,
@@ -1638,6 +1713,25 @@ export function NeuralScene({
             stopCameraProgress();
             visibilityObserver?.disconnect();
             window.removeEventListener('resize', onWindowResize);
+
+            controls.removeEventListener(
+              "start",
+              handleControlsStart,
+            );
+
+            controls.removeEventListener(
+              "end",
+              handleControlsEnd,
+            );
+
+            if (
+              interactionReleaseTimer !== null
+            ) {
+              window.clearTimeout(
+                interactionReleaseTimer,
+              );
+            }
+
             controls.dispose();
             renderer.domElement.removeEventListener('click', handleCanvasClick);
             renderer.domElement.removeEventListener("webglcontextlost", handleContextLost);

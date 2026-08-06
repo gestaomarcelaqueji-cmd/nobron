@@ -1,34 +1,86 @@
 .root {
   position: absolute;
   inset: 0;
+
   width: 100%;
   height: 100%;
+
   overflow: hidden;
-  background: var(--hero-background, #fff);
+
+  background:
+    var(
+      --hero-background,
+      #ffffff
+    );
 }
 
 .root[data-webgl-fallback="true"] {
   background:
-    radial-gradient(circle at 50% 48%, rgba(65, 72, 82, 0.2), transparent 22%),
-    radial-gradient(circle at 42% 54%, rgba(159, 166, 176, 0.24), transparent 38%),
-    var(--hero-background, #fff);
+    radial-gradient(
+      circle at 50% 48%,
+      rgba(65, 72, 82, 0.2),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 42% 54%,
+      rgba(159, 166, 176, 0.24),
+      transparent 38%
+    ),
+    var(
+      --hero-background,
+      #ffffff
+    );
 }
 
 .canvas {
   position: absolute;
   inset: 0;
+
   display: block;
+
   width: 100%;
   height: 100%;
+
   cursor: grab;
+
+  /*
+   * Scroll vertical pertence à página.
+   * Arraste horizontal pertence à animação.
+   */
   touch-action: pan-y;
+
+  overscroll-behavior: contain;
+
+  user-select: none;
+  -webkit-user-select: none;
+
+  -webkit-tap-highlight-color:
+    transparent;
 }
 
 .canvas:active {
   cursor: grabbing;
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media (
+  max-width: 760px
+),
+(pointer: coarse) {
+  .canvas {
+    cursor: default;
+
+    /*
+     * Não usar touch-action: none,
+     * pois isso bloquearia o scroll.
+     */
+    touch-action: pan-y;
+  }
+}
+
+@media (
+  prefers-reduced-motion:
+    reduce
+) {
   .canvas {
     pointer-events: none;
   }
