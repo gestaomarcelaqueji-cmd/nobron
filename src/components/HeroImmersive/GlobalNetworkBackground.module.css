@@ -460,54 +460,171 @@
    RESPONSIVO
 ========================================================= */
 
+/* =========================================================
+   TABLET
+========================================================= */
+
 @media (max-width: 900px) {
   .map {
-    left: 44%;
+    /*
+     * Move o mapa para a direita para trazer
+     * América do Sul para o centro da tela.
+     */
+    left: 72%;
+    top: 46%;
 
-    width: 1120px;
-    min-width: 1120px;
-    height: 650px;
-    min-height: 650px;
+    width: 1180px;
+    min-width: 1180px;
+    height: 700px;
+    min-height: 700px;
 
     transform:
       translate(-50%, -50%)
-      scale(1.055);
+      scale(1.08);
+
+    transform-origin: center;
+  }
+
+  .ambientGlow {
+    left: 48%;
+    top: 58%;
+
+    width: min(30rem, 78vw);
   }
 
   .contentFade {
-    width: 76vw;
+    width: 72vw;
+    height: 9rem;
+    opacity: 0.52;
   }
 
   .routeAnimated {
-    stroke-width: 1.2;
+    stroke-width: 1.25;
   }
 
   .country {
-    stroke-width: 0.6;
+    stroke-width: 0.62;
   }
 
   .serviceChip {
-    transform: scale(0.92);
+    transform: scale(0.94);
+    transform-box: fill-box;
+    transform-origin: center;
   }
 }
 
-@media (max-width: 600px) {
-  .map {
-    left: 37%;
+/* =========================================================
+   MOBILE
+========================================================= */
 
-    width: 990px;
-    min-width: 990px;
-    height: 610px;
-    min-height: 610px;
+@media (max-width: 600px) {
+  .background {
+    background:
+      radial-gradient(
+        circle at 50% 50%,
+        rgba(37, 99, 235, 0.075),
+        transparent 34%
+      ),
+      linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #fcfdff 54%,
+        #f7f9fc 100%
+      );
+  }
+
+  .map {
+    /*
+     * O SVG continua contendo o mundo inteiro,
+     * mas o enquadramento passa a priorizar Brasil
+     * e América do Sul.
+     */
+    left: 82%;
+    top: 43%;
+
+    width: 1080px;
+    min-width: 1080px;
+    height: 660px;
+    min-height: 660px;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.13);
+
+    transform-origin: center;
+  }
+
+  .ambientGlow {
+    left: 48%;
+    top: 52%;
+
+    width: 88vw;
+
+    filter: blur(42px);
   }
 
   .edgeFadeLeft,
   .edgeFadeRight {
-    width: 4%;
+    width: 5%;
+  }
+
+  /*
+   * Essa mancha branca era útil quando havia
+   * logotipo central, mas no mobile ela deixava
+   * o mapa apagado e distante.
+   */
+  .contentFade {
+    display: none;
+  }
+
+  .routeBase {
+    stroke-width: 1;
+  }
+
+  .routeAnimated {
+    stroke-width: 1.35;
   }
 
   .serviceChip {
-    transform: scale(0.82);
+    transform: scale(0.9);
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+
+  .serviceLabel {
+    font-size: 7.5px;
+  }
+
+  .hubAura {
+    opacity: 0.78;
+  }
+
+  .hubOuter {
+    stroke-width: 1.55;
+  }
+}
+
+/* =========================================================
+   MOBILE PEQUENO
+========================================================= */
+
+@media (max-width: 420px) {
+  .map {
+    left: 87%;
+    top: 42%;
+
+    width: 1040px;
+    min-width: 1040px;
+    height: 640px;
+    min-height: 640px;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.17);
+  }
+
+  .serviceChip {
+    transform: scale(0.86);
   }
 }
 

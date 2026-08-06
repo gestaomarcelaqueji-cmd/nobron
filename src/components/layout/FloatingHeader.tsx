@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -167,31 +168,14 @@ export function FloatingHeader() {
           aria-label="Ir para a página inicial da noBRon"
           onClick={closeMenu}
         >
-          <span className={styles.wordmark}>
-            <span
-              className={
-                styles.wordmarkLight
-              }
-            >
-              no
-            </span>
-
-            <span
-              className={
-                styles.wordmarkStrong
-              }
-            >
-              BR
-            </span>
-
-            <span
-              className={
-                styles.wordmarkLight
-              }
-            >
-              on
-            </span>
-          </span>
+          <Image
+            src="/brand/logo-nobron.png"
+            alt="noBRon"
+            width={100}
+            height={20}
+            priority
+            className={styles.logoImage}
+          />
         </Link>
 
         <button
@@ -271,15 +255,7 @@ export function FloatingHeader() {
               Escolha um caminho.
             </h2>
 
-            <p
-              className={
-                styles.menuSubtitle
-              }
-            >
-              Explore a noBRon pelo formato
-              que fizer mais sentido para
-              você.
-            </p>
+           
           </div>
 
           <div className={styles.menuLinks}>

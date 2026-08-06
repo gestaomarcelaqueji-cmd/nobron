@@ -47,7 +47,7 @@ export const HERO_SOLUTIONS = [
     shortLabel: "Estratégia",
     description:
       "Organizamos objetivos, posicionamento, oferta e comunicação antes de definir o que precisa ser criado.",
-    href: "/solucoes/estrategia",
+    href: "/solucoes/estrategia-direcao",
     ambientLabel: "direção",
     featured: false,
     order: 1,
@@ -63,7 +63,7 @@ export const HERO_SOLUTIONS = [
     shortLabel: "Branding",
     description:
       "Construímos identidades e materiais visuais capazes de representar e diferenciar a empresa.",
-    href: "/solucoes/branding",
+    href: "/solucoes/branding-design",
     ambientLabel: "design",
     featured: false,
     order: 2,
@@ -144,20 +144,36 @@ export const HERO_SOLUTIONS_BY_ID = Object.fromEntries(
 ) as Record<HeroSolutionId, (typeof HERO_SOLUTIONS)[number]>;
 
 export const HERO_AMBIENT_WORDS = [
-  { label: "estratégia", x: 35, y: 22 },
-  { label: "design", x: 68, y: 20 },
-  { label: "marketing", x: 67, y: 77 },
-  { label: "automação", x: 31, y: 79 },
+  {
+    label: "estratégia",
+    x: 35,
+    y: 22,
+  },
+  {
+    label: "design",
+    x: 68,
+    y: 20,
+  },
+  {
+    label: "marketing",
+    x: 67,
+    y: 77,
+  },
+  {
+    label: "automação",
+    x: 31,
+    y: 79,
+  },
 ] as const satisfies readonly HeroAmbientWord[];
 
 export const HERO_NAV_ITEMS = [
   {
     label: "Estratégia",
-    href: "/solucoes/estrategia",
+    href: "/solucoes/estrategia-direcao",
   },
   {
     label: "Branding",
-    href: "/solucoes/branding",
+    href: "/solucoes/branding-design",
   },
   {
     label: "Sites e Sistemas",

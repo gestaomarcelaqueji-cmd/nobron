@@ -9,7 +9,12 @@ import { ProcessBeforeAutomation } from "@/components/solutions/automation-integ
 import { RepetitionCosts } from "@/components/solutions/automation-integrations/RepetitionCosts/RepetitionCosts";
 import { RealAutomationScenarios } from "@/components/solutions/automation-integrations/RealAutomationScenarios/RealAutomationScenarios";
 
-import styles from "./page.module.css";
+import desktopStyles from "./page.desktop.module.css";
+import mobileStyles from "./page.mobile.module.css";
+
+const styles = {
+  page: `${desktopStyles.page} ${mobileStyles.page}`,
+};
 
 export default function AutomacaoIntegracoesPage() {
   return (

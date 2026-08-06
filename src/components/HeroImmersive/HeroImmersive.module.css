@@ -299,6 +299,17 @@
   isolation: isolate;
 }
 
+.endMapMotion {
+  position: absolute;
+  inset: 0;
+
+  overflow: hidden;
+
+  transform-origin: 50% 54%;
+
+  will-change: transform;
+}
+
 .endLogoWrap {
   position: relative;
   z-index: 1;
@@ -420,6 +431,10 @@
 
   .brandLayer {
     left: 1.25rem;
+  }
+
+  .endMapMotion {
+    transform-origin: 50% 48%;
   }
 }
 

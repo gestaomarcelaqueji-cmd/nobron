@@ -7,7 +7,14 @@
   --contact-blue: #275efe;
   --contact-dark: #050505;
 
-  overflow: clip;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
+  overflow-x: clip;
+  overflow-y: visible;
+
   background: #ffffff;
   color: var(--contact-ink);
 }

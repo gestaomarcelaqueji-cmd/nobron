@@ -89,3 +89,10 @@
     left: 0.8rem;
   }
 }
+
+@media (max-width: 760px) {
+  .backButton,
+  .header {
+    display: none;
+  }
+}

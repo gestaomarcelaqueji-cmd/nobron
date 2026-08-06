@@ -1,20 +1,16 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import {
   useCallback,
   useEffect,
   useRef,
   useState,
-  type MouseEvent as ReactMouseEvent,
 } from "react";
 
 import { HERO_IMMERSIVE } from "./heroImmersive.constants";
-import { HERO_SOLUTIONS } from "./heroImmersive.data";
 import type {
-  HeroSolution,
   HeroSolutionId,
   SolutionMapOverlayHandle,
   SolutionPortalPositions,
@@ -33,31 +29,13 @@ const NeuralScene = dynamic(
   },
 );
 
-function isModifiedNavigation(event: ReactMouseEvent<HTMLAnchorElement>) {
-  return (
-    event.button !== 0 ||
-    event.metaKey ||
-    event.ctrlKey ||
-    event.shiftKey ||
-    event.altKey
-  );
-}
-
 export function HeroImmersive() {
-  const router = useRouter();
   const prefersReducedMotion = useReducedMotion();
   const [showIntro, setShowIntro] = useState(true);
   const [sceneReady, setSceneReady] = useState(false);
   const [activePortalId, setActivePortalId] =
     useState<HeroSolutionId | null>(null);
-  const [selectedPortalId, setSelectedPortalId] =
-    useState<HeroSolutionId | null>(null);
-  const [pendingRoute, setPendingRoute] = useState<{
-    href: string;
-    label: string;
-  } | null>(null);
   const portalOverlayRef = useRef<SolutionMapOverlayHandle>(null);
-  const navigationTimerRef = useRef<number | null>(null);
 
   const {
     sectionRef,
@@ -66,30 +44,52 @@ export function HeroImmersive() {
     sceneOpacity,
     whiteWashOpacity,
     endScreenOpacity,
+    endScreenActive,
+    endMapScale,
+    endMapY,
     vignetteOpacity,
     scrollHintOpacity,
     mapOpacity,
     mapInScrollRange,
   } = useHeroZoomTransition();
 
-  // Add a global class to hide the floating header while the hero is active.
   useEffect(() => {
-    const className = "hero-immersive-hidden-header";
-    document.documentElement.classList.add(className);
+    const root = document.documentElement;
 
     return () => {
-      document.documentElement.classList.remove(className);
+      root.classList.remove(
+        "hero-immersive-hidden-header",
+        "hero-immersive-end-screen",
+      );
     };
   }, []);
+
+  useEffect(() => {
+    const root = document.documentElement;
+
+    const shouldShowHeader =
+      Boolean(prefersReducedMotion) ||
+      endScreenActive;
+
+    root.classList.toggle(
+      "hero-immersive-hidden-header",
+      !shouldShowHeader,
+    );
+
+    root.classList.toggle(
+      "hero-immersive-end-screen",
+      shouldShowHeader,
+    );
+  }, [
+    endScreenActive,
+    prefersReducedMotion,
+  ]);
 
   const {
     phase,
     featuredVisible,
     portalsVisible,
     interactive,
-    routeExiting,
-    skipToInteractive,
-    startRouteExit,
   } = useHeroSequence({
     enabled: sceneReady,
     reducedMotion: prefersReducedMotion,
@@ -130,23 +130,7 @@ export function HeroImmersive() {
   }, [prefersReducedMotion]);
 
   useEffect(() => {
-    return () => {
-      if (navigationTimerRef.current !== null) {
-        window.clearTimeout(navigationTimerRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!interactive) return;
-
-    HERO_SOLUTIONS.forEach((solution) => router.prefetch(solution.href));
-    router.prefetch("/prototipo-gratuito");
-  }, [interactive, router]);
-
-  useEffect(() => {
     if (mapInScrollRange) return;
-
     portalOverlayRef.current?.clearActive();
   }, [mapInScrollRange]);
 
@@ -157,68 +141,7 @@ export function HeroImmersive() {
     [],
   );
 
-  const beginNavigation = useCallback(
-    (
-      href: string,
-      label: string,
-      event: ReactMouseEvent<HTMLAnchorElement>,
-      portalId: HeroSolutionId | null = null,
-    ) => {
-      if (isModifiedNavigation(event)) return;
-
-      if (href.startsWith("#") || href === "/") {
-        event.preventDefault();
-        skipToInteractive();
-        setActivePortalId(null);
-        portalOverlayRef.current?.clearActive();
-        window.scrollTo({
-          top: sectionRef.current?.offsetTop ?? 0,
-          behavior: prefersReducedMotion ? "auto" : "smooth",
-        });
-        return;
-      }
-
-      event.preventDefault();
-      if (pendingRoute) return;
-
-      router.prefetch(href);
-      setPendingRoute({ href, label });
-      setSelectedPortalId(portalId);
-      setActivePortalId(portalId);
-      startRouteExit();
-
-      navigationTimerRef.current = window.setTimeout(
-        () => router.push(href),
-        prefersReducedMotion ? 80 : 1_050,
-      );
-    },
-    [
-      pendingRoute,
-      prefersReducedMotion,
-      router,
-      sectionRef,
-      skipToInteractive,
-      startRouteExit,
-    ],
-  );
-
-  const handleSolutionNavigation = useCallback(
-    (
-      solution: HeroSolution,
-      event: ReactMouseEvent<HTMLAnchorElement>,
-    ) => {
-      beginNavigation(
-        solution.href,
-        solution.label,
-        event,
-        solution.id,
-      );
-    },
-    [beginNavigation],
-  );
-
-  const mapIsInteractive =
-    interactive && mapInScrollRange && !routeExiting && !pendingRoute;
+  const mapIsInteractive = interactive && mapInScrollRange;
 
   return (
     <section
@@ -370,7 +293,6 @@ export function HeroImmersive() {
                   cameraProgress={cameraProgress}
                   phase={phase}
                   activePortalId={activePortalId}
-                  selectedPortalId={selectedPortalId}
                   onPortalPositions={updatePortalPositions}
                 />
               )}
@@ -390,14 +312,7 @@ export function HeroImmersive() {
             <motion.div
               className={styles.mapExitLayer}
               initial={false}
-              animate={{
-                opacity: routeExiting ? 0 : 1,
-                scale: routeExiting ? 1.04 : 1,
-              }}
-              transition={{
-                duration: prefersReducedMotion ? 0 : 0.5,
-                ease: [0.4, 0, 0.2, 1],
-              }}
+              animate={{ opacity: 1, scale: 1 }}
             >
               <SolutionMapOverlay
                 ref={portalOverlayRef}
@@ -406,7 +321,6 @@ export function HeroImmersive() {
                 interactive={mapIsInteractive}
                 activeId={activePortalId}
                 onActiveChange={setActivePortalId}
-                onNavigateStart={handleSolutionNavigation}
               />
             </motion.div>
           </motion.div>
@@ -436,33 +350,21 @@ export function HeroImmersive() {
             }
             aria-hidden="true"
           >
-            <GlobalNetworkBackground />
+            <motion.div
+              className={styles.endMapMotion}
+              style={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      scale: endMapScale,
+                      y: endMapY,
+                    }
+              }
+            >
+              <GlobalNetworkBackground />
+            </motion.div>
           </motion.div>
 
-          <AnimatePresence>
-            {pendingRoute && (
-              <motion.div
-                className={styles.routeTransition}
-                initial={
-                  prefersReducedMotion
-                    ? { opacity: 0 }
-                    : {
-                        opacity: 0,
-                        clipPath: "circle(0% at 50% 50%)",
-                      }
-                }
-                animate={{
-                  opacity: 1,
-                  clipPath: "circle(145% at 50% 50%)",
-                }}
-                exit={{ opacity: 0 }}
-                transition={{
-                  duration: prefersReducedMotion ? 0.06 : 0.95,
-                  ease: [0.76, 0, 0.24, 1],
-                }}
-              />
-            )}
-          </AnimatePresence>
         </motion.div>
       </div>
     </section>

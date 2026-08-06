@@ -77,7 +77,10 @@
 
 /* Hide floating header when HeroImmersive requests it (global flag)
    Uses a global selector so the compiled CSS module class is matched by element. */
-:global(.hero-immersive-hidden-header) header {
+:global(
+  html.hero-immersive-hidden-header
+)
+.header {
   display: none !important;
   pointer-events: none !important;
 }
@@ -90,6 +93,33 @@
     translateX(-50%)
     translateY(0)
     translateZ(0);
+}
+
+/*
+ * Quando a home chega ao mapa branco,
+ * o header aparece automaticamente.
+ */
+:global(
+  html.hero-immersive-end-screen
+)
+.header {
+  opacity: 1;
+  pointer-events: auto;
+  transform:
+    translateX(-50%)
+    translateY(0)
+    translateZ(0);
+}
+
+/* =========================================================
+   O MOBILE USA A BARRA GLOBAL INFERIOR
+========================================================= */
+
+@media (max-width: 720px) {
+  .header,
+  .overlay {
+    display: none !important;
+  }
 }
 
 .headerOpen {

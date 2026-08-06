@@ -8,7 +8,12 @@ import { SeoPresenceHero } from "@/components/solutions/seo-presence/SeoPresence
 import { SeoProcess } from "@/components/solutions/seo-presence/SeoProcess/SeoProcess";
 import { SeoServicesExplained } from "@/components/solutions/seo-presence/SeoServicesExplained/SeoServicesExplained";
 
-import styles from "./page.module.css";
+import desktopStyles from "./page.desktop.module.css";
+import mobileStyles from "./page.mobile.module.css";
+
+const styles = {
+  page: `${desktopStyles.page} ${mobileStyles.page}`,
+};
 
 export default function SeoPresenceDigitalPage() {
   return (

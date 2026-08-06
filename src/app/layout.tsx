@@ -1,17 +1,27 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Inter, Manrope } from "next/font/google";
+
+import {
+  Inter,
+  Manrope,
+} from "next/font/google";
+
 import "./globals.css";
+
 import { FloatingHeader } from "@/components/layout/FloatingHeader";
+import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { MotionProvider } from "@/components/layout/MotionProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
-  title: "noBRon | Tecnologia e soluções digitais",
+  title: "noBRon",
   description:
     "Tecnologia e conhecimento profissional para criar marcas, sites, conteúdo, divulgação, sistemas e automações.",
+  icons: {
+    icon: "/brand/isotipo-preto.png",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
@@ -20,7 +30,10 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <body>
         <MotionProvider>
           <FloatingHeader />
+
           {children}
+
+          <MobileBottomNav />
         </MotionProvider>
       </body>
     </html>

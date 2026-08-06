@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { BenefitsMarquee } from "@/components/sections/BenefitsMarquee";
 import { CreationProcess } from "@/components/sections/CreationProcess";
 import { FaqSection } from "@/components/sections/FaqSection";
@@ -64,8 +63,6 @@ export default function LandingPage() {
         {/* 13. Fechamento */}
         <FinalCta />
       </main>
-
-      <WhatsAppButton />
     </>
   );
 }

@@ -245,7 +245,7 @@ export const strategyPageData = {
       {
         title: "Branding e design",
         description: "Marca, identidade e materiais guiados pelo posicionamento.",
-        href: "/solucoes/branding",
+        href: "/solucoes/branding-design",
       },
       {
         title: "Sites e sistemas",

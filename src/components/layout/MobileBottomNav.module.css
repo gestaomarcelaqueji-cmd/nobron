@@ -1,0 +1,274 @@
+.nav {
+  display: none;
+}
+
+/* =========================================================
+   MOBILE BOTTOM NAV
+========================================================= */
+
+@media (max-width: 720px) {
+  .nav {
+    --mobile-nav-accent: #275efe;
+    --mobile-nav-background: rgba(
+      249,
+      250,
+      252,
+      0.94
+    );
+
+    position: fixed;
+    z-index: 220;
+    right: auto;
+    bottom:
+      max(
+        0.65rem,
+        env(safe-area-inset-bottom)
+      );
+    left: 50%;
+
+    display: grid;
+    width: min(
+      calc(100% - 1rem),
+      28rem
+    );
+    height: 4.7rem;
+    padding: 0 0.4rem;
+
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+
+    overflow: visible;
+
+    border:
+      1px solid
+      rgba(255, 255, 255, 0.9);
+    border-radius: 1.65rem;
+
+    background:
+      var(--mobile-nav-background);
+
+    box-shadow:
+      0 1.2rem 3.8rem
+        rgba(15, 23, 42, 0.16),
+      0 0.3rem 1rem
+        rgba(15, 23, 42, 0.07),
+      inset 0 1px 0
+        rgba(255, 255, 255, 1);
+
+    backdrop-filter:
+      blur(1.5rem)
+      saturate(170%);
+
+    -webkit-backdrop-filter:
+      blur(1.5rem)
+      saturate(170%);
+
+    transform: translateX(-50%);
+  }
+
+  .item {
+    position: relative;
+
+    display: block;
+    min-width: 0;
+    height: 100%;
+
+    color:
+      rgba(76, 87, 105, 0.42);
+
+    text-decoration: none;
+
+    -webkit-tap-highlight-color:
+      transparent;
+  }
+
+  .iconShell {
+    position: absolute;
+    z-index: 2;
+    top: 0.65rem;
+    left: 50%;
+
+    display: grid;
+    width: 2.25rem;
+    height: 2.25rem;
+
+    place-items: center;
+
+    border:
+      1px solid
+      transparent;
+    border-radius: 50%;
+
+    background: transparent;
+
+    color: currentColor;
+
+    transform:
+      translateX(-50%)
+      translateY(0)
+      scale(1);
+
+    transition:
+      top 380ms
+        cubic-bezier(
+          0.22,
+          1,
+          0.36,
+          1
+        ),
+      width 380ms
+        cubic-bezier(
+          0.22,
+          1,
+          0.36,
+          1
+        ),
+      height 380ms
+        cubic-bezier(
+          0.22,
+          1,
+          0.36,
+          1
+        ),
+      color 220ms ease,
+      background 220ms ease,
+      border-color 220ms ease,
+      box-shadow 320ms ease,
+      transform 380ms
+        cubic-bezier(
+          0.22,
+          1,
+          0.36,
+          1
+        );
+  }
+
+  .label {
+    position: absolute;
+    right: 0.15rem;
+    bottom: 0.55rem;
+    left: 0.15rem;
+
+    overflow: hidden;
+
+    color: currentColor;
+
+    font-family:
+      var(--font-body),
+      Arial,
+      sans-serif;
+    font-size: 0.61rem;
+    font-weight: 570;
+    letter-spacing: -0.01em;
+    line-height: 1;
+
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    transition:
+      color 220ms ease,
+      font-weight 220ms ease,
+      transform 380ms
+        cubic-bezier(
+          0.22,
+          1,
+          0.36,
+          1
+        );
+  }
+
+  /* =======================================================
+     ITEM ATIVO
+  ======================================================= */
+
+  .itemActive {
+    color:
+      var(--mobile-nav-accent);
+  }
+
+  .itemActive .iconShell {
+    top: -1.45rem;
+
+    width: 3.75rem;
+    height: 3.75rem;
+
+    border-color:
+      rgba(39, 94, 254, 0.12);
+
+    background:
+      rgba(255, 255, 255, 0.98);
+
+    box-shadow:
+      0 1rem 2.3rem
+        rgba(39, 94, 254, 0.18),
+      0 0.2rem 0.8rem
+        rgba(15, 23, 42, 0.1),
+      inset 0 1px 0
+        rgba(255, 255, 255, 1);
+
+    transform:
+      translateX(-50%)
+      translateY(0)
+      scale(1);
+  }
+
+  .itemActive .label {
+    font-weight: 680;
+
+    transform:
+      translateY(0.05rem);
+  }
+
+  .item:active .iconShell {
+    transform:
+      translateX(-50%)
+      scale(0.92);
+  }
+
+  .item:focus-visible {
+    border-radius: 1rem;
+    outline:
+      2px solid
+      rgba(39, 94, 254, 0.36);
+    outline-offset: -0.2rem;
+  }
+}
+
+/* =========================================================
+   TELAS PEQUENAS
+========================================================= */
+
+@media (max-width: 380px) {
+  .nav {
+    width:
+      calc(100% - 0.7rem);
+    height: 4.5rem;
+  }
+
+  .label {
+    font-size: 0.56rem;
+  }
+
+  .itemActive .iconShell {
+    top: -1.3rem;
+    width: 3.55rem;
+    height: 3.55rem;
+  }
+}
+
+/* =========================================================
+   MOVIMENTO REDUZIDO
+========================================================= */
+
+@media (
+  max-width: 720px
+) and (
+  prefers-reduced-motion:
+    reduce
+) {
+  .iconShell,
+  .label {
+    transition: none;
+  }
+}

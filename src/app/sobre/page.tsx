@@ -1,13 +1,27 @@
-import type { Metadata } from "next";
+import type {
+  Metadata,
+} from "next";
 
-import { AboutPageHeader } from "@/components/about/AboutScrollytelling/AboutPageHeader";
-import { AboutScrollytelling } from "@/components/about/AboutScrollytelling/AboutScrollytelling";
+import {
+  AboutPageHeader,
+} from "@/components/about/AboutScrollytelling/AboutPageHeader";
+
+import {
+  AboutScrollytelling,
+} from "@/components/about/AboutScrollytelling/AboutScrollytelling";
+
+import {
+  AboutMobileStory,
+} from "@/components/about/AboutScrollytelling/AboutMobileStory";
 
 import desktopStyles from "./page.desktop.module.css";
 import mobileStyles from "./page.mobile.module.css";
 
 const styles = {
-  page: `${desktopStyles.page} ${mobileStyles.page}`,
+  page: [
+    desktopStyles.page,
+    mobileStyles.page,
+  ].join(" "),
 };
 
 export const metadata: Metadata = {
@@ -20,7 +34,10 @@ export default function SobrePage() {
   return (
     <main className={styles.page}>
       <AboutPageHeader />
+
       <AboutScrollytelling />
+
+      <AboutMobileStory />
     </main>
   );
 }

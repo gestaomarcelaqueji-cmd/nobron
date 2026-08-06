@@ -10,11 +10,11 @@ type FooterLink = {
 const solutionLinks: FooterLink[] = [
   {
     label: "Estratégia e Direção",
-    href: "/solucoes/estrategia",
+    href: "/solucoes/estrategia-direcao",
   },
   {
     label: "Branding e Design",
-    href: "/solucoes/branding",
+    href: "/solucoes/branding-design",
   },
   {
     label: "Sites e Sistemas",

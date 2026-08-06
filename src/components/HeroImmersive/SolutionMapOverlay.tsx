@@ -338,7 +338,7 @@ export const SolutionMapOverlay = forwardRef<
                       {solution.description}
                     </span>
                     <span className={styles.exploreLabel}>
-                      Explorar <i aria-hidden="true">↗</i>
+                      Ver mais <i aria-hidden="true"></i>
                     </span>
                   </span>
                 </Link>

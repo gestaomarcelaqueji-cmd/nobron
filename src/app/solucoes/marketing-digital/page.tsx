@@ -10,7 +10,12 @@ import { MarketingRoles } from "@/components/solutions/marketing-digital/Marketi
 import { MarketingServices } from "@/components/solutions/marketing-digital/MarketingServices/MarketingServices";
 import { MeasurementPath } from "@/components/solutions/marketing-digital/MeasurementPath/MeasurementPath";
 
-import styles from "./page.module.css";
+import desktopStyles from "./page.desktop.module.css";
+import mobileStyles from "./page.mobile.module.css";
+
+const styles = {
+  page: `${desktopStyles.page} ${mobileStyles.page}`,
+};
 
 export default function MarketingDigitalPage() {
   return (

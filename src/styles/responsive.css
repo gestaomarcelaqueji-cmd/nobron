@@ -1,0 +1,117 @@
+:root {
+  --layout-max-width: 1440px;
+  --content-max-width: 1180px;
+  --content-narrow-width: 820px;
+  --text-max-width: 680px;
+
+  --page-gutter: clamp(1.5rem, 5vw, 5.5rem);
+
+  --section-space-xs: 3rem;
+  --section-space-sm: 4.5rem;
+  --section-space-md: 6.5rem;
+  --section-space-lg: 8.5rem;
+  --section-space-xl: 11rem;
+
+  --content-gap-xs: 0.75rem;
+  --content-gap-sm: 1rem;
+  --content-gap-md: 1.5rem;
+  --content-gap-lg: 2.5rem;
+  --content-gap-xl: 4rem;
+
+  --font-display: clamp(4rem, 8vw, 8.75rem);
+  --font-hero: clamp(3.5rem, 7vw, 7.5rem);
+  --font-section-title: clamp(2.75rem, 5vw, 5.5rem);
+  --font-card-title: clamp(1.25rem, 2vw, 1.75rem);
+
+  --font-lead: clamp(1.05rem, 1.6vw, 1.35rem);
+  --font-body: 1rem;
+  --font-small: 0.875rem;
+  --font-eyebrow: 0.75rem;
+
+  --line-display: 0.9;
+  --line-heading: 1;
+  --line-body: 1.65;
+
+  --header-height: 76px;
+  --button-height: 54px;
+  --button-padding-inline: 1.6rem;
+
+  --card-padding: clamp(1.5rem, 2.5vw, 2.5rem);
+  --card-radius: 1.5rem;
+
+  --section-min-height: 100svh;
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --page-gutter: clamp(1.5rem, 4vw, 3rem);
+
+    --section-space-sm: 4rem;
+    --section-space-md: 5.25rem;
+    --section-space-lg: 7rem;
+    --section-space-xl: 8.5rem;
+
+    --font-display: clamp(3.5rem, 9vw, 6.5rem);
+    --font-hero: clamp(3rem, 8vw, 5.5rem);
+    --font-section-title: clamp(2.5rem, 6vw, 4.5rem);
+
+    --header-height: 70px;
+    --card-radius: 1.25rem;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --page-gutter: 1.25rem;
+
+    --section-space-xs: 2.5rem;
+    --section-space-sm: 3.5rem;
+    --section-space-md: 4.5rem;
+    --section-space-lg: 5.5rem;
+    --section-space-xl: 6.5rem;
+
+    --content-gap-xs: 0.625rem;
+    --content-gap-sm: 0.875rem;
+    --content-gap-md: 1.25rem;
+    --content-gap-lg: 2rem;
+    --content-gap-xl: 3rem;
+
+    --font-display: clamp(2.75rem, 15vw, 4.75rem);
+    --font-hero: clamp(2.65rem, 13vw, 4.25rem);
+    --font-section-title: clamp(2.25rem, 10.5vw, 3.5rem);
+    --font-card-title: clamp(1.2rem, 5vw, 1.5rem);
+
+    --font-lead: clamp(1rem, 4.5vw, 1.15rem);
+    --font-body: 0.975rem;
+    --font-small: 0.825rem;
+    --font-eyebrow: 0.6875rem;
+
+    --line-display: 0.95;
+    --line-heading: 1.04;
+    --line-body: 1.58;
+
+    --header-height: 64px;
+    --button-height: 50px;
+    --button-padding-inline: 1.25rem;
+
+    --card-padding: 1.25rem;
+    --card-radius: 1rem;
+
+    --section-min-height: auto;
+  }
+}
+
+@media (max-width: 390px) {
+  :root {
+    --page-gutter: 1rem;
+
+    --font-display: clamp(2.5rem, 14vw, 3.75rem);
+    --font-hero: clamp(2.4rem, 13vw, 3.5rem);
+    --font-section-title: clamp(2rem, 10vw, 3rem);
+
+    --button-height: 48px;
+    --button-padding-inline: 1rem;
+
+    --card-padding: 1rem;
+  }
+}
