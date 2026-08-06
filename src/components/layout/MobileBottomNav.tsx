@@ -61,9 +61,12 @@ export function MobileBottomNav() {
       ? pathname.slice(0, -1)
       : pathname;
 
+  const isHome = normalizedPathname === "/";
+
   return (
     <nav
       className={styles.nav}
+      data-home={isHome ? "true" : "false"}
       aria-label="Navegação principal mobile"
     >
       {navItems.map((item) => {
@@ -85,8 +88,8 @@ export function MobileBottomNav() {
             <span className={styles.iconShell}>
               <Icon
                 aria-hidden="true"
-                size={21}
-                strokeWidth={1.8}
+                size={22}
+                strokeWidth={active ? 2.15 : 1.8}
               />
             </span>
 

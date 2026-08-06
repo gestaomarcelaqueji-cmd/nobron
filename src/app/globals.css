@@ -18,3 +18,22 @@
 @import "../styles/sections/creation-process.css";
 @import "../styles/sections/faq.css";
 @import "../styles/sections/final-cta.css";
+
+:root {
+  --mobile-bottom-nav-space: 0px;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --mobile-bottom-nav-space:
+      calc(
+        4.65rem +
+        env(safe-area-inset-bottom)
+      );
+  }
+
+  body {
+    padding-bottom:
+      var(--mobile-bottom-nav-space);
+  }
+}

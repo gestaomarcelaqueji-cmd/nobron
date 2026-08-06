@@ -436,6 +436,12 @@
   .endMapMotion {
     transform-origin: 50% 48%;
   }
+
+  .endScreen {
+    bottom: var(--mobile-bottom-nav-space);
+
+    background: #ffffff;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
