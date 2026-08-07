@@ -31,7 +31,8 @@ const storySteps: StoryStep[] = [
     title: (
       <>
         Sabe aquela correria de{" "}
-        <span> responder sempre a mesma coisa</span> enquanto ainda precisa trabalhar?
+        <span>responder sempre a mesma coisa</span>{" "}
+        enquanto ainda precisa trabalhar?
       </>
     ),
     layout: "hero",
@@ -64,8 +65,8 @@ const storySteps: StoryStep[] = [
   {
     title: (
       <>
-        Com uma Landing Page,
-        <span>boa parte disso</span>
+        Com uma Landing Page,{" "}
+        <span>boa parte disso</span>{" "}
         <span>já fica resolvida antes.</span>
       </>
     ),
