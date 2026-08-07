@@ -97,7 +97,7 @@ export function ServicesDirectory() {
                           }
                     }
                     transition={{
-                      duration: 0.42,
+                      duration: reduceMotion ? 0 : 0.28,
                       ease: [0.22, 1, 0.36, 1],
                     }}
                   >
@@ -115,7 +115,7 @@ export function ServicesDirectory() {
                         className={styles.itemLink}
                       >
                         Conhecer esta solução
-                        <span aria-hidden="true">↗</span>
+                        <span aria-hidden="true"></span>
                       </Link>
                     </div>
                   </motion.div>

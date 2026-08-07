@@ -9,7 +9,9 @@
   --marketing-accent: #275efe;
   --marketing-cyan: #16b7d7;
 
-  overflow: clip;
+  overflow-x: clip;
+  overflow-y: visible;
+
   background: #ffffff;
   color: var(--marketing-ink);
 }

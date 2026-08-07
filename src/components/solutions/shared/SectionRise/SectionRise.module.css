@@ -1,0 +1,73 @@
+.layer {
+  position: relative;
+  width: 100%;
+  margin-top: -1px;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+  .layer {
+    z-index: 2;
+
+    overflow: clip;
+
+    transform-origin:
+      center bottom;
+
+    will-change:
+      transform,
+      opacity,
+      clip-path;
+  }
+
+  /*
+   * Uma linha discreta evita emendas
+   * visuais durante a subida.
+   */
+  .layer::before {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    height: 1px;
+
+    background:
+      rgba(8, 9, 10, 0.06);
+
+    content: "";
+
+    pointer-events: none;
+  }
+}
+
+/* =========================================================
+   DESKTOP NÃO É ALTERADO
+========================================================= */
+
+@media (min-width: 701px) {
+  .layer {
+    opacity: 1 !important;
+
+    clip-path: none !important;
+
+    transform: none !important;
+  }
+}
+
+@media (
+  prefers-reduced-motion:
+  reduce
+) {
+  .layer {
+    opacity: 1 !important;
+
+    clip-path: none !important;
+
+    transform: none !important;
+  }
+}

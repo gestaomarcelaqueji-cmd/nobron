@@ -14,7 +14,8 @@
   --strategy-width: 1240px;
 
   min-height: 100vh;
-  overflow: clip;
+  overflow-x: clip;
+  overflow-y: visible;
   background: var(--strategy-bg);
   color: var(--strategy-ink);
 }

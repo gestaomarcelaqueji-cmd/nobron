@@ -11,7 +11,8 @@
   --solutions-accent-soft: rgba(36, 107, 253, 0.12);
 
   position: relative;
-  overflow: clip;
+  overflow-x: clip;
+  overflow-y: visible;
   background: var(--solutions-surface);
   color: var(--solutions-ink);
 }

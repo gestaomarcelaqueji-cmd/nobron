@@ -14,26 +14,70 @@ import { TechHero } from "../TechHero/TechHero";
 import { TechnicalGlossary } from "../TechnicalGlossary/TechnicalGlossary";
 import { TechnologyProgress } from "../TechnologyProgress/TechnologyProgress";
 
+import { SectionRise } from "../../shared/SectionRise/SectionRise";
+
 import styles from "./SitesSystemsPage.module.css";
 
 export function SitesSystemsPage() {
   return (
     <main className={styles.page}>
       <TechHero />
-      <ProblemFirst />
-      <SolutionTypes />
-      <SystemPossibilities />
-      <RealScenarios />
-      <TechnologyProgress />
-      <CustomSystems />
-      <DevelopmentProcess />
-      <SecuritySection />
-      <HumanTechnology />
-      <TechnicalGlossary />
-      <LandingPageSpotlight />
-      <DevelopmentDirectory />
-      <ProjectDiagnosis />
-      <SitesSystemsFinalCta />
+
+      <SectionRise>
+        <ProblemFirst />
+      </SectionRise>
+
+      <SectionRise>
+        <SolutionTypes />
+      </SectionRise>
+
+      <SectionRise>
+        <SystemPossibilities />
+      </SectionRise>
+
+      <SectionRise>
+        <RealScenarios />
+      </SectionRise>
+
+      <SectionRise>
+        <TechnologyProgress />
+      </SectionRise>
+
+      <SectionRise>
+        <CustomSystems />
+      </SectionRise>
+
+      <SectionRise>
+        <DevelopmentProcess />
+      </SectionRise>
+
+      <SectionRise>
+        <SecuritySection />
+      </SectionRise>
+
+      <SectionRise>
+        <HumanTechnology />
+      </SectionRise>
+
+      <SectionRise>
+        <TechnicalGlossary />
+      </SectionRise>
+
+      <SectionRise>
+        <LandingPageSpotlight />
+      </SectionRise>
+
+      <SectionRise>
+        <DevelopmentDirectory />
+      </SectionRise>
+
+      <SectionRise>
+        <ProjectDiagnosis />
+      </SectionRise>
+
+      <SectionRise>
+        <SitesSystemsFinalCta />
+      </SectionRise>
     </main>
   );
 }

@@ -11,23 +11,58 @@ import { BrandingServices } from "../BrandingServices/BrandingServices";
 import { BrandingOutcome } from "../BrandingOutcome/BrandingOutcome";
 import { BrandingFinalCta } from "../BrandingFinalCta/BrandingFinalCta";
 
+import { SectionRise } from "@/components/solutions/shared/SectionRise/SectionRise";
+
 import styles from "./BrandingPage.module.css";
 
 export function BrandingPage() {
   return (
     <div className={styles.page}>
       <BrandingHero />
-      <BrandRecognition />
-      <BrandConstructionIntro />
-      <BrandBlueprint />
-      <BrandForm />
-      <BrandSystem />
-      <BrandApplications />
-      <VisualAdaptation />
-      <BrandingSignals />
-      <BrandingServices />
-      <BrandingOutcome />
-      <BrandingFinalCta />
+
+      <SectionRise>
+        <BrandRecognition />
+      </SectionRise>
+
+      <SectionRise>
+        <BrandConstructionIntro />
+      </SectionRise>
+
+      <SectionRise>
+        <BrandBlueprint />
+      </SectionRise>
+
+      <SectionRise>
+        <BrandForm />
+      </SectionRise>
+
+      <SectionRise>
+        <BrandSystem />
+      </SectionRise>
+
+      <SectionRise>
+        <BrandApplications />
+      </SectionRise>
+
+      <SectionRise>
+        <VisualAdaptation />
+      </SectionRise>
+
+      <SectionRise>
+        <BrandingSignals />
+      </SectionRise>
+
+      <SectionRise>
+        <BrandingServices />
+      </SectionRise>
+
+      <SectionRise>
+        <BrandingOutcome />
+      </SectionRise>
+
+      <SectionRise>
+        <BrandingFinalCta />
+      </SectionRise>
     </div>
   );
 }

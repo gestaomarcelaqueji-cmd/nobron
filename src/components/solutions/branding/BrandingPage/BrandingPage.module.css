@@ -16,7 +16,8 @@
   --branding-width: 1240px;
 
   width: 100%;
-  overflow: clip;
+  overflow-x: clip;
+  overflow-y: visible;
   background: var(--branding-bg);
   color: var(--branding-ink);
 }

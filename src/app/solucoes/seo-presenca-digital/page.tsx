@@ -8,25 +8,54 @@ import { SeoPresenceHero } from "@/components/solutions/seo-presence/SeoPresence
 import { SeoProcess } from "@/components/solutions/seo-presence/SeoProcess/SeoProcess";
 import { SeoServicesExplained } from "@/components/solutions/seo-presence/SeoServicesExplained/SeoServicesExplained";
 
+import { SectionRise } from "@/components/solutions/shared/SectionRise/SectionRise";
+
 import desktopStyles from "./page.desktop.module.css";
 import mobileStyles from "./page.mobile.module.css";
 
 const styles = {
-  page: `${desktopStyles.page} ${mobileStyles.page}`,
+  page: [
+    desktopStyles.page,
+    mobileStyles.page,
+  ].join(" "),
 };
 
 export default function SeoPresenceDigitalPage() {
   return (
     <main className={styles.page}>
       <SeoPresenceHero />
-      <SearchIsHappening />
-      <PresenceIsPerception />
-      <SeoServicesExplained />
-      <AdsNeedDirection />
-      <SearchScenarios />
-      <SeoProcess />
-      <OrganicPaidBridge />
-      <SeoPresenceFinalCta />
+
+      <SectionRise>
+        <SearchIsHappening />
+      </SectionRise>
+
+      <SectionRise>
+        <PresenceIsPerception />
+      </SectionRise>
+
+      <SectionRise>
+        <SeoServicesExplained />
+      </SectionRise>
+
+      <SectionRise>
+        <AdsNeedDirection />
+      </SectionRise>
+
+      <SectionRise>
+        <SearchScenarios />
+      </SectionRise>
+
+      <SectionRise>
+        <SeoProcess />
+      </SectionRise>
+
+      <SectionRise>
+        <OrganicPaidBridge />
+      </SectionRise>
+
+      <SectionRise>
+        <SeoPresenceFinalCta />
+      </SectionRise>
     </main>
   );
 }

@@ -10,27 +10,62 @@ import { MarketingRoles } from "@/components/solutions/marketing-digital/Marketi
 import { MarketingServices } from "@/components/solutions/marketing-digital/MarketingServices/MarketingServices";
 import { MeasurementPath } from "@/components/solutions/marketing-digital/MeasurementPath/MeasurementPath";
 
+import { SectionRise } from "@/components/solutions/shared/SectionRise/SectionRise";
+
 import desktopStyles from "./page.desktop.module.css";
 import mobileStyles from "./page.mobile.module.css";
 
 const styles = {
-  page: `${desktopStyles.page} ${mobileStyles.page}`,
+  page: [
+    desktopStyles.page,
+    mobileStyles.page,
+  ].join(" "),
 };
 
 export default function MarketingDigitalPage() {
   return (
     <main className={styles.page}>
       <MarketingDigitalHero />
-      <MarketingDefinition />
-      <CampaignBeforeAd />
-      <MarketingRoles />
-      <ChannelIntent />
-      <MarketingServices />
-      <CreativeResponsibility />
-      <MeasurementPath />
-      <CampaignScenarios />
-      <MarketingProcess />
-      <MarketingDigitalFinalCta />
+
+      <SectionRise>
+        <MarketingDefinition />
+      </SectionRise>
+
+      <SectionRise>
+        <CampaignBeforeAd />
+      </SectionRise>
+
+      <SectionRise>
+        <MarketingRoles />
+      </SectionRise>
+
+      <SectionRise>
+        <ChannelIntent />
+      </SectionRise>
+
+      <SectionRise>
+        <MarketingServices />
+      </SectionRise>
+
+      <SectionRise>
+        <CreativeResponsibility />
+      </SectionRise>
+
+      <SectionRise>
+        <MeasurementPath />
+      </SectionRise>
+
+      <SectionRise>
+        <CampaignScenarios />
+      </SectionRise>
+
+      <SectionRise>
+        <MarketingProcess />
+      </SectionRise>
+
+      <SectionRise>
+        <MarketingDigitalFinalCta />
+      </SectionRise>
     </main>
   );
 }

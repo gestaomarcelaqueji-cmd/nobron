@@ -9,7 +9,9 @@
   --automation-cyan: #15b8cf;
   --automation-dark: #050505;
 
-  overflow: clip;
+  overflow-x: clip;
+  overflow-y: visible;
+
   background: #ffffff;
   color: var(--automation-ink);
 }

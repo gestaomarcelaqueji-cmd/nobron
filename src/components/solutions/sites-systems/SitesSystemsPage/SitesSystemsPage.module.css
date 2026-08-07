@@ -8,7 +8,8 @@
   --tech-soft: #f5f6f5;
   --tech-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  overflow: clip;
+  overflow-x: clip;
+  overflow-y: visible;
   background: var(--tech-bg);
   color: var(--tech-ink);
 }
