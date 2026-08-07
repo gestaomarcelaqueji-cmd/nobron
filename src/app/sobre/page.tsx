@@ -3,10 +3,6 @@ import type {
 } from "next";
 
 import {
-  AboutPageHeader,
-} from "@/components/about/AboutScrollytelling/AboutPageHeader";
-
-import {
   AboutScrollytelling,
 } from "@/components/about/AboutScrollytelling/AboutScrollytelling";
 
@@ -33,8 +29,6 @@ export const metadata: Metadata = {
 export default function SobrePage() {
   return (
     <main className={styles.page}>
-      <AboutPageHeader />
-
       <AboutScrollytelling />
 
       <AboutMobileStory />

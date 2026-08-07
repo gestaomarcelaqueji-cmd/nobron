@@ -27,7 +27,7 @@
   :root {
     --mobile-bottom-nav-space:
       calc(
-        4.65rem +
+        3.55rem +
         env(safe-area-inset-bottom)
       );
   }

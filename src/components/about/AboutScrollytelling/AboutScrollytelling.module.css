@@ -492,6 +492,12 @@
   }
 }
 
+@media (max-width: 760px) {
+  .section {
+    display: none;
+  }
+}
+
 @media (max-height: 740px) and (min-width: 761px) {
   .sticky {
     min-height: 550px;
@@ -518,6 +524,12 @@
 
   .studyGroup p {
     font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .section {
+    display: none;
   }
 }
 

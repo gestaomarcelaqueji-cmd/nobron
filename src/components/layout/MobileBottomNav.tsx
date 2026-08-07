@@ -63,15 +63,24 @@ export function MobileBottomNav() {
 
   const isHome = normalizedPathname === "/";
 
+  const usesDarkBackground =
+    normalizedPathname === "/sobre";
+
   return (
     <nav
       className={styles.nav}
       data-home={isHome ? "true" : "false"}
+      data-tone={
+        usesDarkBackground
+          ? "dark"
+          : "light"
+      }
       aria-label="Navegação principal mobile"
     >
       {navItems.map((item) => {
         const Icon = item.icon;
-        const active = item.isActive(normalizedPathname);
+        const active =
+          item.isActive(normalizedPathname);
 
         return (
           <Link
@@ -79,17 +88,25 @@ export function MobileBottomNav() {
             href={item.href}
             className={[
               styles.item,
-              active ? styles.itemActive : "",
+              active
+                ? styles.itemActive
+                : "",
             ]
               .filter(Boolean)
               .join(" ")}
-            aria-current={active ? "page" : undefined}
+            aria-current={
+              active ? "page" : undefined
+            }
           >
-            <span className={styles.iconShell}>
+            <span
+              className={styles.iconShell}
+            >
               <Icon
                 aria-hidden="true"
-                size={22}
-                strokeWidth={active ? 2.15 : 1.8}
+                size={18}
+                strokeWidth={
+                  active ? 2.1 : 1.75
+                }
               />
             </span>
 

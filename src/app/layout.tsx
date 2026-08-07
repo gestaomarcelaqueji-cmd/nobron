@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description:
     "Tecnologia e conhecimento profissional para criar marcas, sites, conteúdo, divulgação, sistemas e automações.",
   icons: {
-    icon: "/brand/isotipo-preto.png",
+    icon: "/brand/favicon.png",
   },
 };
 
