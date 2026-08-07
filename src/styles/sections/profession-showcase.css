@@ -87,7 +87,6 @@
   position: relative;
   z-index: 10;
   display: grid;
-  width: 100%;
   place-items: center;
 }
 
@@ -399,9 +398,10 @@
    MOBILE
 ========================================================= */
 
-@media (max-width: 560px) {
+@media (max-width: 767px) {
   .time-saver-section {
     height: 520svh;
+    transition-duration: var(--motion-duration-mobile, 360ms);
   }
 
   .time-saver-copy-window {
@@ -409,40 +409,43 @@
   }
 
   .time-saver-copy {
-    padding: 1.5rem 0.35rem;
+    padding: var(--space-6, 24px) 0;
   }
 
   .time-saver-copy h2,
   .time-saver-copy--statement h2 {
-    font-size: clamp(2rem, 10.8vw, 3.2rem);
-    line-height: 1;
+    font-size: var(--font-size-section-title, clamp(28px, 8vw, 36px));
+    line-height: var(--line-heading, 1.12);
     letter-spacing: -0.058em;
   }
 
   .time-saver-copy p {
-    margin-top: 1.25rem;
-    font-size: 0.92rem;
-    line-height: 1.55;
+    max-width: var(--text-measure, 38ch);
+    margin-top: var(--space-5, 20px);
+    font-size: var(--font-size-secondary, 16px);
+    line-height: var(--line-body, 1.5);
   }
 
   .time-saver-cta {
-    width: min(100%, 320px);
-    min-height: 52px;
-    padding: 0 1rem;
-    font-size: 0.8rem;
+    width: min(100%, 360px);
+    min-height: var(--button-height, 50px);
+    padding: 0 var(--button-padding-inline, 20px);
+    border-radius: var(--control-radius, 14px);
+    font-size: var(--font-size-small, 15px);
   }
 
   .time-saver-question {
-    min-height: 34px;
-    padding: 0 0.65rem;
-    gap: 0.45rem;
-    font-size: 0.62rem;
+    min-height: 36px;
+    padding: 0 var(--space-3, 12px);
+    gap: var(--space-2, 8px);
+    font-size: var(--font-size-caption, 12px);
+    animation: none;
   }
 
   .time-saver-question span {
-    width: 17px;
-    height: 17px;
-    font-size: 0.54rem;
+    width: 20px;
+    height: 20px;
+    font-size: var(--font-size-caption, 12px);
   }
 
   .time-saver-question:nth-child(1) {
@@ -494,12 +497,16 @@
     bottom: 9%;
   }
 
-  .time-saver-question:nth-child(n + 10) {
+  .time-saver-question:nth-child(n + 7) {
     display: none;
   }
 
   .time-saver-step-progress {
-    bottom: 1rem;
+    bottom:
+      calc(
+        var(--mobile-bottom-nav-space, 0px) +
+        var(--space-4, 16px)
+      );
   }
 
   .time-saver-step-progress i {

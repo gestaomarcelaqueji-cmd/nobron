@@ -49,8 +49,8 @@
   max-width: 640px;
   margin: 20px auto 0;
   color: var(--muted);
-  font-size: clamp(.94rem, 1.15vw, 1.02rem);
-  line-height: 1.6;
+  font-size: var(--font-size-secondary, 16px);
+  line-height: var(--line-body, 1.5);
 }
 
 .pricing-timeline {
@@ -159,7 +159,7 @@
 
 .pricing-timeline__title small {
   color: #929aa6;
-  font-size: .56rem;
+  font-size: var(--font-size-caption, 12px);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -177,8 +177,8 @@
 .pricing-timeline__content > p {
   margin: 12px 0 0;
   color: #687281;
-  font-size: .76rem;
-  line-height: 1.52;
+  font-size: var(--font-size-small, 15px);
+  line-height: var(--line-body, 1.5);
 }
 
 .pricing-timeline__chips {
@@ -202,7 +202,7 @@
   border-radius: 999px;
   background: #f5f8ff;
   color: #536071;
-  font-size: .56rem;
+  font-size: var(--font-size-caption, 12px);
   font-weight: 720;
 }
 
@@ -233,7 +233,7 @@
   position: relative;
   z-index: 2;
   color: var(--blue);
-  font-size: .68rem;
+  font-size: var(--font-size-caption, 12px);
   font-weight: 850;
   letter-spacing: .04em;
 }
@@ -283,7 +283,7 @@
 
 .pricing-timeline-summary__price > small {
   color: var(--blue);
-  font-size: .57rem;
+  font-size: var(--font-size-caption, 12px);
   font-weight: 850;
   text-transform: uppercase;
   letter-spacing: .1em;
@@ -298,7 +298,7 @@
 
 .pricing-timeline-summary__price span {
   color: #28303c;
-  font-size: .82rem;
+  font-size: var(--font-size-small, 15px);
   font-weight: 850;
 }
 
@@ -312,7 +312,7 @@
 
 .pricing-timeline-summary__price i {
   color: #747f8e;
-  font-size: .62rem;
+  font-size: var(--font-size-caption, 12px);
   font-style: normal;
   font-weight: 750;
 }
@@ -329,8 +329,8 @@
   max-width: 440px;
   margin: 7px 0 0;
   color: #697382;
-  font-size: .7rem;
-  line-height: 1.5;
+  font-size: var(--font-size-small, 15px);
+  line-height: var(--line-body, 1.5);
 }
 
 .pricing-timeline-summary__copy > div {
@@ -345,7 +345,7 @@
   gap: 5px;
   align-items: center;
   color: #536071;
-  font-size: .57rem;
+  font-size: var(--font-size-small, 15px);
   font-weight: 720;
 }
 
@@ -412,7 +412,7 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 767px) {
   .pricing-timeline-section {
     padding: 78px 0;
   }
@@ -426,7 +426,7 @@
   }
 
   .pricing-timeline-heading p {
-    font-size: .86rem;
+    font-size: var(--font-size-secondary, 16px);
   }
 
   .pricing-timeline__row {

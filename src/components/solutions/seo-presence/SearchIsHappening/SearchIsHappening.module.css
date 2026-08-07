@@ -23,7 +23,7 @@
 .copy > span {
   color: var(--seo-subtle);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.58rem;
+  font-size: var(--font-size-eyebrow, 12px);
   font-weight: 760;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -40,7 +40,7 @@
 }
 
 .copy p {
-  max-width: 720px;
+  max-width: var(--text-measure, 38ch);
   margin: 1.8rem auto 0;
   color: var(--seo-muted);
   font-size: clamp(1rem, 1.25vw, 1.12rem);
@@ -105,7 +105,7 @@
 
 .resultUrl {
   color: var(--seo-subtle);
-  font-size: 0.72rem;
+  font-size: var(--font-size-caption, 12px);
 }
 
 .result h3 {
@@ -122,7 +122,7 @@
   display: block;
   margin-top: 0.8rem;
   color: var(--seo-ink);
-  font-size: 0.76rem;
+  font-size: var(--font-size-small, 15px);
   font-weight: 660;
 }
 
@@ -130,7 +130,7 @@
   max-width: 720px;
   margin: 0.7rem 0 0;
   color: var(--seo-muted);
-  font-size: 0.95rem;
+  font-size: var(--font-size-secondary, 16px);
   line-height: 1.6;
 }
 
@@ -138,13 +138,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.65rem;
+  gap: var(--interactive-gap, 12px);
 }
 
 .queryButton {
   display: grid;
-  width: 2.6rem;
-  height: 2.6rem;
+  width: var(--touch-target, 44px);
+  height: var(--touch-target, 44px);
   padding: 0;
   place-items: center;
   border: 1px solid var(--seo-line);
@@ -163,13 +163,15 @@
 
 .queryButton span {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.58rem;
+  font-size: var(--font-size-caption, 12px);
   font-weight: 720;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 767px) {
   .section {
-    padding: 6rem 1rem;
+    padding:
+      var(--section-padding-block, 80px)
+      var(--page-gutter, 20px);
   }
 
   .searchBar {

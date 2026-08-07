@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties, KeyboardEvent } from "react";
+import type { CSSProperties } from "react";
 import { motion } from "motion/react";
 
 const layers = [
@@ -26,13 +26,6 @@ type Props = {
 
 export function ExplodedLayers({ activeIndexes, revealed, onActiveChange }: Props) {
   const activeCards = new Set(activeIndexes.map((index) => index % 6));
-
-  const handleLabelKeyDown = (event: KeyboardEvent<HTMLSpanElement>, index: number) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      onActiveChange(activeIndexes.includes(index) ? null : index);
-    }
-  };
 
   return (
     <div
@@ -67,7 +60,8 @@ export function ExplodedLayers({ activeIndexes, revealed, onActiveChange }: Prop
           } as CSSProperties;
 
           return (
-            <span
+            <button
+              type="button"
               key={layer}
               className={[
                 "layer-label",
@@ -75,15 +69,17 @@ export function ExplodedLayers({ activeIndexes, revealed, onActiveChange }: Prop
                 activeIndexes.includes(index) ? "is-active" : "",
               ].filter(Boolean).join(" ")}
               style={style}
-              tabIndex={0}
+              aria-pressed={activeIndexes.includes(index)}
               onMouseEnter={() => onActiveChange(index)}
               onMouseLeave={() => onActiveChange(null)}
               onFocus={() => onActiveChange(index)}
               onBlur={() => onActiveChange(null)}
-              onKeyDown={(event) => handleLabelKeyDown(event, index)}
+              onClick={() =>
+                onActiveChange(activeIndexes.includes(index) ? null : index)
+              }
             >
               <span className="layer-label__text">{layer}</span>
-            </span>
+            </button>
           );
         })}
       </div>

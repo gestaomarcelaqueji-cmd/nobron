@@ -15,7 +15,6 @@
   --radius-md: 24px;
   --radius-lg: 34px;
   --container: 1080px;
-  --page-gutter: clamp(28px, 6vw, 84px);
 }
 
 * {
@@ -24,7 +23,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 92px;
+  scroll-padding-top: calc(92px + var(--safe-area-top, 0px));
 }
 
 body {
@@ -32,7 +31,9 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body), Arial, sans-serif;
-  line-height: 1.5;
+  font-size: var(--font-size-body, 17px);
+  font-weight: 400;
+  line-height: var(--line-body, 1.5);
   overflow-x: hidden;
 }
 
@@ -70,26 +71,32 @@ svg {
 }
 
 main {
-  overflow: clip;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 main > section {
   position: relative;
-  overflow: clip;
+  overflow-x: clip;
+  overflow-y: visible;
   isolation: isolate;
 }
 
 main > section[id] {
-  scroll-margin-top: 92px;
+  scroll-margin-top: calc(92px + var(--safe-area-top, 0px));
 }
 
 .container {
-  width: min(calc(100% - (var(--page-gutter) * 2)), var(--container));
+  width:
+    min(
+      calc(100% - var(--page-gutter) - var(--page-gutter)),
+      var(--container)
+    );
   margin-inline: auto;
 }
 
 .section {
-  padding: clamp(76px, 11vh, 120px) 0;
+  padding: var(--section-padding-block, clamp(76px, 11vh, 120px)) 0;
 }
 
 .floating-card,
@@ -200,6 +207,108 @@ main > section[id] {
   .floating-card,
 .floating-price {
     display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  html {
+    scroll-padding-top:
+      calc(
+        var(--safe-area-top, 0px) +
+        var(--space-16, 64px)
+      );
+  }
+
+  body {
+    font-size: var(--font-size-body, 17px);
+    line-height: var(--line-body, 1.5);
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  main > section[id] {
+    scroll-margin-top:
+      calc(
+        var(--safe-area-top, 0px) +
+        var(--space-16, 64px)
+      );
+  }
+
+  .section {
+    padding-block: var(--section-padding-block, 80px);
+  }
+
+  main :is(h1, h2, h3, p, li) {
+    overflow-wrap: anywhere;
+  }
+
+  main h1 {
+    font-size: var(--font-size-hero, clamp(36px, 10vw, 48px)) !important;
+    line-height: var(--line-heading, 1.12) !important;
+  }
+
+  main h2 {
+    font-size: var(--font-size-section-title, clamp(28px, 8vw, 36px)) !important;
+    line-height: var(--line-heading, 1.12) !important;
+  }
+
+  main h3 {
+    font-size: var(--font-size-card-title, clamp(22px, 5.8vw, 24px)) !important;
+    line-height: var(--line-heading, 1.12) !important;
+  }
+
+  main p {
+    line-height: var(--line-body, 1.5) !important;
+  }
+
+  main :is(p, span)[class*="description" i],
+  main [class*="copy" i] > p {
+    max-width: var(--text-measure, 38ch) !important;
+  }
+
+  main :is(small, figcaption),
+  main :is(span, p)[class*="caption" i],
+  main :is(span, p)[class*="eyebrow" i],
+  main :is(span, p)[class*="kicker" i] {
+    font-size: max(var(--font-size-caption, 12px), 0.75rem) !important;
+  }
+
+  :where(
+    button,
+    [role="button"],
+    summary,
+    input:not(
+      [type="hidden"],
+      [type="checkbox"],
+      [type="radio"],
+      [type="file"]
+    ),
+    select,
+    textarea
+  ) {
+    min-height: var(--touch-target, 44px) !important;
+    touch-action: manipulation;
+  }
+
+  :where(button, [role="button"], summary) {
+    min-width: var(--touch-target, 44px) !important;
+  }
+
+  a[href][class] {
+    min-height: var(--touch-target, 44px);
+    min-width: var(--touch-target, 44px);
+    touch-action: manipulation;
+  }
+
+  :is(a, button)[class*="cta" i],
+  :is(a, button)[class*="button" i] {
+    min-height: var(--button-height, 50px) !important;
+  }
+}
+
+@media (max-width: 359px) {
+  .section {
+    padding-block: var(--section-space-sm, 64px);
   }
 }
 

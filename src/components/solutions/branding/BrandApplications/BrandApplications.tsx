@@ -59,7 +59,7 @@ export function BrandApplications() {
               <span className={styles.previewEyebrow}>Uma base visual</span>
               <strong>{applications.items[active].name}</strong>
               <p>O formato muda. A linguagem continua conectada.</p>
-              <span className={styles.previewAction}>Ver detalhes ↗</span>
+              <span className={styles.previewAction}>Ver detalhes </span>
             </div>
             <div className={styles.previewArtwork}>
               <span />

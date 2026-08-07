@@ -1,117 +1,154 @@
 :root {
+  /* Safe areas */
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
+
+  /* Official noBRon spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
   --layout-max-width: 1440px;
   --content-max-width: 1180px;
   --content-narrow-width: 820px;
   --text-max-width: 680px;
+  --text-measure: 38ch;
 
-  --page-gutter: clamp(1.5rem, 5vw, 5.5rem);
+  --page-gutter: clamp(28px, 6vw, 84px);
 
-  --section-space-xs: 3rem;
-  --section-space-sm: 4.5rem;
-  --section-space-md: 6.5rem;
-  --section-space-lg: 8.5rem;
-  --section-space-xl: 11rem;
+  --section-space-xs: 48px;
+  --section-space-sm: 72px;
+  --section-space-md: 104px;
+  --section-space-lg: 136px;
+  --section-space-xl: 176px;
 
-  --content-gap-xs: 0.75rem;
-  --content-gap-sm: 1rem;
-  --content-gap-md: 1.5rem;
-  --content-gap-lg: 2.5rem;
-  --content-gap-xl: 4rem;
+  --content-gap-xs: 12px;
+  --content-gap-sm: 16px;
+  --content-gap-md: 24px;
+  --content-gap-lg: 40px;
+  --content-gap-xl: 64px;
 
-  --font-display: clamp(4rem, 8vw, 8.75rem);
-  --font-hero: clamp(3.5rem, 7vw, 7.5rem);
-  --font-section-title: clamp(2.75rem, 5vw, 5.5rem);
-  --font-card-title: clamp(1.25rem, 2vw, 1.75rem);
+  /* Size tokens deliberately avoid --font-body/--font-display.
+     Those two variables belong to next/font and contain font families. */
+  --font-size-display: clamp(64px, 8vw, 140px);
+  --font-size-hero: clamp(56px, 7vw, 120px);
+  --font-size-section-title: clamp(44px, 5vw, 88px);
+  --font-size-card-title: clamp(20px, 2vw, 28px);
+  --font-size-lead: clamp(17px, 1.6vw, 22px);
+  --font-size-body: 17px;
+  --font-size-secondary: 16px;
+  --font-size-small: 15px;
+  --font-size-caption: 12px;
+  --font-size-eyebrow: 12px;
 
-  --font-lead: clamp(1.05rem, 1.6vw, 1.35rem);
-  --font-body: 1rem;
-  --font-small: 0.875rem;
-  --font-eyebrow: 0.75rem;
-
-  --line-display: 0.9;
-  --line-heading: 1;
-  --line-body: 1.65;
+  --line-display: 0.94;
+  --line-heading: 1.04;
+  --line-body: 1.5;
 
   --header-height: 76px;
-  --button-height: 54px;
-  --button-padding-inline: 1.6rem;
+  --touch-target: 44px;
+  --button-height: 52px;
+  --button-padding-inline: 24px;
+  --interactive-gap: 12px;
 
-  --card-padding: clamp(1.5rem, 2.5vw, 2.5rem);
-  --card-radius: 1.5rem;
+  --card-padding: clamp(24px, 2.5vw, 40px);
+  --card-radius: 16px;
+  --control-radius: 14px;
 
-  --section-min-height: 100svh;
+  /* Common sections grow with content. Immersive sections opt into svh. */
+  --section-min-height: auto;
+  --section-padding-block: clamp(76px, 11vh, 120px);
+
+  --motion-duration-mobile: 360ms;
+  --motion-distance-mobile: 20px;
 }
 
 @media (max-width: 1023px) {
   :root {
-    --page-gutter: clamp(1.5rem, 4vw, 3rem);
+    --page-gutter: clamp(24px, 4vw, 48px);
 
-    --section-space-sm: 4rem;
-    --section-space-md: 5.25rem;
-    --section-space-lg: 7rem;
-    --section-space-xl: 8.5rem;
+    --section-space-sm: 64px;
+    --section-space-md: 84px;
+    --section-space-lg: 112px;
+    --section-space-xl: 136px;
 
-    --font-display: clamp(3.5rem, 9vw, 6.5rem);
-    --font-hero: clamp(3rem, 8vw, 5.5rem);
-    --font-section-title: clamp(2.5rem, 6vw, 4.5rem);
+    --font-size-display: clamp(56px, 9vw, 104px);
+    --font-size-hero: clamp(48px, 8vw, 88px);
+    --font-size-section-title: clamp(40px, 6vw, 72px);
 
     --header-height: 70px;
-    --card-radius: 1.25rem;
   }
 }
 
+/* Main noBRon mobile breakpoint */
 @media (max-width: 767px) {
   :root {
-    --page-gutter: 1.25rem;
+    --page-gutter:
+      max(
+        20px,
+        var(--safe-area-left),
+        var(--safe-area-right)
+      );
 
-    --section-space-xs: 2.5rem;
-    --section-space-sm: 3.5rem;
-    --section-space-md: 4.5rem;
-    --section-space-lg: 5.5rem;
-    --section-space-xl: 6.5rem;
+    --section-space-xs: 40px;
+    --section-space-sm: 64px;
+    --section-space-md: 80px;
+    --section-space-lg: 96px;
+    --section-space-xl: 96px;
+    --section-padding-block: 80px;
 
-    --content-gap-xs: 0.625rem;
-    --content-gap-sm: 0.875rem;
-    --content-gap-md: 1.25rem;
-    --content-gap-lg: 2rem;
-    --content-gap-xl: 3rem;
+    --content-gap-xs: 12px;
+    --content-gap-sm: 16px;
+    --content-gap-md: 24px;
+    --content-gap-lg: 40px;
+    --content-gap-xl: 48px;
 
-    --font-display: clamp(2.75rem, 15vw, 4.75rem);
-    --font-hero: clamp(2.65rem, 13vw, 4.25rem);
-    --font-section-title: clamp(2.25rem, 10.5vw, 3.5rem);
-    --font-card-title: clamp(1.2rem, 5vw, 1.5rem);
+    --font-size-display: clamp(36px, 10vw, 48px);
+    --font-size-hero: clamp(36px, 10vw, 48px);
+    --font-size-section-title: clamp(28px, 8vw, 36px);
+    --font-size-card-title: clamp(22px, 5.8vw, 24px);
+    --font-size-lead: 17px;
+    --font-size-body: 17px;
+    --font-size-secondary: 16px;
+    --font-size-small: 15px;
+    --font-size-caption: 12px;
+    --font-size-eyebrow: 12px;
 
-    --font-lead: clamp(1rem, 4.5vw, 1.15rem);
-    --font-body: 0.975rem;
-    --font-small: 0.825rem;
-    --font-eyebrow: 0.6875rem;
-
-    --line-display: 0.95;
-    --line-heading: 1.04;
-    --line-body: 1.58;
+    --line-display: 1.04;
+    --line-heading: 1.12;
+    --line-body: 1.5;
 
     --header-height: 64px;
     --button-height: 50px;
-    --button-padding-inline: 1.25rem;
+    --button-padding-inline: 20px;
 
-    --card-padding: 1.25rem;
-    --card-radius: 1rem;
-
+    --card-padding: 20px;
+    --card-radius: 16px;
     --section-min-height: auto;
   }
 }
 
-@media (max-width: 390px) {
+/* Very small screens keep the minimum 16px gutter. */
+@media (max-width: 359px) {
   :root {
-    --page-gutter: 1rem;
-
-    --font-display: clamp(2.5rem, 14vw, 3.75rem);
-    --font-hero: clamp(2.4rem, 13vw, 3.5rem);
-    --font-section-title: clamp(2rem, 10vw, 3rem);
-
-    --button-height: 48px;
-    --button-padding-inline: 1rem;
-
-    --card-padding: 1rem;
+    --page-gutter:
+      max(
+        16px,
+        var(--safe-area-left),
+        var(--safe-area-right)
+      );
+    --button-padding-inline: 16px;
+    --card-padding: 16px;
   }
 }

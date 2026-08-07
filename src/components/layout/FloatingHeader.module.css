@@ -5,7 +5,11 @@
 .header {
   position: fixed;
   z-index: 120;
-  top: clamp(0.85rem, 2vw, 1.25rem);
+  top:
+    max(
+      clamp(0.85rem, 2vw, 1.25rem),
+      calc(var(--safe-area-top, 0px) + 0.5rem)
+    );
   left: 50%;
 
   display: flex;
@@ -115,7 +119,7 @@
    O MOBILE USA A BARRA GLOBAL INFERIOR
 ========================================================= */
 
-@media (max-width: 720px) {
+@media (max-width: 767px) {
   .header,
   .overlay {
     display: none !important;
@@ -761,17 +765,17 @@
    RESPONSIVO
 ========================================================= */
 
-@media (max-width: 720px), (hover: none) {
+@media (max-width: 767px), (hover: none) {
   .header {
     top: auto;
     bottom:
       max(
         0.6rem,
-        env(safe-area-inset-bottom)
+        var(--safe-area-bottom, env(safe-area-inset-bottom))
       );
 
     width: min(
-      calc(100% - 1rem),
+      calc(100% - var(--page-gutter, 20px) - var(--page-gutter, 20px)),
       420px
     );
     height: 60px;
@@ -805,7 +809,7 @@
 
   .headerOpen {
     width: min(
-      calc(100% - 1rem),
+      calc(100% - var(--page-gutter, 20px) - var(--page-gutter, 20px)),
       460px
     );
   }
@@ -815,19 +819,20 @@
   }
 
   .menuButton {
-    width: 42px;
-    height: 42px;
-    flex-basis: 42px;
+    width: var(--touch-target, 44px);
+    height: var(--touch-target, 44px);
+    flex-basis: var(--touch-target, 44px);
   }
 
   .overlay {
     padding:
-      0.5rem
-      0.5rem
+      max(0.5rem, var(--safe-area-top, 0px))
+      max(var(--page-gutter, 20px), var(--safe-area-right, 0px))
       calc(
         5.25rem +
-        env(safe-area-inset-bottom)
-      );
+        var(--safe-area-bottom, env(safe-area-inset-bottom))
+      )
+      max(var(--page-gutter, 20px), var(--safe-area-left, 0px));
     align-items: flex-end;
   }
 
@@ -886,6 +891,8 @@
 
   .menuLinkDescription {
     max-width: 20rem;
+    font-size: var(--font-size-small, 15px);
+    line-height: var(--line-body, 1.5);
   }
 
   .menuFooter {
@@ -895,7 +902,7 @@
 
 @media (max-width: 460px) {
   .menuLinkDescription {
-    display: none;
+    display: block;
   }
 
   .menuLink {

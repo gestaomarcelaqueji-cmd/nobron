@@ -2,11 +2,16 @@
   display: none;
 }
 
+.moreBackdrop,
+.moreSheet {
+  display: none;
+}
+
 /* =========================================================
    MOBILE BOTTOM NAV
 ========================================================= */
 
-@media (max-width: 720px) {
+@media (max-width: 767px) {
   .nav {
     --nav-height: 3.55rem;
     --nav-background:
@@ -28,16 +33,17 @@
     height:
       calc(
         var(--nav-height) +
-        env(safe-area-inset-bottom)
+        var(--safe-area-bottom, env(safe-area-inset-bottom))
       );
 
     padding:
       0
-      0.35rem
-      env(safe-area-inset-bottom);
+      max(0.35rem, var(--safe-area-right, 0px))
+      var(--safe-area-bottom, env(safe-area-inset-bottom))
+      max(0.35rem, var(--safe-area-left, 0px));
 
     grid-template-columns:
-      repeat(4, minmax(0, 1fr));
+      repeat(5, minmax(0, 1fr));
 
     border: 0;
     border-top:
@@ -114,7 +120,13 @@
     justify-content: center;
     gap: 0.16rem;
 
+    appearance: none;
+    border: 0;
+    background: transparent;
+
     color: var(--nav-text);
+    cursor: pointer;
+    font: inherit;
     text-decoration: none;
 
     -webkit-tap-highlight-color:
@@ -157,8 +169,8 @@
       Arial,
       sans-serif;
 
-    font-size: 0.52rem;
-    font-weight: 570;
+    font-size: var(--font-size-caption, 12px);
+    font-weight: 600;
     letter-spacing: -0.012em;
     line-height: 1;
 
@@ -238,6 +250,149 @@
   }
 
   /* =======================================================
+     MENU ADICIONAL
+  ======================================================= */
+
+  .moreBackdrop {
+    position: fixed;
+    z-index: 205;
+    inset: 0;
+
+    display: block;
+    width: 100%;
+    min-height: 100svh;
+    padding: 0;
+
+    border: 0;
+    background: rgba(8, 9, 10, 0.24);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+      opacity var(--motion-duration-mobile, 360ms) ease,
+      visibility 0s linear var(--motion-duration-mobile, 360ms);
+  }
+
+  .moreBackdropOpen {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+  }
+
+  .moreSheet {
+    position: fixed;
+    z-index: 215;
+    bottom:
+      calc(
+        var(--mobile-bottom-nav-space, 0px) +
+        var(--space-3, 12px)
+      );
+    left: 50%;
+
+    display: grid;
+    width:
+      min(
+        calc(100% - var(--page-gutter, 20px) - var(--page-gutter, 20px)),
+        420px
+      );
+    padding: var(--space-5, 20px);
+    gap: var(--space-5, 20px);
+
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: var(--card-radius, 16px);
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 20px 64px rgba(15, 23, 42, 0.18);
+    backdrop-filter: blur(20px) saturate(140%);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(-50%, 20px);
+
+    transition:
+      opacity var(--motion-duration-mobile, 360ms) ease,
+      transform var(--motion-duration-mobile, 360ms) cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear var(--motion-duration-mobile, 360ms);
+  }
+
+  .moreSheetOpen {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+    transition-delay: 0s;
+  }
+
+  .moreHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4, 16px);
+  }
+
+  .moreHeader > div > span {
+    color: rgba(15, 23, 42, 0.5);
+    font-size: var(--font-size-eyebrow, 12px);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .moreHeader h2 {
+    margin: var(--space-3, 12px) 0 0;
+    color: #0f172a;
+    font-size: var(--font-size-section-title, 28px);
+    line-height: var(--line-heading, 1.12);
+    letter-spacing: -0.04em;
+  }
+
+  .moreClose {
+    display: grid;
+    width: var(--touch-target, 44px);
+    height: var(--touch-target, 44px);
+    flex: 0 0 var(--touch-target, 44px);
+    padding: 0;
+    place-items: center;
+
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: var(--control-radius, 14px);
+    background: #f8fafc;
+    color: #0f172a;
+  }
+
+  .moreLinks {
+    display: grid;
+    gap: var(--interactive-gap, 12px);
+  }
+
+  .moreLinks a {
+    display: grid;
+    min-height: 64px;
+    padding: var(--space-3, 12px) var(--space-4, 16px);
+    gap: var(--space-1, 4px);
+
+    border: 1px solid rgba(15, 23, 42, 0.09);
+    border-radius: var(--control-radius, 14px);
+    background: #f8fafc;
+    color: #0f172a;
+  }
+
+  .moreLinks a > span {
+    font-size: var(--font-size-secondary, 16px);
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .moreLinks small {
+    color: rgba(15, 23, 42, 0.6);
+    font-size: var(--font-size-caption, 12px);
+    font-weight: 400;
+    line-height: var(--line-body, 1.5);
+  }
+
+  /* =======================================================
      HOME
   ======================================================= */
 
@@ -265,11 +420,12 @@
    CELULARES PEQUENOS
 ========================================================= */
 
-@media (max-width: 370px) {
+@media (max-width: 359px) {
   .nav {
-    --nav-height: 3.35rem;
+    --nav-height: 3.55rem;
 
-    padding-inline: 0.15rem;
+    padding-right: max(0.15rem, var(--safe-area-right, 0px));
+    padding-left: max(0.15rem, var(--safe-area-left, 0px));
   }
 
   .iconShell {
@@ -278,7 +434,7 @@
   }
 
   .label {
-    font-size: 0.48rem;
+    font-size: var(--font-size-caption, 12px);
   }
 }
 
@@ -287,7 +443,7 @@
 ========================================================= */
 
 @media (
-  max-width: 720px
+  max-width: 767px
 ) and (
   prefers-reduced-motion: reduce
 ) {

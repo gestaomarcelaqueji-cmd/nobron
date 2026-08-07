@@ -34,12 +34,21 @@ export function TermHelp({
     }
 
     const rect = button.getBoundingClientRect();
-    const viewportPadding = 12;
-    const width = Math.min(304, window.innerWidth - viewportPadding * 2);
+    const rootStyles = window.getComputedStyle(document.documentElement);
+    const safeLeft =
+      Number.parseFloat(rootStyles.getPropertyValue("--safe-area-left")) || 0;
+    const safeRight =
+      Number.parseFloat(rootStyles.getPropertyValue("--safe-area-right")) || 0;
+    const viewportPaddingLeft = Math.max(20, safeLeft);
+    const viewportPaddingRight = Math.max(20, safeRight);
+    const width = Math.min(
+      304,
+      window.innerWidth - viewportPaddingLeft - viewportPaddingRight,
+    );
     const centeredLeft = rect.left + rect.width / 2 - width / 2;
     const left = Math.min(
-      Math.max(viewportPadding, centeredLeft),
-      window.innerWidth - width - viewportPadding,
+      Math.max(viewportPaddingLeft, centeredLeft),
+      window.innerWidth - width - viewportPaddingRight,
     );
     const placement = rect.top > 150 ? "top" : "bottom";
     const top = placement === "top" ? rect.top - 10 : rect.bottom + 10;

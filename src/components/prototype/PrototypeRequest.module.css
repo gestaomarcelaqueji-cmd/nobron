@@ -1045,7 +1045,7 @@
    RESPONSIVE
 ========================================================= */
 
-@media (max-width: 760px) {
+@media (max-width: 767px) {
   .header {
     top: 12px;
     width: calc(100% - 32px);
@@ -1994,7 +1994,7 @@
   outline-offset: 3px;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 767px) {
   .hero {
     padding: 98px 16px 30px;
   }
@@ -2087,7 +2087,7 @@
   }
 
   .choiceCard small {
-    display: none;
+    display: block;
   }
 
   .uploadBox > button {
@@ -2097,6 +2097,27 @@
   .reviewRow {
     grid-template-columns: 1fr;
     gap: 3px;
+  }
+}
+
+@media (max-width: 767px) {
+  .heroContent > p,
+  .formIntro p,
+  .stepHeading p,
+  .socialHeading p,
+  .consentTitle p,
+  .consentItem p,
+  .reviewDescription,
+  .reviewNotice p,
+  .statusCard > p {
+    font-size: var(--font-size-small, 15px);
+    line-height: var(--line-body, 1.5);
+  }
+
+  .choiceCard small {
+    display: block;
+    font-size: var(--font-size-caption, 12px);
+    line-height: var(--line-body, 1.5);
   }
 }
 

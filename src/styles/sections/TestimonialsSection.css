@@ -114,8 +114,9 @@
 
 .testimonial-card__source {
   color: var(--muted);
-  font-size: 0.54rem;
+  font-size: var(--font-size-caption, 12px);
   font-weight: 680;
+  line-height: var(--line-body, 1.5);
 }
 
 .testimonial-card__quote-icon {
@@ -234,7 +235,7 @@
   }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 767px) {
   .testimonials-section {
     padding: 80px 0;
   }
@@ -263,7 +264,7 @@
   }
 
   .testimonial-card__source {
-    display: none;
+    display: block;
   }
 
   .testimonials-closing {

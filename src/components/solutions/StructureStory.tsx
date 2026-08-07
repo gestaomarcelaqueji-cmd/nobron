@@ -128,7 +128,7 @@ export function StructureStory() {
 
                 <Link href={activeCategory.href} className={styles.link}>
                   Conhecer {activeCategory.title}
-                  <span aria-hidden="true">↗</span>
+                  <span aria-hidden="true"></span>
                 </Link>
               </motion.div>
             </AnimatePresence>

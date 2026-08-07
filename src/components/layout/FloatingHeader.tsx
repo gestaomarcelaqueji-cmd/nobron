@@ -78,7 +78,7 @@ export function FloatingHeader() {
     if (isHiddenRoute) return;
 
     const desktopPointer = window.matchMedia(
-      "(min-width: 721px) and (hover: hover)",
+      "(min-width: 768px) and (hover: hover)",
     );
 
     function handlePointerMove(event: PointerEvent) {

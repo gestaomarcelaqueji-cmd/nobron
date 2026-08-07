@@ -59,14 +59,14 @@
 .badge {
   display: inline-flex;
   align-items: center;
-  min-height: 36px;
+  min-height: var(--touch-target, 44px);
   padding: 8px 14px;
   border: 1px solid rgba(20, 92, 255, 0.18);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.72);
   color: var(--blue-dark);
   box-shadow: 0 8px 28px rgba(20, 92, 255, 0.08);
-  font-size: 0.78rem;
+  font-size: var(--font-size-caption, 12px);
   font-weight: 750;
   backdrop-filter: blur(12px);
 }
@@ -75,15 +75,15 @@
   position: relative;
   display: inline-flex;
   max-width: 100%;
-  min-height: 50px;
+  min-height: var(--button-height, 52px);
   align-items: center;
   justify-content: center;
   gap: 9px;
   overflow: hidden;
-  padding: 0 22px;
+  padding: 0 var(--button-padding-inline, 24px);
   border: 1px solid transparent;
-  border-radius: 14px;
-  font-size: 0.91rem;
+  border-radius: var(--control-radius, 14px);
+  font-size: var(--font-size-small, 15px);
   font-weight: 800;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
@@ -168,17 +168,30 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 767px) {
+  .section-heading {
+    margin-bottom: var(--content-gap-xl, 48px);
+  }
+
   .section-title {
-    font-size: clamp(2.15rem, 11vw, 3.3rem);
+    font-size: var(--font-size-section-title, clamp(28px, 8vw, 36px));
+    line-height: var(--line-heading, 1.12);
+  }
+
+  .section-description {
+    max-width: var(--text-measure, 38ch);
+    margin-top: var(--space-5, 20px);
+    font-size: var(--font-size-secondary, 16px);
+    line-height: var(--line-body, 1.5);
   }
 
   .rolling-button {
     width: 100%;
     height: auto;
-    min-height: 52px;
-    padding: 13px 16px;
-    line-height: 1.25;
+    min-height: var(--button-height, 50px);
+    padding: 12px var(--button-padding-inline, 20px);
+    font-size: var(--font-size-small, 15px);
+    line-height: 1.4;
     text-align: center;
   }
 

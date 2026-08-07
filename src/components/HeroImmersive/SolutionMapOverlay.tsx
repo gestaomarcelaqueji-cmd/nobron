@@ -377,7 +377,7 @@ export const SolutionMapOverlay = forwardRef<
                 handlePanelNavigate(activeSolution, event)
               }
             >
-              Conhecer solução <span aria-hidden="true">↗</span>
+              Conhecer solução <span aria-hidden="true"></span>
             </Link>
           </motion.aside>
         )}

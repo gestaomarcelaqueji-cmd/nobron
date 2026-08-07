@@ -411,7 +411,7 @@
   }
 }
 
-@media (max-width: 760px), (pointer: coarse) {
+@media (max-width: 767px), (pointer: coarse) {
   .positioner {
     left: var(--portal-mobile-x);
     top: var(--portal-mobile-y);
@@ -556,17 +556,21 @@
   .panelCopy p {
     margin: 0.35rem 0 0;
     color: var(--hero-muted, rgba(220, 249, 255, 0.72));
-    font-size: 0.72rem;
-    line-height: 1.45;
+    font-size: var(--font-size-small, 15px);
+    line-height: var(--line-body, 1.5);
   }
 
   .panelLink {
+    display: inline-flex;
+    min-height: var(--touch-target, 44px);
     grid-column: 2;
     width: fit-content;
     margin-top: 0.4rem;
+    align-items: center;
     color: var(--hero-network-3, #5cecff);
-    font-size: 0.72rem;
+    font-size: var(--font-size-small, 15px);
     font-weight: 720;
+    line-height: var(--line-body, 1.5);
     text-decoration: none;
     text-shadow: 0 0 0.8rem rgba(0, 207, 255, 0.32);
   }

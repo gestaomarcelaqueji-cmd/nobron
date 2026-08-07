@@ -15,6 +15,7 @@ import {
 } from "motion/react";
 
 import { Container } from "@/components/ui/Container";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 type StoryStep = {
   title: ReactNode;
@@ -146,6 +147,7 @@ export function ProfessionShowcase() {
   const [direction, setDirection] = useState(1);
 
   const reducedMotion = useReducedMotion();
+  const isMobile = useMediaQuery("(max-width: 767px)");
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -172,7 +174,7 @@ export function ProfessionShowcase() {
   const isSolution = currentStep.tone === "solution";
 
   const copyTransition = {
-    duration: reducedMotion ? 0 : 0.62,
+    duration: reducedMotion ? 0 : isMobile ? 0.46 : 0.62,
     ease: [0.22, 1, 0.36, 1] as const,
   };
 
@@ -209,14 +211,14 @@ export function ProfessionShowcase() {
                 opacity: 0,
               }}
               transition={{
-                duration: reducedMotion ? 0 : 0.3,
+                duration: reducedMotion ? 0 : isMobile ? 0.22 : 0.3,
               }}
               aria-hidden="true"
             >
               {repeatedQuestions.map((question, index) => {
                 const questionDelay =
-                  QUESTIONS_START_DELAY +
-                  index * QUESTION_INTERVAL;
+                  (isMobile ? 0.32 : QUESTIONS_START_DELAY) +
+                  index * (isMobile ? 0.18 : QUESTION_INTERVAL);
 
                 return (
                   <motion.div
@@ -257,7 +259,9 @@ export function ProfessionShowcase() {
                     transition={{
                       duration: reducedMotion
                         ? 0
-                        : 0.42,
+                        : isMobile
+                          ? 0.3
+                          : 0.42,
                       delay: reducedMotion
                         ? 0
                         : questionDelay,
@@ -316,7 +320,9 @@ export function ProfessionShowcase() {
                       ...copyTransition,
                       delay: reducedMotion
                         ? 0
-                        : 0.14,
+                        : isMobile
+                          ? 0.1
+                          : 0.14,
                     }}
                   >
                     {currentStep.description}
@@ -343,7 +349,9 @@ export function ProfessionShowcase() {
                       ...copyTransition,
                       delay: reducedMotion
                         ? 0
-                        : 0.28,
+                        : isMobile
+                          ? 0.18
+                          : 0.28,
                     }}
                   >
                     Quero ganhar tempo com minha página

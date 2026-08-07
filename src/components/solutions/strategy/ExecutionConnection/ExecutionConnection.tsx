@@ -21,7 +21,7 @@ export function ExecutionConnection() {
             <Link className={styles.card} href={area.href} key={area.title}>
               <div className={styles.cardTopline}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
-                <span aria-hidden="true">↗</span>
+                <span aria-hidden="true"></span>
               </div>
               <div>
                 <h3>{area.title}</h3>

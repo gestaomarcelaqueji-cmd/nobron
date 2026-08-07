@@ -223,13 +223,15 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .item {
     grid-template-columns: 2.5rem 1fr 2.2rem;
   }
 
   .itemCopy small {
-    display: none;
+    display: block;
+    font-size: var(--font-size-small, 15px);
+    line-height: var(--line-body, 1.5);
   }
 
   .panel {
