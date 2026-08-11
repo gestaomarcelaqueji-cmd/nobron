@@ -472,7 +472,7 @@
   }
 
   .portalCopy strong {
-    display: none;
+    display: block;
     font-size: 0.66rem;
   }
 
