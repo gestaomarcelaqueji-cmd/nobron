@@ -10,6 +10,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.6.1",
+    "@supabase/supabase-js": "^2.100.0",
     "d3-geo": "^3.1.1",
     "lucide-react": "^0.468.0",
     "motion": "^12.42.1",
@@ -18,7 +20,8 @@
     "react-dom": "^19.2.0",
     "three": "^0.185.1",
     "topojson-client": "^3.1.0",
-    "world-atlas": "^2.0.2"
+    "world-atlas": "^2.0.2",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
@@ -37,6 +40,7 @@
     "typescript-eslint": "8.65.0"
   },
   "overrides": {
+    "nanoid": "3.3.17",
     "postcss": "$postcss",
     "sharp": "0.35.3"
   },

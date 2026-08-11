@@ -1,34 +1,64 @@
 "use client";
 
 import { FileImage, Upload } from "lucide-react";
-import { ChangeEvent, useRef } from "react";
+import { type ChangeEvent, useRef } from "react";
 
 import styles from "../PrototypeRequest.module.css";
 
-export function FieldError({ id, text }: { id?: string; text?: string }) {
-  return text ? (
-    <span className={styles.error} id={id} role="alert">
+type FieldErrorProps = {
+  id?: string;
+  text?: string;
+};
+
+export function FieldError({
+  id,
+  text,
+}: FieldErrorProps) {
+  if (!text) return null;
+
+  return (
+    <span
+      className={styles.error}
+      id={id}
+      role="alert"
+    >
       {text}
     </span>
-  ) : null;
+  );
 }
 
-export function UploadBox({
-  title,
-  description,
-  files,
-  multiple,
-  accept,
-  onChange,
-}: {
+type UploadBoxProps = {
   title: string;
   description: string;
   files: File[];
   multiple?: boolean;
   accept: string;
   onChange: (files: File[]) => void;
-}) {
+};
+
+export function UploadBox({
+  title,
+  description,
+  files,
+  multiple = false,
+  accept,
+  onChange,
+}: UploadBoxProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+
+  function handleChange(
+    event: ChangeEvent<HTMLInputElement>,
+  ) {
+    const selectedFiles = Array.from(
+      event.target.files ?? [],
+    );
+
+    onChange(selectedFiles);
+
+    // Permite selecionar novamente o mesmo arquivo
+    // depois de removê-lo.
+    event.target.value = "";
+  }
 
   return (
     <div className={styles.uploadBox}>
@@ -38,12 +68,13 @@ export function UploadBox({
         hidden
         multiple={multiple}
         accept={accept}
-        onChange={(event: ChangeEvent<HTMLInputElement>) =>
-          onChange(Array.from(event.target.files || []))
-        }
+        onChange={handleChange}
       />
 
-      <button type="button" onClick={() => inputRef.current?.click()}>
+      <button
+        type="button"
+        onClick={() => inputRef.current?.click()}
+      >
         <span className={styles.uploadIcon}>
           <Upload aria-hidden="true" />
         </span>
@@ -56,13 +87,20 @@ export function UploadBox({
         <FileImage aria-hidden="true" />
       </button>
 
-      {files.length > 0 && (
-        <div className={styles.fileList}>
+      {files.length > 0 ? (
+        <div
+          className={styles.fileList}
+          aria-live="polite"
+        >
           {files.map((file) => (
-            <span key={`${file.name}-${file.lastModified}`}>{file.name}</span>
+            <span
+              key={`${file.name}-${file.lastModified}`}
+            >
+              {file.name}
+            </span>
           ))}
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

@@ -21,12 +21,14 @@ type PrototypeFormProps = {
   serviceDraft: string;
   logoFiles: File[];
   photoFiles: File[];
+  website: string;
   reducedMotion: boolean;
   onUpdate: UpdateRequestData;
   onServiceDraftChange: (value: string) => void;
   onAddService: () => void;
   onLogoFilesChange: (files: File[]) => void;
   onPhotoFilesChange: (files: File[]) => void;
+  onWebsiteChange: (value: string) => void;
   onNext: () => void;
   onBack: () => void;
 };
@@ -38,12 +40,14 @@ export function PrototypeForm({
   serviceDraft,
   logoFiles,
   photoFiles,
+  website,
   reducedMotion,
   onUpdate,
   onServiceDraftChange,
   onAddService,
   onLogoFilesChange,
   onPhotoFilesChange,
+  onWebsiteChange,
   onNext,
   onBack,
 }: PrototypeFormProps) {
@@ -94,6 +98,22 @@ export function PrototypeForm({
           onNext();
         }}
       >
+        <input
+          aria-hidden="true"
+          autoComplete="off"
+          name="website"
+          tabIndex={-1}
+          type="text"
+          value={website}
+          onChange={(event) => onWebsiteChange(event.target.value)}
+          style={{
+            position: "absolute",
+            left: "-10000px",
+            width: 1,
+            height: 1,
+            opacity: 0,
+          }}
+        />
         {step === 1 && (
           <ContactStep
             data={data}

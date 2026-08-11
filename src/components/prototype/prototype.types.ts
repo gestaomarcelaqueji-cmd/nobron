@@ -4,6 +4,10 @@ export type View = "form" | "review" | "submitting" | "success";
 
 export type FormStep = 1 | 2 | 3;
 
+export type RequestConsents = {
+  publicResearch: boolean;
+};
+
 export type RequestData = {
   responsibleName: string;
   whatsapp: string;
@@ -16,12 +20,7 @@ export type RequestData = {
   driveLink: string;
   useSocialPhotos: boolean;
   additionalInfo: string;
-  consents: {
-    materials: boolean;
-    publicResearch: boolean;
-    videoOnly: boolean;
-    whatsapp: boolean;
-  };
+  consents: RequestConsents;
 };
 
 export type RequestErrors = Record<string, string>;
@@ -45,10 +44,7 @@ export function createInitialData(): RequestData {
     useSocialPhotos: false,
     additionalInfo: "",
     consents: {
-      materials: false,
       publicResearch: false,
-      videoOnly: false,
-      whatsapp: false,
     },
   };
 }

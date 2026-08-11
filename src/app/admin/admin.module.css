@@ -1,0 +1,620 @@
+.authPage,
+.adminPage {
+  min-height: 100svh;
+  background: #fff;
+  color: #111;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.authPage {
+  display: grid;
+  place-items: center;
+  padding:
+    calc(32px + env(safe-area-inset-top))
+    max(20px, env(safe-area-inset-right))
+    calc(32px + env(safe-area-inset-bottom))
+    max(20px, env(safe-area-inset-left));
+}
+
+.authCard {
+  width: min(100%, 430px);
+  padding: 32px;
+  border: 1px solid #e4e4e4;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 24px 70px rgb(0 0 0 / 8%);
+}
+
+.brand {
+  font-family: var(--font-display), sans-serif;
+  font-size: 20px;
+  letter-spacing: -0.04em;
+}
+
+.brand strong {
+  font-weight: 800;
+}
+
+.kicker {
+  display: block;
+  margin-top: 24px;
+  color: #6f6f6f;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.authCard h1,
+.adminIntro h1 {
+  margin: 12px 0 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(36px, 5vw, 54px);
+  letter-spacing: -0.055em;
+  line-height: 1.05;
+}
+
+.authCard > p,
+.adminIntro p {
+  max-width: 38ch;
+  margin: 16px 0 0;
+  color: #606060;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.authForm {
+  display: grid;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.authForm label {
+  display: grid;
+  gap: 8px;
+}
+
+.authForm label span {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.authForm input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid #d4d4d4;
+  border-radius: 12px;
+  background: #fff;
+  color: #111;
+  outline: none;
+}
+
+.authForm input:focus {
+  border-color: #145cff;
+  box-shadow: 0 0 0 3px rgb(20 92 255 / 12%);
+}
+
+.authForm button,
+.statusButtons button,
+.signOutButton,
+.cardOpen,
+.drawerHeader button {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.authForm > button {
+  min-height: 50px;
+  border-radius: 12px;
+  background: #111;
+  color: #fff;
+  font-weight: 700;
+}
+
+.authForm button:disabled,
+.signOutButton:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.errorBox,
+.boardError {
+  padding: 12px 16px;
+  border: 1px solid #edc4c4;
+  border-radius: 12px;
+  background: #fff6f6;
+  color: #861e1e;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.qrWrap {
+  display: grid;
+  width: 220px;
+  height: 220px;
+  place-items: center;
+  margin: 24px auto 0;
+  border: 1px solid #e4e4e4;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.secretDetails {
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.secretDetails summary {
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.secretDetails code {
+  display: block;
+  margin-top: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f4f4f4;
+  overflow-wrap: anywhere;
+}
+
+.adminPage {
+  padding:
+    env(safe-area-inset-top)
+    max(28px, env(safe-area-inset-right))
+    calc(40px + env(safe-area-inset-bottom))
+    max(28px, env(safe-area-inset-left));
+}
+
+.adminHeader {
+  display: flex;
+  min-height: 80px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.adminBrand,
+.adminAccount {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.adminBrand > span {
+  padding-left: 12px;
+  border-left: 1px solid #d5d5d5;
+  color: #6f6f6f;
+  font-size: 12px;
+}
+
+.adminIdentity {
+  display: grid;
+  justify-items: end;
+  gap: 2px;
+}
+
+.adminIdentity small {
+  color: #777;
+  font-size: 12px;
+}
+
+.adminIdentity strong {
+  font-size: 13px;
+}
+
+.signOutButton {
+  min-width: 64px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid #dedede;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.adminIntro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 48px 0 32px;
+}
+
+.adminIntro h1 {
+  font-size: clamp(40px, 4vw, 58px);
+}
+
+.totalBox {
+  display: grid;
+  min-width: 112px;
+  padding: 16px;
+  border: 1px solid #e4e4e4;
+  border-radius: 16px;
+}
+
+.totalBox strong {
+  font-size: 30px;
+  letter-spacing: -0.04em;
+}
+
+.totalBox span {
+  color: #707070;
+  font-size: 12px;
+}
+
+.boardError {
+  margin-bottom: 12px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(270px, 1fr));
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 16px;
+  overscroll-behavior-inline: contain;
+}
+
+.column {
+  min-width: 270px;
+  min-height: 62svh;
+  padding: 12px;
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  background: #f6f6f6;
+}
+
+.columnHeader {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 4px 16px;
+}
+
+.columnHeader > div {
+  display: grid;
+  gap: 4px;
+}
+
+.columnHeader strong {
+  font-size: 15px;
+}
+
+.columnHeader span {
+  color: #737373;
+  font-size: 12px;
+}
+
+.columnHeader b {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 8px;
+  background: #e7e7e7;
+  font-size: 12px;
+}
+
+.cardList {
+  display: grid;
+  gap: 12px;
+}
+
+.leadCard {
+  border: 1px solid #e0e0e0;
+  border-radius: 14px;
+  background: #fff;
+  cursor: grab;
+  box-shadow: 0 3px 12px rgb(0 0 0 / 3.5%);
+  overflow: hidden;
+}
+
+.leadCard[data-saving="true"] {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.cardOpen {
+  display: grid;
+  width: 100%;
+  min-height: 44px;
+  padding: 16px;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+}
+
+.cardTopline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.cardTopline > span {
+  padding: 4px 7px;
+  border-radius: 7px;
+  background: #eeeeee;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cardTopline time {
+  color: #858585;
+  font-size: 12px;
+}
+
+.cardTitle {
+  margin-top: 16px;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+}
+
+.cardBusiness {
+  margin-top: 4px;
+  color: #656565;
+  font-size: 14px;
+}
+
+.cardContact {
+  display: grid;
+  gap: 4px;
+  margin-top: 12px;
+  color: #555;
+  font-size: 13px;
+}
+
+.cardAction {
+  margin-top: 16px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.emptyColumn {
+  padding: 24px 12px;
+  color: #777;
+  font-size: 13px;
+  text-align: center;
+}
+
+.drawerBackdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: flex;
+  justify-content: flex-end;
+  background: rgb(0 0 0 / 25%);
+  backdrop-filter: blur(3px);
+}
+
+.drawer {
+  width: min(100%, 560px);
+  height: 100%;
+  overflow-y: auto;
+  padding:
+    max(24px, env(safe-area-inset-top))
+    max(24px, env(safe-area-inset-right))
+    max(24px, env(safe-area-inset-bottom))
+    24px;
+  background: #fff;
+  box-shadow: -20px 0 70px rgb(0 0 0 / 13%);
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.drawerHeader span {
+  color: #696969;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.drawerHeader h2 {
+  margin: 8px 0 4px;
+  font-size: 30px;
+  letter-spacing: -0.04em;
+}
+
+.drawerHeader small {
+  color: #767676;
+  font-size: 12px;
+}
+
+.drawerHeader button {
+  display: grid;
+  min-width: 44px;
+  min-height: 44px;
+  place-items: center;
+  border: 1px solid #e1e1e1;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 24px;
+}
+
+.drawerSection {
+  padding: 24px 0;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.drawerSection h3 {
+  margin: 0 0 16px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.detailGrid,
+.answerList {
+  margin: 0;
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.detailGrid div,
+.answerList div {
+  display: grid;
+  gap: 4px;
+}
+
+.detailGrid dt,
+.answerList dt {
+  color: #707070;
+  font-size: 12px;
+}
+
+.detailGrid dd,
+.answerList dd {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.answerList {
+  display: grid;
+  gap: 16px;
+}
+
+.answerList div {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.answerList div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.statusButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.statusButtons button {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 12px;
+  background: #fff;
+  color: #111;
+  font-size: 14px;
+}
+
+.statusButtons button[data-active="true"] {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+}
+
+.statusButtons button:disabled {
+  cursor: default;
+}
+
+@media (max-width: 767px) {
+  .authPage {
+    place-items: start center;
+    padding-inline:
+      max(20px, env(safe-area-inset-left))
+      max(20px, env(safe-area-inset-right));
+  }
+
+  .authCard {
+    padding: 24px 20px;
+  }
+
+  .adminPage {
+    padding:
+      env(safe-area-inset-top)
+      max(20px, env(safe-area-inset-right))
+      calc(40px + env(safe-area-inset-bottom))
+      max(20px, env(safe-area-inset-left));
+  }
+
+  .adminHeader {
+    min-height: 72px;
+  }
+
+  .adminIdentity {
+    display: none;
+  }
+
+  .adminIntro {
+    align-items: start;
+    padding: 40px 0;
+  }
+
+  .adminIntro p {
+    font-size: 15px;
+  }
+
+  .totalBox {
+    min-width: 84px;
+    padding: 12px;
+  }
+
+  .board {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    overflow: visible;
+  }
+
+  .column {
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .drawer {
+    width: 100%;
+    padding:
+      max(20px, env(safe-area-inset-top))
+      max(20px, env(safe-area-inset-right))
+      max(20px, env(safe-area-inset-bottom))
+      max(20px, env(safe-area-inset-left));
+  }
+
+  .detailGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 359px) {
+  .authPage,
+  .adminPage {
+    padding-right: max(16px, env(safe-area-inset-right));
+    padding-left: max(16px, env(safe-area-inset-left));
+  }
+
+  .authCard {
+    padding-inline: 16px;
+  }
+
+  .adminBrand > span {
+    display: none;
+  }
+
+  .totalBox {
+    min-width: 72px;
+  }
+}

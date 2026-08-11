@@ -3,6 +3,9 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useRef, useState } from "react";
 
+import { submitFormResponse } from "@/lib/forms/submitFormResponse";
+import { createWhatsAppUrl } from "@/lib/whatsapp";
+
 import {
   createInitialData,
   type FormStep,
@@ -27,8 +30,30 @@ const errorFieldIds: Record<string, string> = {
   services: "prototype-services",
   socialLinks: "prototype-social-links",
   driveLink: "prototype-drive-link",
-  consents: "prototype-consents",
 };
+
+function getAttribution() {
+  const params = new URLSearchParams(window.location.search);
+
+  return {
+    utm_source: params.get("utm_source") || undefined,
+    utm_medium: params.get("utm_medium") || undefined,
+    utm_campaign: params.get("utm_campaign") || undefined,
+    utm_content: params.get("utm_content") || undefined,
+    utm_term: params.get("utm_term") || undefined,
+  };
+}
+
+function buildWhatsappMessage(data: RequestData) {
+  return [
+    "Olá! Acabei de enviar um pedido de protótipo gratuito pelo site da noBRon.",
+    "",
+    `Meu nome: ${data.responsibleName}`,
+    `Negócio: ${data.businessName}`,
+    "",
+    "Meu formulário já foi enviado e registrado. Quero continuar a conversa por aqui.",
+  ].join("\n");
+}
 
 export function PrototypeFlow() {
   const reducedMotion = Boolean(useReducedMotion());
@@ -41,18 +66,24 @@ export function PrototypeFlow() {
   const [serviceDraft, setServiceDraft] = useState("");
   const [logoFiles, setLogoFiles] = useState<File[]>([]);
   const [photoFiles, setPhotoFiles] = useState<File[]>([]);
+  const [website, setWebsite] = useState("");
+  const [submitError, setSubmitError] = useState("");
 
   function update<K extends keyof RequestData>(
     field: K,
     value: RequestData[K],
   ) {
-    setData((current) => ({ ...current, [field]: value }));
+    setData((current) => ({
+      ...current,
+      [field]: value,
+    }));
 
     setErrors((current) => {
       if (!current[field]) return current;
 
       const next = { ...current };
       delete next[field];
+
       return next;
     });
   }
@@ -70,6 +101,7 @@ export function PrototypeFlow() {
 
   function addService() {
     const value = serviceDraft.trim().replace(/,$/, "");
+
     if (!value) return;
 
     const alreadyExists = data.services.some(
@@ -86,13 +118,18 @@ export function PrototypeFlow() {
   function focusFirstError(next: RequestErrors) {
     const firstError = Object.keys(next)[0];
     const targetId = errorFieldIds[firstError];
+
     if (!targetId) return;
 
     window.setTimeout(() => {
       const target = document.getElementById(targetId);
+
       if (!target) return;
 
-      target.focus({ preventScroll: true });
+      target.focus({
+        preventScroll: true,
+      });
+
       target.scrollIntoView({
         behavior: reducedMotion ? "auto" : "smooth",
         block: "center",
@@ -100,16 +137,23 @@ export function PrototypeFlow() {
     }, 0);
   }
 
-  function validate(currentStep: FormStep, currentData = data) {
+  function validate(
+    currentStep: FormStep,
+    currentData = data,
+  ) {
     const next: RequestErrors = {};
 
     if (currentStep === 1) {
       if (!currentData.responsibleName.trim()) {
-        next.responsibleName = "Digite seu nome para continuar.";
+        next.responsibleName =
+          "Digite seu nome para continuar.";
       }
 
-      if (currentData.whatsapp.replace(/\D/g, "").length < 10) {
-        next.whatsapp = "Digite um WhatsApp válido com DDD.";
+      if (
+        currentData.whatsapp.replace(/\D/g, "").length < 10
+      ) {
+        next.whatsapp =
+          "Digite um WhatsApp válido com DDD.";
       }
 
       if (!currentData.businessMoment) {
@@ -120,27 +164,34 @@ export function PrototypeFlow() {
 
     if (currentStep === 2) {
       if (!currentData.businessName.trim()) {
-        next.businessName = "Informe o nome da empresa ou profissional.";
+        next.businessName =
+          "Informe o nome da empresa ou profissional.";
       }
 
       if (!currentData.segment.trim()) {
-        next.segment = "Informe o ramo de atuação.";
+        next.segment =
+          "Informe o ramo de atuação.";
       }
 
       if (!currentData.city.trim()) {
-        next.city = "Informe a cidade ou região.";
+        next.city =
+          "Informe a cidade ou região.";
       }
 
       if (!currentData.services.length) {
-        next.services = "Informe pelo menos um serviço.";
+        next.services =
+          "Informe pelo menos um serviço.";
       }
 
       if (
         currentData.socialLinks.some(
-          (link) => link.trim() && !isValidUrl(link),
+          (link) =>
+            link.trim() &&
+            !isValidUrl(link),
         )
       ) {
-        next.socialLinks = "Revise os links informados.";
+        next.socialLinks =
+          "Revise os links informados.";
       }
     }
 
@@ -149,16 +200,15 @@ export function PrototypeFlow() {
         currentData.driveLink.trim() &&
         !isValidUrl(currentData.driveLink)
       ) {
-        next.driveLink = "Informe um link válido.";
-      }
-
-      if (!Object.values(currentData.consents).every(Boolean)) {
-        next.consents = "Confirme as quatro autorizações para continuar.";
+        next.driveLink =
+          "Informe um link válido.";
       }
     }
 
     setErrors(next);
-    const isValid = Object.keys(next).length === 0;
+
+    const isValid =
+      Object.keys(next).length === 0;
 
     if (!isValid) {
       focusFirstError(next);
@@ -171,18 +221,27 @@ export function PrototypeFlow() {
     let currentData = data;
 
     if (step === 2) {
-      const pendingService = serviceDraft.trim().replace(/,$/, "");
+      const pendingService = serviceDraft
+        .trim()
+        .replace(/,$/, "");
 
       if (pendingService) {
-        const alreadyExists = data.services.some(
-          (item) => item.toLowerCase() === pendingService.toLowerCase(),
-        );
+        const alreadyExists =
+          data.services.some(
+            (item) =>
+              item.toLowerCase() ===
+              pendingService.toLowerCase(),
+          );
 
         if (!alreadyExists) {
           currentData = {
             ...data,
-            services: [...data.services, pendingService],
+            services: [
+              ...data.services,
+              pendingService,
+            ],
           };
+
           setData(currentData);
         }
 
@@ -190,10 +249,15 @@ export function PrototypeFlow() {
       }
     }
 
-    if (!validate(step, currentData)) return;
+    if (!validate(step, currentData)) {
+      return;
+    }
 
     if (step < 3) {
-      setStep(step === 1 ? 2 : 3);
+      setStep(
+        step === 1 ? 2 : 3,
+      );
+
       scrollAfterTransition();
       return;
     }
@@ -205,21 +269,95 @@ export function PrototypeFlow() {
   function goBack() {
     if (step === 1) return;
 
-    setStep(step === 3 ? 2 : 1);
+    setStep(
+      step === 3 ? 2 : 1,
+    );
+
     setErrors({});
     scrollAfterTransition();
   }
 
   async function submitRequest() {
     setView("submitting");
+    setSubmitError("");
 
-    /*
-      PONTO DE INTEGRAÇÃO:
-      Envie `data`, `logoFiles` e `photoFiles` para sua rota de API,
-      Supabase, n8n, Make ou outro serviço.
-    */
+    try {
+      await submitFormResponse({
+        sourceKey: "prototype_free",
+        sourceLabel: "Protótipo gratuito",
+        sourcePath: window.location.pathname,
 
-    await new Promise((resolve) => window.setTimeout(resolve, 1200));
+        // v2 = consentimentos separados e opcionais
+        formVersion: "prototype-v2",
+
+        contact: {
+          name: data.responsibleName,
+          whatsapp: data.whatsapp,
+          businessName: data.businessName,
+        },
+
+        answers: {
+          Responsável: data.responsibleName,
+          WhatsApp: data.whatsapp,
+
+          "Momento do negócio":
+            data.businessMoment === "active"
+              ? "Negócio em funcionamento"
+              : "Estruturando o negócio",
+
+          "Empresa ou profissional":
+            data.businessName,
+
+          "Ramo de atuação":
+            data.segment,
+
+          "Cidade ou região":
+            data.city,
+
+          Serviços:
+            data.services,
+
+          "Redes sociais ou site":
+            data.socialLinks.filter(Boolean),
+
+          "Link do Drive":
+            data.driveLink || null,
+
+          "Autorizou uso de fotos públicas das redes":
+            data.useSocialPhotos,
+
+          "Autorizou pesquisa pública do negócio":
+            data.consents.publicResearch,
+
+          "Informações adicionais":
+            data.additionalInfo || null,
+
+          "Logotipo selecionado":
+            logoFiles.map(
+              (file) => file.name,
+            ),
+
+          "Fotos selecionadas":
+            photoFiles.map(
+              (file) => file.name,
+            ),
+        },
+
+        attribution: getAttribution(),
+
+        website,
+      });
+    } catch {
+      setSubmitError(
+        "Não foi possível registrar sua solicitação agora. Tente novamente em alguns instantes.",
+      );
+
+      setView("review");
+      scrollAfterTransition();
+
+      return;
+    }
+
     setView("success");
     scrollAfterTransition();
   }
@@ -238,23 +376,58 @@ export function PrototypeFlow() {
     setLogoFiles([]);
     setPhotoFiles([]);
     setServiceDraft("");
+    setWebsite("");
+    setSubmitError("");
+
     scrollAfterTransition();
   }
 
+  const whatsappUrl = createWhatsAppUrl(
+    buildWhatsappMessage(data),
+  );
+
   return (
     <>
-      {view === "form" && step === 1 && <PrototypeHero />}
+      {view === "form" &&
+        step === 1 && (
+          <PrototypeHero />
+        )}
 
-      <section className={styles.formSection} ref={formRef}>
+      <section
+        className={styles.formSection}
+        ref={formRef}
+      >
         <motion.div
           className={styles.formIntro}
-          initial={reducedMotion ? false : { opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.7 }}
-          transition={{ duration: reducedMotion ? 0 : 0.5 }}
+          initial={
+            reducedMotion
+              ? false
+              : {
+                  opacity: 0,
+                  y: 18,
+                }
+          }
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.7,
+          }}
+          transition={{
+            duration:
+              reducedMotion
+                ? 0
+                : 0.5,
+          }}
         />
 
-        <div className={styles.formContainer}>
+        <div
+          className={
+            styles.formContainer
+          }
+        >
           <AnimatePresence mode="wait">
             {view === "form" && (
               <PrototypeForm
@@ -262,15 +435,35 @@ export function PrototypeFlow() {
                 step={step}
                 data={data}
                 errors={errors}
-                serviceDraft={serviceDraft}
-                logoFiles={logoFiles}
-                photoFiles={photoFiles}
-                reducedMotion={reducedMotion}
+                serviceDraft={
+                  serviceDraft
+                }
+                logoFiles={
+                  logoFiles
+                }
+                photoFiles={
+                  photoFiles
+                }
+                website={website}
+                reducedMotion={
+                  reducedMotion
+                }
                 onUpdate={update}
-                onServiceDraftChange={setServiceDraft}
-                onAddService={addService}
-                onLogoFilesChange={setLogoFiles}
-                onPhotoFilesChange={setPhotoFiles}
+                onServiceDraftChange={
+                  setServiceDraft
+                }
+                onAddService={
+                  addService
+                }
+                onLogoFilesChange={
+                  setLogoFiles
+                }
+                onPhotoFilesChange={
+                  setPhotoFiles
+                }
+                onWebsiteChange={
+                  setWebsite
+                }
                 onNext={goNext}
                 onBack={goBack}
               />
@@ -280,19 +473,35 @@ export function PrototypeFlow() {
               <PrototypeReview
                 key="review"
                 data={data}
-                logoFiles={logoFiles}
-                photoFiles={photoFiles}
-                reducedMotion={reducedMotion}
-                onEdit={editRequest}
-                onSubmit={submitRequest}
+                logoFiles={
+                  logoFiles
+                }
+                photoFiles={
+                  photoFiles
+                }
+                reducedMotion={
+                  reducedMotion
+                }
+                submitError={
+                  submitError
+                }
+                onEdit={
+                  editRequest
+                }
+                onSubmit={
+                  submitRequest
+                }
               />
             )}
 
-            {view === "submitting" && (
+            {view ===
+              "submitting" && (
               <PrototypeStatus
                 key="submitting"
                 view="submitting"
-                reducedMotion={reducedMotion}
+                reducedMotion={
+                  reducedMotion
+                }
               />
             )}
 
@@ -300,8 +509,15 @@ export function PrototypeFlow() {
               <PrototypeStatus
                 key="success"
                 view="success"
-                reducedMotion={reducedMotion}
-                whatsapp={data.whatsapp}
+                reducedMotion={
+                  reducedMotion
+                }
+                whatsapp={
+                  data.whatsapp
+                }
+                whatsappUrl={
+                  whatsappUrl
+                }
                 onReset={reset}
               />
             )}

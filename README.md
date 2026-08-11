@@ -48,7 +48,7 @@ src/data/site.ts
 Troque o número fictício:
 
 ```ts
-whatsapp: "5542998207831"
+whatsapp: "5542988168246"
 ```
 
 Use apenas números, com código do país e DDD.

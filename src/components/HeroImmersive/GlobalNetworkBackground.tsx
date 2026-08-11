@@ -1,6 +1,10 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import {
+  useEffect,
+  useState,
+  type CSSProperties,
+} from "react";
 import type {
   FeatureCollection,
   Geometry,
@@ -173,13 +177,15 @@ function createRoutePath(
 }
 
 const countryPaths = countries.features
-  .map((country) => {
-    const countryId = String(
-      country.id ?? "",
-    ).padStart(3, "0");
+  .map((country, index) => {
+    const countryId =
+      country.id !== undefined && country.id !== null
+        ? String(country.id).padStart(3, "0")
+        : "unknown";
 
     return {
       id: countryId,
+      key: `country-${countryId}-${index}`,
       path: pathGenerator(country) ?? "",
       isBrazil: countryId === "076",
     };
@@ -398,6 +404,21 @@ function ServiceIconGraphic({
 ========================================================= */
 
 export function GlobalNetworkBackground() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div
+        className={styles.background}
+        aria-hidden="true"
+      />
+    );
+  }
+
   return (
     <div
       className={styles.background}
@@ -518,7 +539,7 @@ export function GlobalNetworkBackground() {
             )
             .map((country) => (
               <path
-                key={country.id}
+                key={country.key}
                 className={styles.country}
                 d={country.path}
                 vectorEffect="non-scaling-stroke"
@@ -531,7 +552,7 @@ export function GlobalNetworkBackground() {
           .filter((country) => country.isBrazil)
           .map((country) => (
             <path
-              key={country.id}
+              key={country.key}
               className={styles.brazil}
               d={country.path}
               vectorEffect="non-scaling-stroke"

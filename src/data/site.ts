@@ -3,7 +3,7 @@ export const siteConfig = {
   slogan: "Feito no Brasil. Online no mundo.",
   price: 200,
   city: "Telêmaco Borba",
-  whatsapp: "5542998207831",
+  whatsapp: "5542988168246",
   navigation: [
     { label: "Como funciona", href: "#como-funciona" },
     { label: "Exemplos", href: "#exemplos" },

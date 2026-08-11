@@ -62,6 +62,14 @@ const institutionalLinks: FooterLink[] = [
     label: "Contato",
     href: "/contato",
   },
+  {
+    label: "Política de Privacidade",
+    href: "/politica-de-privacidade",
+  },
+  {
+    label: "Política de Cookies",
+    href: "/politica-de-cookies",
+  },
 ];
 
 export function GlobalFooter() {

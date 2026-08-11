@@ -1,7 +1,6 @@
 import {
   ArrowRight,
   CheckCircle2,
-  LoaderCircle,
   MessageCircle,
   RotateCcw,
 } from "lucide-react";
@@ -20,6 +19,7 @@ type PrototypeStatusProps =
       view: "success";
       reducedMotion: boolean;
       whatsapp: string;
+      whatsappUrl?: string;
       onReset: () => void;
     };
 
@@ -40,13 +40,13 @@ export function PrototypeStatus(props: PrototypeStatusProps) {
           opacity: 1,
           y: 0,
         }}
+        aria-live="polite"
       >
-        <LoaderCircle className={styles.loader} aria-hidden="true" />
-
-        <h2>Estamos enviando suas informações.</h2>
+        <h2>Estamos registrando suas informações.</h2>
 
         <p>
-          Só um instante enquanto registramos o seu pedido de protótipo.
+          Só um instante enquanto enviamos seu pedido com segurança para a
+          noBRon.
         </p>
       </motion.div>
     );
@@ -71,6 +71,7 @@ export function PrototypeStatus(props: PrototypeStatusProps) {
         duration: props.reducedMotion ? 0 : 0.45,
         ease: [0.22, 1, 0.36, 1],
       }}
+      aria-live="polite"
     >
       <motion.div
         className={styles.successIcon}
@@ -95,34 +96,47 @@ export function PrototypeStatus(props: PrototypeStatusProps) {
       </motion.div>
 
       <span className={styles.statusEyebrow}>
-        Solicitação enviada
+        Solicitação recebida
       </span>
 
       <h2>Recebemos seu pedido de protótipo.</h2>
 
       <p>
-        Agora vamos analisar as informações enviadas, pesquisar o seu negócio
-        e definir uma proposta visual para a sua Landing Page.
+        As informações preenchidas no formulário já foram enviadas para a
+        noBRon e seu pedido está registrado.
       </p>
 
       <div className={styles.whatsappConfirmation}>
         <MessageCircle aria-hidden="true" />
 
         <span>
-          O retorno e o envio do vídeo serão feitos por este WhatsApp:
+          Você <strong>não precisa enviar uma mensagem no WhatsApp</strong>{" "}
+          para concluir a solicitação. O retorno e o envio do vídeo serão feitos
+          pelo número informado:
           <strong>{props.whatsapp}</strong>
         </span>
       </div>
 
       <p className={styles.statusNote}>
-        Caso alguma informação precise ser confirmada, entraremos em contato
-        antes de iniciar o protótipo.
+        Se quiser, você também pode iniciar a conversa pelo WhatsApp agora.
+        Essa etapa é opcional.
       </p>
 
       <div className={styles.successActions}>
-        <Link className={sharedStyles.primaryButton} href="/">
+        {props.whatsappUrl ? (
+          <a
+            className={sharedStyles.primaryButton}
+            href={props.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Continuar no WhatsApp
+            <ArrowRight aria-hidden="true" />
+          </a>
+        ) : null}
+
+        <Link className={sharedStyles.textButton} href="/">
           Voltar para o site
-          <ArrowRight aria-hidden="true" />
         </Link>
 
         <button

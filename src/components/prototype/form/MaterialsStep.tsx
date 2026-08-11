@@ -3,7 +3,6 @@
 import {
   Check,
   FolderOpen,
-  ImageIcon,
   Instagram,
   ShieldCheck,
 } from "lucide-react";
@@ -40,10 +39,12 @@ export function MaterialsStep({
     <div className={styles.stepContent}>
       <div className={styles.stepHeading}>
         <span className={styles.stepIcon}>
-          <ImageIcon aria-hidden="true" />
+          <FolderOpen aria-hidden="true" />
         </span>
+
         <div>
           <h3>Envie o que já tiver em mãos.</h3>
+
           <p>
             Logotipo, fotos e links ajudam, mas esta etapa é opcional.
           </p>
@@ -56,7 +57,9 @@ export function MaterialsStep({
           description="1 arquivo · PNG, JPG, WEBP ou SVG"
           files={logoFiles}
           accept=".png,.jpg,.jpeg,.webp,.svg"
-          onChange={(files) => onLogoFilesChange(files.slice(0, 1))}
+          onChange={(files) =>
+            onLogoFilesChange(files.slice(0, 1))
+          }
         />
 
         <UploadBox
@@ -65,7 +68,9 @@ export function MaterialsStep({
           files={photoFiles}
           multiple
           accept="image/png,image/jpeg,image/webp"
-          onChange={(files) => onPhotoFilesChange(files.slice(0, 8))}
+          onChange={(files) =>
+            onPhotoFilesChange(files.slice(0, 8))
+          }
         />
       </div>
 
@@ -74,44 +79,65 @@ export function MaterialsStep({
           type="checkbox"
           checked={data.useSocialPhotos}
           onChange={(event) =>
-            onUpdate("useSocialPhotos", event.target.checked)
+            onUpdate(
+              "useSocialPhotos",
+              event.target.checked,
+            )
           }
         />
+
         <span>
           <Check aria-hidden="true" />
         </span>
+
         <Instagram aria-hidden="true" />
+
         <div>
           <strong>
-            Podem utilizar as fotos das redes sociais informadas
+            Autorizar o uso de fotos públicas das redes sociais
           </strong>
+
           <small>
-            Usaremos somente imagens públicas da própria empresa.
+            Opcional. Se marcado, poderemos utilizar imagens públicas
+            da própria empresa nas redes sociais que você informou para
+            preparar este protótipo.
           </small>
         </div>
       </label>
 
       <label className={styles.field}>
         <span>Tem uma pasta no Google Drive?</span>
+
         <div className={styles.inputWithIcon}>
           <FolderOpen aria-hidden="true" />
+
           <input
             id="prototype-drive-link"
+            type="url"
             inputMode="url"
+            autoComplete="url"
             placeholder="Cole aqui o link da pasta"
             value={data.driveLink}
             aria-invalid={Boolean(errors.driveLink)}
             aria-describedby={
-              errors.driveLink ? "prototype-drive-link-error" : undefined
+              errors.driveLink
+                ? "prototype-drive-link-error"
+                : "prototype-drive-link-help"
             }
             onChange={(event) =>
-              onUpdate("driveLink", event.target.value)
+              onUpdate(
+                "driveLink",
+                event.target.value,
+              )
             }
           />
         </div>
-        <small>
-          Configure o acesso como “qualquer pessoa com o link”.
+
+        <small id="prototype-drive-link-help">
+          Compartilhe somente os materiais necessários para este pedido e
+          utilize a menor permissão que ainda permita nosso acesso.
         </small>
+
         <FieldError
           id="prototype-drive-link-error"
           text={errors.driveLink}
@@ -119,49 +145,53 @@ export function MaterialsStep({
       </label>
 
       <label className={styles.field}>
-        <span>Há algo importante que devemos considerar?</span>
+        <span>
+          Há algo importante que devemos considerar?
+        </span>
+
         <textarea
           rows={4}
           maxLength={500}
           placeholder="Opcional. Ex.: ainda não inaugurei, atendo somente empresas ou não quero divulgar preços."
           value={data.additionalInfo}
           onChange={(event) =>
-            onUpdate("additionalInfo", event.target.value)
+            onUpdate(
+              "additionalInfo",
+              event.target.value,
+            )
           }
         />
-        <small>{data.additionalInfo.length}/500 caracteres</small>
+
+        <small>
+          {data.additionalInfo.length}/500 caracteres
+        </small>
       </label>
 
       <div
         className={styles.consentBlock}
         id="prototype-consents"
-        tabIndex={-1}
-        data-invalid={Boolean(errors.consents)}
-        aria-invalid={Boolean(errors.consents)}
-        aria-describedby={
-          errors.consents ? "prototype-consents-error" : undefined
-        }
       >
         <div className={styles.consentTitle}>
           <ShieldCheck aria-hidden="true" />
+
           <div>
-            <h4>Confirme as autorizações</h4>
+            <h4>Autorizações opcionais</h4>
+
             <p>
-              Elas valem apenas para preparar e enviar esta demonstração.
+              Você pode enviar seu pedido normalmente sem marcar estas
+              opções.
             </p>
           </div>
         </div>
 
         {CONSENT_OPTIONS.map(({ key, text }) => (
-          <label className={styles.consentItem} key={key}>
+          <label
+            className={styles.consentItem}
+            key={key}
+          >
             <input
               type="checkbox"
               checked={data.consents[key]}
-              aria-invalid={Boolean(errors.consents)}
-              aria-describedby={
-                errors.consents ? "prototype-consents-error" : undefined
-              }
-              aria-required="true"
               onChange={(event) =>
                 onUpdate("consents", {
                   ...data.consents,
@@ -169,17 +199,14 @@ export function MaterialsStep({
                 })
               }
             />
+
             <span>
               <Check aria-hidden="true" />
             </span>
+
             <p>{text}</p>
           </label>
         ))}
-
-        <FieldError
-          id="prototype-consents-error"
-          text={errors.consents}
-        />
       </div>
     </div>
   );

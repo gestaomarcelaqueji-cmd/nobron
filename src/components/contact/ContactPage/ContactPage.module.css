@@ -339,6 +339,10 @@
   line-height: 1.6;
 }
 
+.formFooter .error {
+  color: #a01c1c;
+}
+
 .submit {
   display: inline-flex;
   min-width: min(100%, 290px);
@@ -359,6 +363,12 @@
   padding-right: 1.9rem;
   padding-left: 1.9rem;
   transform: translateY(-2px);
+}
+
+.submit:disabled {
+  cursor: wait;
+  opacity: 0.64;
+  transform: none;
 }
 
 .submit span:first-child {

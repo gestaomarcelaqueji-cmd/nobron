@@ -56,6 +56,10 @@ export function MobileBottomNav() {
   const pathname = usePathname();
   const [isMoreOpen, setIsMoreOpen] = useState(false);
 
+  if (pathname === "/admin" || pathname.startsWith("/admin/")) {
+    return null;
+  }
+
   const normalizedPathname =
     pathname !== "/" && pathname.endsWith("/")
       ? pathname.slice(0, -1)
@@ -65,7 +69,9 @@ export function MobileBottomNav() {
   const usesDarkBackground = normalizedPathname === "/sobre";
   const isMoreActive =
     normalizedPathname === "/sobre" ||
-    normalizedPathname === "/prototipo-gratuito";
+    normalizedPathname === "/prototipo-gratuito" ||
+    normalizedPathname === "/politica-de-privacidade" ||
+    normalizedPathname === "/politica-de-cookies";
 
   return (
     <>
@@ -130,6 +136,24 @@ export function MobileBottomNav() {
           >
             <span>Protótipo gratuito</span>
             <small>Peça uma proposta visual sem compromisso.</small>
+          </Link>
+
+          <Link
+            href="/politica-de-privacidade"
+            tabIndex={isMoreOpen ? 0 : -1}
+            onClick={() => setIsMoreOpen(false)}
+          >
+            <span>Política de Privacidade</span>
+            <small>Como a noBRon trata e protege seus dados.</small>
+          </Link>
+
+          <Link
+            href="/politica-de-cookies"
+            tabIndex={isMoreOpen ? 0 : -1}
+            onClick={() => setIsMoreOpen(false)}
+          >
+            <span>Política de Cookies</span>
+            <small>Cookies e armazenamentos utilizados pelo site.</small>
           </Link>
         </div>
       </aside>

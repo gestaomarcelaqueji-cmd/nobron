@@ -19,6 +19,7 @@ import {
   type ContactPathId,
 } from "@/data/contact/contactPage";
 import { FragmentedCategoryHero } from "@/components/solutions/shared/FragmentedCategoryHero/FragmentedCategoryHero";
+import { submitFormResponse } from "@/lib/forms/submitFormResponse";
 
 import styles from "./ContactPage.module.css";
 
@@ -57,6 +58,17 @@ function buildMessage(
   return lines.join("\n");
 }
 
+function getAttribution() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utm_source: params.get("utm_source") || undefined,
+    utm_medium: params.get("utm_medium") || undefined,
+    utm_campaign: params.get("utm_campaign") || undefined,
+    utm_content: params.get("utm_content") || undefined,
+    utm_term: params.get("utm_term") || undefined,
+  };
+}
+
 export function ContactPage() {
   const reduceMotion = Boolean(useReducedMotion());
   const {
@@ -72,6 +84,8 @@ export function ContactPage() {
     useState<ContactPathId | null>(null);
   const [values, setValues] = useState<FormValues>({});
   const [errors, setErrors] = useState<FormErrors>({});
+  const [submitError, setSubmitError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const activePath = useMemo(
     () => paths.find((path) => path.id === activePathId) ?? null,
@@ -87,6 +101,7 @@ export function ContactPage() {
     setActivePathId((current) => current === pathId ? null : pathId);
     setValues({});
     setErrors({});
+    setSubmitError("");
   }
 
   function updateField(fieldId: string, value: FormValue) {
@@ -110,10 +125,15 @@ export function ContactPage() {
     );
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!activePath) return;
+    if (!activePath || isSubmitting) return;
 
+    const website = String(
+      new FormData(event.currentTarget).get("website") || "",
+    );
+
+    setSubmitError("");
     const nextErrors: FormErrors = {};
 
     activeFields.forEach((field) => {
@@ -134,16 +154,61 @@ export function ContactPage() {
       return;
     }
 
-    const message = buildMessage(
-      activePath.title,
-      activeFields,
-      values,
-    );
-
     const preference =
       typeof values.contactPreference === "string"
         ? values.contactPreference
         : "WhatsApp";
+    const message = buildMessage(activePath.title, activeFields, values);
+    const whatsappUrl =
+      `https://wa.me/${direct.whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    // Abre a aba ainda dentro do gesto do usuário para evitar bloqueio de popup
+    // enquanto o registro seguro é enviado ao servidor.
+    const whatsappWindow =
+      preference === "E-mail" ? null : window.open("about:blank", "_blank");
+    if (whatsappWindow) whatsappWindow.opener = null;
+
+    const answers = Object.fromEntries(
+      activeFields
+        .filter((field) => hasValue(values[field.id]))
+        .map((field) => [field.label, values[field.id]]),
+    );
+
+    setIsSubmitting(true);
+
+    try {
+      const contactValue =
+        typeof values.contact === "string" ? values.contact.trim() : "";
+
+      await submitFormResponse({
+        sourceKey: "contact",
+        sourceLabel: `Contato — ${activePath.title}`,
+        sourcePath: window.location.pathname,
+        formVersion: "contact-v1",
+        contact: {
+          name: typeof values.name === "string" ? values.name.trim() : undefined,
+          whatsapp: preference === "WhatsApp" ? contactValue : undefined,
+          email: preference === "E-mail" ? contactValue : undefined,
+          businessName:
+            typeof values.company === "string"
+              ? values.company.trim()
+              : undefined,
+        },
+        answers: {
+          "Caminho escolhido": activePath.title,
+          ...answers,
+        },
+        attribution: getAttribution(),
+        website,
+      });
+    } catch {
+      whatsappWindow?.close();
+      setSubmitError(
+        "Não foi possível registrar suas respostas agora. Tente novamente em alguns instantes.",
+      );
+      setIsSubmitting(false);
+      return;
+    }
 
     if (preference === "E-mail") {
       const subject = encodeURIComponent(
@@ -152,14 +217,16 @@ export function ContactPage() {
       const body = encodeURIComponent(message);
       window.location.href =
         `mailto:${direct.email}?subject=${subject}&body=${body}`;
+      setIsSubmitting(false);
       return;
     }
 
-    window.open(
-      `https://wa.me/${direct.whatsappNumber}?text=${encodeURIComponent(message)}`,
-      "_blank",
-      "noopener,noreferrer",
-    );
+    if (whatsappWindow) {
+      whatsappWindow.location.href = whatsappUrl;
+    } else {
+      window.location.href = whatsappUrl;
+    }
+    setIsSubmitting(false);
   }
 
   return (
@@ -242,6 +309,20 @@ export function ContactPage() {
                           className={styles.form}
                           onSubmit={handleSubmit}
                         >
+                          <input
+                            aria-hidden="true"
+                            autoComplete="off"
+                            name="website"
+                            tabIndex={-1}
+                            type="text"
+                            style={{
+                              position: "absolute",
+                              left: "-10000px",
+                              width: 1,
+                              height: 1,
+                              opacity: 0,
+                            }}
+                          />
                           <div className={styles.formIntro}>
                             <span>Caminho {path.number}</span>
                             <h3>{path.formTitle}</h3>
@@ -262,6 +343,11 @@ export function ContactPage() {
                           </div>
 
                           <div className={styles.formFooter}>
+                            {submitError ? (
+                              <p className={styles.error} role="alert">
+                                {submitError}
+                              </p>
+                            ) : null}
                             {"reassurance" in experience &&
                             typeof experience.reassurance === "string" ? (
                               <p>{experience.reassurance}</p>
@@ -269,10 +355,13 @@ export function ContactPage() {
 
                             <button
                               className={styles.submit}
+                              disabled={isSubmitting}
                               type="submit"
                             >
                               <span>
-                                {values.contactPreference === "E-mail"
+                                {isSubmitting
+                                  ? "Registrando..."
+                                  : values.contactPreference === "E-mail"
                                   ? "Preparar e-mail"
                                   : "Continuar no WhatsApp"}
                               </span>

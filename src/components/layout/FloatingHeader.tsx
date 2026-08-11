@@ -59,7 +59,10 @@ const menuItems: MenuItem[] = [
 export function FloatingHeader() {
   const pathname = usePathname();
   const menuId = useId();
-  const isHiddenRoute = pathname === "/sobre";
+  const isHiddenRoute =
+    pathname === "/sobre" ||
+    pathname === "/admin" ||
+    pathname.startsWith("/admin/");
 
   const [isOpen, setIsOpen] =
     useState(false);

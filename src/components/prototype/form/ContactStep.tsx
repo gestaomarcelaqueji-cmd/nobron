@@ -33,8 +33,10 @@ export function ContactStep({
         <span className={styles.stepIcon}>
           <UserRound aria-hidden="true" />
         </span>
+
         <div>
           <h3>Quem receberá a apresentação?</h3>
+
           <p>
             Informe seus dados de contato e o momento atual do negócio.
           </p>
@@ -44,6 +46,7 @@ export function ContactStep({
       <div className={styles.fieldsGrid}>
         <label className={styles.field}>
           <span>Seu nome</span>
+
           <input
             id="prototype-responsible-name"
             autoComplete="name"
@@ -60,6 +63,7 @@ export function ContactStep({
               onUpdate("responsibleName", event.target.value)
             }
           />
+
           <FieldError
             id="prototype-responsible-name-error"
             text={errors.responsibleName}
@@ -68,25 +72,34 @@ export function ContactStep({
 
         <label className={styles.field}>
           <span>WhatsApp</span>
+
           <input
             id="prototype-whatsapp"
             autoComplete="tel"
             inputMode="tel"
+            type="tel"
             placeholder="(42) 99999-9999"
             value={data.whatsapp}
             aria-invalid={Boolean(errors.whatsapp)}
             aria-describedby={
-              errors.whatsapp ? "prototype-whatsapp-error" : undefined
+              errors.whatsapp
+                ? "prototype-whatsapp-error"
+                : "prototype-whatsapp-help"
             }
             aria-required="true"
             onChange={(event) =>
-              onUpdate("whatsapp", formatWhatsapp(event.target.value))
+              onUpdate(
+                "whatsapp",
+                formatWhatsapp(event.target.value),
+              )
             }
           />
-          <small>
-            Enviaremos a apresentação e falaremos sobre o pedido por este
-            número.
+
+          <small id="prototype-whatsapp-help">
+            Usaremos este número para falar sobre esta solicitação e enviar
+            a apresentação do protótipo.
           </small>
+
           <FieldError
             id="prototype-whatsapp-error"
             text={errors.whatsapp}
@@ -116,15 +129,22 @@ export function ContactStep({
                 : ""
             }`}
             type="button"
-            onClick={() => onUpdate("businessMoment", "active")}
+            onClick={() =>
+              onUpdate("businessMoment", "active")
+            }
           >
             <Building2 aria-hidden="true" />
+
             <span>
-              <strong>O negócio já está em funcionamento</strong>
+              <strong>
+                O negócio já está em funcionamento
+              </strong>
+
               <small>
                 Já atendo clientes e tenho os principais serviços definidos.
               </small>
             </span>
+
             <CheckCircle2 aria-hidden="true" />
           </button>
 
@@ -135,15 +155,22 @@ export function ContactStep({
                 : ""
             }`}
             type="button"
-            onClick={() => onUpdate("businessMoment", "starting")}
+            onClick={() =>
+              onUpdate("businessMoment", "starting")
+            }
           >
             <PanelsTopLeft aria-hidden="true" />
+
             <span>
-              <strong>Estou estruturando o negócio</strong>
+              <strong>
+                Estou estruturando o negócio
+              </strong>
+
               <small>
                 Ainda estou definindo serviços, materiais ou presença online.
               </small>
             </span>
+
             <CheckCircle2 aria-hidden="true" />
           </button>
         </div>

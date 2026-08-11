@@ -11,6 +11,7 @@ import "./globals.css";
 import { FloatingHeader } from "@/components/layout/FloatingHeader";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
 import { MotionProvider } from "@/components/layout/MotionProvider";
+import { PublicFooter } from "@/components/layout/PublicFooter";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body" });
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-display" });
@@ -38,6 +39,8 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           <FloatingHeader />
 
           {children}
+
+          <PublicFooter />
 
           <MobileBottomNav />
         </MotionProvider>
