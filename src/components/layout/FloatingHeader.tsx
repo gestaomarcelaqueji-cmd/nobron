@@ -254,9 +254,9 @@ export function FloatingHeader() {
               noBRon
             </span>
 
-            <h2 className={styles.menuTitle}>
+            <p className={styles.menuTitle}>
               Escolha um caminho.
-            </h2>
+            </p>
 
            
           </div>

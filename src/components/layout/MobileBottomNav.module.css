@@ -340,10 +340,11 @@
     text-transform: uppercase;
   }
 
-  .moreHeader h2 {
+  .moreTitle {
     margin: var(--space-3, 12px) 0 0;
     color: #0f172a;
     font-size: var(--font-size-section-title, 28px);
+    font-weight: 700;
     line-height: var(--line-heading, 1.12);
     letter-spacing: -0.04em;
   }

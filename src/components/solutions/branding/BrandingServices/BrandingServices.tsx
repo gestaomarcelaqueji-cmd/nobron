@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import {
   useEffect,
   useMemo,
@@ -36,11 +38,6 @@ type ArcSlot = {
   scale: number;
 };
 
-/*
- * Não existe círculo.
- * Estes pontos apenas constroem uma trajetória curva
- * para os nomes.
- */
 const ARC_SLOTS: Record<number, ArcSlot> = {
   [-4]: {
     x: 18,
@@ -48,42 +45,49 @@ const ARC_SLOTS: Record<number, ArcSlot> = {
     opacity: 0.08,
     scale: 0.74,
   },
+
   [-3]: {
     x: 26,
     y: 9,
     opacity: 0.18,
     scale: 0.8,
   },
+
   [-2]: {
     x: 39,
     y: 23,
     opacity: 0.3,
     scale: 0.86,
   },
+
   [-1]: {
     x: 53,
     y: 39,
     opacity: 0.5,
     scale: 0.94,
   },
+
   [0]: {
     x: 68,
     y: 54,
     opacity: 1,
     scale: 1.08,
   },
+
   [1]: {
     x: 63,
     y: 69,
     opacity: 0.5,
     scale: 0.94,
   },
+
   [2]: {
     x: 51,
     y: 82,
     opacity: 0.3,
     scale: 0.86,
   },
+
   [3]: {
     x: 33,
     y: 88,
@@ -92,8 +96,14 @@ const ARC_SLOTS: Record<number, ArcSlot> = {
   },
 };
 
-function wrapIndex(index: number, total: number) {
-  return ((index % total) + total) % total;
+function wrapIndex(
+  index: number,
+  total: number,
+) {
+  return (
+    ((index % total) + total) %
+    total
+  );
 }
 
 function getCircularOffset(
@@ -101,13 +111,20 @@ function getCircularOffset(
   activeIndex: number,
   total: number,
 ) {
-  let difference = index - activeIndex;
+  let difference =
+    index - activeIndex;
 
-  if (difference > total / 2) {
+  if (
+    difference >
+    total / 2
+  ) {
     difference -= total;
   }
 
-  if (difference <= -total / 2) {
+  if (
+    difference <=
+    -total / 2
+  ) {
     difference += total;
   }
 
@@ -115,42 +132,70 @@ function getCircularOffset(
 }
 
 export function BrandingServices() {
-  const reduceMotion = useReducedMotion();
-  const wheelLockedRef = useRef(false);
+  const reduceMotion =
+    Boolean(useReducedMotion());
 
-  const { services } = brandingPageData;
+  const wheelLockedRef =
+    useRef(false);
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const { services } =
+    brandingPageData;
 
-  const totalCategories = services.categories.length;
-
-  const activeCategory =
-    services.categories[activeIndex] ??
-    services.categories[0];
-
-  const positionedCategories = useMemo(() => {
-    return services.categories.map((category, index) => {
-      const offset = getCircularOffset(
-        index,
-        activeIndex,
-        totalCategories,
-      );
-
-      const slot = ARC_SLOTS[offset] ?? ARC_SLOTS[3];
-
-      return {
-        category,
-        index,
-        distance: Math.abs(offset),
-        ...slot,
-      };
-    });
-  }, [
+  const [
     activeIndex,
-    services.categories,
-    totalCategories,
-  ]);
+    setActiveIndex,
+  ] = useState(0);
+
+  const [
+    isPaused,
+    setIsPaused,
+  ] = useState(false);
+
+  const totalCategories =
+    services.categories.length;
+
+  const activeCategoryId =
+    services.categories[
+      activeIndex
+    ]?.id ??
+    services.categories[0]
+      ?.id ??
+    "";
+
+  const positionedCategories =
+    useMemo(() => {
+      return services.categories.map(
+        (
+          category,
+          index,
+        ) => {
+          const offset =
+            getCircularOffset(
+              index,
+              activeIndex,
+              totalCategories,
+            );
+
+          const slot =
+            ARC_SLOTS[
+              offset
+            ] ??
+            ARC_SLOTS[3];
+
+          return {
+            category,
+            index,
+            distance:
+              Math.abs(offset),
+            ...slot,
+          };
+        },
+      );
+    }, [
+      activeIndex,
+      services.categories,
+      totalCategories,
+    ]);
 
   useEffect(() => {
     if (
@@ -161,14 +206,24 @@ export function BrandingServices() {
       return;
     }
 
-    const interval = window.setInterval(() => {
-      setActiveIndex((current) =>
-        wrapIndex(current + 1, totalCategories),
+    const interval =
+      window.setInterval(
+        () => {
+          setActiveIndex(
+            (current) =>
+              wrapIndex(
+                current + 1,
+                totalCategories,
+              ),
+          );
+        },
+        4200,
       );
-    }, 4200);
 
     return () => {
-      window.clearInterval(interval);
+      window.clearInterval(
+        interval,
+      );
     };
   }, [
     isPaused,
@@ -176,9 +231,14 @@ export function BrandingServices() {
     totalCategories,
   ]);
 
-  function selectCategory(index: number) {
+  function selectCategory(
+    index: number,
+  ) {
     setActiveIndex(
-      wrapIndex(index, totalCategories),
+      wrapIndex(
+        index,
+        totalCategories,
+      ),
     );
   }
 
@@ -187,82 +247,144 @@ export function BrandingServices() {
   ) {
     if (
       wheelLockedRef.current ||
-      Math.abs(event.deltaY) < 8
+      Math.abs(
+        event.deltaY,
+      ) < 8
     ) {
       return;
     }
 
     event.preventDefault();
 
-    wheelLockedRef.current = true;
+    wheelLockedRef.current =
+      true;
+
     setIsPaused(true);
 
-    if (event.deltaY > 0) {
-      selectCategory(activeIndex + 1);
+    if (
+      event.deltaY > 0
+    ) {
+      selectCategory(
+        activeIndex + 1,
+      );
     } else {
-      selectCategory(activeIndex - 1);
+      selectCategory(
+        activeIndex - 1,
+      );
     }
 
-    window.setTimeout(() => {
-      wheelLockedRef.current = false;
-    }, 520);
+    window.setTimeout(
+      () => {
+        wheelLockedRef.current =
+          false;
+      },
+      520,
+    );
   }
 
   function handleKeyDown(
     event: KeyboardEvent<HTMLDivElement>,
   ) {
     if (
-      event.key === "ArrowDown" ||
-      event.key === "ArrowRight"
+      event.key ===
+        "ArrowDown" ||
+      event.key ===
+        "ArrowRight"
     ) {
       event.preventDefault();
-      selectCategory(activeIndex + 1);
+
+      selectCategory(
+        activeIndex + 1,
+      );
     }
 
     if (
-      event.key === "ArrowUp" ||
-      event.key === "ArrowLeft"
+      event.key ===
+        "ArrowUp" ||
+      event.key ===
+        "ArrowLeft"
     ) {
       event.preventDefault();
-      selectCategory(activeIndex - 1);
+
+      selectCategory(
+        activeIndex - 1,
+      );
     }
 
-    if (event.key === "Home") {
+    if (
+      event.key === "Home"
+    ) {
       event.preventDefault();
+
       selectCategory(0);
     }
 
-    if (event.key === "End") {
+    if (
+      event.key === "End"
+    ) {
       event.preventDefault();
-      selectCategory(totalCategories - 1);
+
+      selectCategory(
+        totalCategories - 1,
+      );
     }
   }
 
   return (
     <section
-      className={styles.section}
+      className={
+        styles.section
+      }
       id="branding-servicos"
     >
-      <div className={styles.header}>
-        <span>{services.eyebrow}</span>
+      <div
+        className={
+          styles.header
+        }
+      >
+        <span>
+          {services.eyebrow}
+        </span>
 
-        <h2>{services.title}</h2>
+        <h2>
+          {services.title}
+        </h2>
 
-        <p>{services.description}</p>
+        <p>
+          {services.description}
+        </p>
       </div>
 
       <div
-        className={styles.experience}
-        onFocusCapture={() => setIsPaused(true)}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
+        className={
+          styles.experience
+        }
+        onFocusCapture={() =>
+          setIsPaused(true)
+        }
+        onMouseEnter={() =>
+          setIsPaused(true)
+        }
+        onMouseLeave={() =>
+          setIsPaused(false)
+        }
       >
-        <div className={styles.categorySide}>
+        <div
+          className={
+            styles.categorySide
+          }
+        >
           <div
             aria-label="Categorias de Branding e Design"
-            className={styles.categoryArc}
-            onKeyDown={handleKeyDown}
-            onWheel={handleWheel}
+            className={
+              styles.categoryArc
+            }
+            onKeyDown={
+              handleKeyDown
+            }
+            onWheel={
+              handleWheel
+            }
             role="listbox"
             tabIndex={0}
           >
@@ -277,20 +399,40 @@ export function BrandingServices() {
                 scale,
               }) => (
                 <ServiceCategory
-                  active={index === activeIndex}
-                  category={category}
-                  distance={distance}
-                  key={category.id}
+                  active={
+                    index ===
+                    activeIndex
+                  }
+                  category={
+                    category
+                  }
+                  distance={
+                    distance
+                  }
+                  key={
+                    category.id
+                  }
                   label={
-                    shortCategoryNames[category.id] ??
+                    shortCategoryNames[
+                      category.id
+                    ] ??
                     category.title
                   }
                   onSelect={() => {
-                    setIsPaused(true);
-                    selectCategory(index);
+                    setIsPaused(
+                      true,
+                    );
+
+                    selectCategory(
+                      index,
+                    );
                   }}
-                  opacity={opacity}
-                  scale={scale}
+                  opacity={
+                    opacity
+                  }
+                  scale={
+                    scale
+                  }
                   x={x}
                   y={y}
                 />
@@ -298,42 +440,78 @@ export function BrandingServices() {
             )}
           </div>
 
-          <div className={styles.categoryProgress}>
+          <div
+            className={
+              styles.categoryProgress
+            }
+          >
             <span>
-              {String(activeIndex + 1).padStart(
+              {String(
+                activeIndex + 1,
+              ).padStart(
                 2,
                 "0",
               )}
             </span>
 
             <div>
-              {services.categories.map((category, index) => (
-                <span
-                  className={
-                    index === activeIndex
-                      ? styles.activeProgress
-                      : undefined
-                  }
-                  key={category.id}
-                />
-              ))}
+              {services.categories.map(
+                (
+                  category,
+                  index,
+                ) => (
+                  <span
+                    className={
+                      index ===
+                      activeIndex
+                        ? styles.activeProgress
+                        : undefined
+                    }
+                    key={
+                      category.id
+                    }
+                  />
+                ),
+              )}
             </div>
 
             <span>
-              {String(totalCategories).padStart(2, "0")}
+              {String(
+                totalCategories,
+              ).padStart(
+                2,
+                "0",
+              )}
             </span>
           </div>
-
-      
         </div>
 
-        <ServiceList category={activeCategory} />
+        <ServiceList
+          activeCategoryId={
+            activeCategoryId
+          }
+          categories={
+            services.categories
+          }
+        />
       </div>
 
-      <p className={styles.webNote}>
-        Nos itens de sites e páginas, esta categoria
-        cobre a direção visual. O desenvolvimento entra
-        em Sites e Sistemas.
+      <p
+        className={
+          styles.webNote
+        }
+      >
+        Nos itens de sites e páginas,
+        esta categoria cobre a direção
+        visual. O desenvolvimento entra
+        em{" "}
+        <Link
+          className="contextual-link"
+          href="/solucoes/sites-sistemas"
+        >
+          Sites e Sistemas
+        </Link>
+        .
       </p>
     </section>
   );

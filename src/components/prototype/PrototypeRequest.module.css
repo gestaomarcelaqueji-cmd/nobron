@@ -2133,3 +2133,87 @@
     transform: none;
   }
 }
+
+/* =========================================================
+   PROTÓTIPO GRATUITO — CONTEÚDO ESTÁTICO
+========================================================= */
+
+.prototypeGuide {
+  display: grid;
+  width: min(920px, 100%);
+  margin: 0 auto 30px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.prototypeGuide article {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid rgba(112, 133, 165, 0.15);
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.prototypeGuideNumber {
+  display: block;
+  margin-bottom: 22px;
+  color: var(--blue, #145cff);
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+}
+
+.prototypeGuide h3 {
+  margin: 0;
+  color: #2b3441;
+  font-family: var(--font-display), Arial, sans-serif;
+  font-size: 1.08rem;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.prototypeGuide article p {
+  margin: 9px 0 0;
+  color: #737e8d;
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.prototypeGuideFooter {
+  grid-column: 1 / -1;
+  max-width: 700px;
+  margin: 8px auto 0;
+  color: #697585;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .prototypeGuide {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .prototypeGuide article {
+    padding: 17px;
+  }
+
+  .prototypeGuideNumber {
+    margin-bottom: 12px;
+  }
+
+  .prototypeGuide h3 {
+    font-size: 1rem;
+  }
+
+  .prototypeGuide article p,
+  .prototypeGuideFooter {
+    font-size: var(--font-size-small, 15px);
+    line-height: var(--line-body, 1.5);
+  }
+
+  .prototypeGuideFooter {
+    margin-top: 10px;
+  }
+}

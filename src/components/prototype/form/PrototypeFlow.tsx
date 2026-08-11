@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useRef, useState } from "react";
 
@@ -397,31 +399,105 @@ export function PrototypeFlow() {
         className={styles.formSection}
         ref={formRef}
       >
-        <motion.div
-          className={styles.formIntro}
-          initial={
-            reducedMotion
-              ? false
-              : {
-                  opacity: 0,
-                  y: 18,
-                }
-          }
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.7,
-          }}
-          transition={{
-            duration:
-              reducedMotion
-                ? 0
-                : 0.5,
-          }}
-        />
+        {view === "form" && (
+          <>
+            <motion.div
+              className={styles.formIntro}
+              initial={
+                reducedMotion
+                  ? false
+                  : {
+                      opacity: 0,
+                      y: 18,
+                    }
+              }
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.7,
+              }}
+              transition={{
+                duration: reducedMotion
+                  ? 0
+                  : 0.5,
+              }}
+            >
+              <span>Como funciona</span>
+
+              <h2>
+                Como funciona o protótipo gratuito de Landing Page.
+              </h2>
+
+              <p>
+                Antes de decidir pela contratação, você pode mostrar como seu
+                negócio funciona e receber uma primeira proposta visual para a
+                página. As informações do formulário ajudam a entender o que
+                você oferece, como se apresenta hoje e quais materiais já
+                existem.
+              </p>
+            </motion.div>
+
+            <div className={styles.prototypeGuide}>
+              <article>
+                <span className={styles.prototypeGuideNumber}>
+                  01
+                </span>
+
+                <h3>Você apresenta o negócio</h3>
+
+                <p>
+                  Informe o ramo de atuação, cidade ou região, serviços,
+                  redes sociais e outras informações que ajudam a compreender
+                  o que precisa ser apresentado.
+                </p>
+              </article>
+
+              <article>
+                <span className={styles.prototypeGuideNumber}>
+                  02
+                </span>
+
+                <h3>Organizamos uma direção para a página</h3>
+
+                <p>
+                  A partir dessas informações, pensamos uma estrutura inicial
+                  para apresentar o negócio, organizar a oferta e conduzir a
+                  pessoa até o contato.
+                </p>
+              </article>
+
+              <article>
+                <span className={styles.prototypeGuideNumber}>
+                  03
+                </span>
+
+                <h3>Você recebe a proposta pelo WhatsApp</h3>
+
+                <p>
+                  A proposta é apresentada em vídeo no WhatsApp informado no
+                  formulário, para que você consiga visualizar como a Landing
+                  Page pode ficar.
+                </p>
+              </article>
+
+              <p className={styles.prototypeGuideFooter}>
+                A solicitação é gratuita e sem compromisso. Se depois fizer
+                sentido transformar a proposta em uma página publicada,
+                conheça também o serviço de{" "}
+                <Link
+                  className="contextual-link"
+                  href="/landing-page"
+                >
+                  Landing Page
+                </Link>
+                .
+              </p>
+            </div>
+          </>
+        )}
 
         <div
           className={

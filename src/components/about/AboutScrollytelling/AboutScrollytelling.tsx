@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { useRef, useState } from "react";
 
 import {
@@ -291,7 +293,11 @@ function StageCopy({
         {stage.eyebrow}
       </span>
 
-      <h1>{stage.title}</h1>
+      {stage.id === "01" ? (
+        <h1>{stage.title}</h1>
+      ) : (
+        <h2>{stage.title}</h2>
+      )}
 
       {stage.intro ? (
         <p className={styles.introParagraph}>
@@ -307,6 +313,21 @@ function StageCopy({
             </p>
           ))}
         </div>
+      ) : null}
+
+      {stage.relatedPage ? (
+        <p className={styles.relatedPage}>
+          {stage.relatedPage.prefix}
+
+          <Link
+            className="contextual-link"
+            href={stage.relatedPage.href}
+          >
+            {stage.relatedPage.label}
+          </Link>
+
+          {stage.relatedPage.suffix}
+        </p>
       ) : null}
 
       {stage.groups ? (

@@ -51,6 +51,14 @@ export const marketingDigitalPageData = {
     title: "O anúncio é uma etapa. Não o começo.",
     description:
       "Antes de colocar orçamento em uma plataforma, organizamos o caminho inteiro. Isso reduz improviso, melhora a leitura dos resultados e evita pagar para levar pessoas até uma mensagem confusa.",
+    relatedPage: {
+      prefix:
+        "Quando o destino precisa apresentar uma oferta específica e conduzir a pessoa até uma ação, uma",
+      label: "Landing Page",
+      suffix:
+        "pode fazer parte da estrutura da campanha.",
+      href: "/landing-page",
+    },
     steps: [
       {
         number: "01",
@@ -185,6 +193,12 @@ export const marketingDigitalPageData = {
           "Localização e horário podem importar",
           "Leitura de termos e conversões",
         ],
+        relatedPage: {
+          prefix:
+            "Para estruturar também a presença orgânica nas buscas, conheça",
+          label: "SEO e Presença Digital",
+          href: "/solucoes/seo",
+        },
       },
       {
         id: "social",
@@ -199,6 +213,7 @@ export const marketingDigitalPageData = {
           "Frequência e variações",
           "Testes de mensagem e formato",
         ],
+        relatedPage: null,
       },
     ],
   },

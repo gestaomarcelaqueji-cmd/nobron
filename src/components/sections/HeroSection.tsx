@@ -21,10 +21,18 @@ export function HeroSection() {
         <div className="hero-copy">
           <Badge>Landing Pages para profissionais e negócios locais</Badge>
           <h1 className="hero-title">
-            <MaskReveal eager>Sua empresa pronta</MaskReveal>
-            <MaskReveal eager delay={0.08}>para ser <span className="hero-title-highlight">encontrada,</span></MaskReveal>
-            <MaskReveal eager delay={0.16}>entendida e escolhida</MaskReveal>
-          </h1>
+  <MaskReveal eager>
+    Landing Pages feitas
+  </MaskReveal>
+
+  <MaskReveal eager delay={0.08}>
+    para transformar visitas
+  </MaskReveal>
+
+  <MaskReveal eager delay={0.16}>
+    em <span className="hero-title-highlight">oportunidades.</span>
+  </MaskReveal>
+</h1>
           <motion.p
             className="hero-description"
             initial={{ opacity: 0, y: 16 }}

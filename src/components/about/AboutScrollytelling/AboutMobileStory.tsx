@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import {
   motion,
   useInView,
@@ -150,14 +152,6 @@ export function AboutMobileStory() {
         resetGlowPosition
       }
     >
-      <h1
-        className={
-          styles.visuallyHidden
-        }
-      >
-        Sobre a noBRon
-      </h1>
-
       <div
         className={styles.ambient}
         aria-hidden="true"
@@ -426,6 +420,21 @@ function StoryStage({
               ),
             )}
           </motion.div>
+        ) : null}
+
+        {stage.relatedPage ? (
+          <p className={styles.relatedPage}>
+            {stage.relatedPage.prefix}
+
+            <Link
+              className="contextual-link"
+              href={stage.relatedPage.href}
+            >
+              {stage.relatedPage.label}
+            </Link>
+
+            {stage.relatedPage.suffix}
+          </p>
         ) : null}
 
         {stage.groups ? (

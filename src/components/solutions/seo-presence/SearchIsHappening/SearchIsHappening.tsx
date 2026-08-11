@@ -67,7 +67,9 @@ export function SearchIsHappening() {
                 transition={{ duration: reduceMotion ? 0 : 0.45, ease: [0.22, 1, 0.36, 1] }}
               >
                 <span className={styles.resultUrl}>empresa.com.br / serviço</span>
-                <h3>{activeQuery.resultTitle}</h3>
+                <div className={styles.resultTitle}>
+                  {activeQuery.resultTitle}
+                </div>
                 <strong>{activeQuery.resultMeta}</strong>
                 <p>{activeQuery.resultDescription}</p>
               </motion.div>

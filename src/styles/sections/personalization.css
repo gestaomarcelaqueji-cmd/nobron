@@ -765,12 +765,13 @@
   transition: color 300ms ease;
 }
 
-.personal-demo-hero__copy h3 {
+.personal-demo-hero__title {
   max-width: 350px;
   margin: 10px 0 0;
   color: #171b22;
   font-family: var(--font-display), Arial, sans-serif;
   font-size: clamp(1.85rem, 3.25vw, 3.15rem);
+  font-weight: 700;
   line-height: 0.95;
   letter-spacing: -0.06em;
 }
@@ -1036,7 +1037,7 @@
   color: color-mix(in srgb, var(--preview-accent) 35%, #ffffff);
 }
 
-.personal-preview--banner .personal-demo-hero__copy h3 {
+.personal-preview--banner .personal-demo-hero__title {
   max-width: 420px;
   color: #ffffff;
 }
@@ -1271,7 +1272,7 @@
     padding: 28px 22px;
   }
 
-  .personal-demo-hero__copy h3 {
+  .personal-demo-hero__title {
     font-size: clamp(2rem, 10vw, 2.8rem);
   }
 

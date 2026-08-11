@@ -546,7 +546,9 @@ export function PersonalizationSection() {
                     <div className="personal-demo-hero__copy">
                       <small>Atendimento na sua região</small>
 
-                      <h3>Seu serviço explicado com clareza.</h3>
+                      <div className="personal-demo-hero__title">
+                        Seu serviço explicado com clareza.
+                      </div>
 
                       <p>
                         Uma apresentação profissional para ajudar o cliente a

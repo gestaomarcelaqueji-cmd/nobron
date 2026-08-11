@@ -105,7 +105,9 @@ export function MobileBottomNav() {
         <div className={styles.moreHeader}>
           <div>
             <span>Mais caminhos</span>
-            <h2>Continue explorando.</h2>
+            <p className={styles.moreTitle}>
+              Continue explorando.
+            </p>
           </div>
 
           <button

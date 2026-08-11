@@ -21,30 +21,54 @@ export function CreationProcess() {
             className="process-line"
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 1.2 }}
+            viewport={{
+              once: true,
+              amount: 0.4,
+            }}
+            transition={{
+              duration: 1.2,
+            }}
           />
 
           {processSteps.map(
-            ({ title, description, icon: Icon }, index) => (
+            (
+              {
+                title,
+                description,
+                icon: Icon,
+              },
+              index,
+            ) => (
               <motion.article
                 className="process-card"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.08 }}
+                initial={{
+                  opacity: 0,
+                  y: 20,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: true,
+                  amount: 0.08,
+                }}
                 transition={{
                   duration: 0.5,
                   delay: index * 0.08,
                 }}
                 key={title}
               >
-                <span className="process-card__number">{index + 1}</span>
+                <span className="process-card__number">
+                  {index + 1}
+                </span>
 
                 <div className="process-card__icon">
                   <Icon aria-hidden="true" />
                 </div>
 
                 <h3>{title}</h3>
+
                 <p>{description}</p>
               </motion.article>
             ),
@@ -53,16 +77,29 @@ export function CreationProcess() {
 
         <motion.div
           className="process-prototype"
-          initial={{ opacity: 0, y: 30, scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, amount: 0.45 }}
+          initial={{
+            opacity: 0,
+            y: 30,
+            scale: 0.98,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+          }}
+          viewport={{
+            once: true,
+            amount: 0.45,
+          }}
           transition={{
             duration: 0.7,
             ease: [0.22, 1, 0.36, 1],
           }}
         >
           <div className="process-prototype__copy">
-            <h3>Ainda não consegue imaginar como sua página ficaria?</h3>
+            <h3>
+              Ainda não consegue imaginar como sua página ficaria?
+            </h3>
 
             <p>
               Conte um pouco sobre seu negócio. Vamos criar uma demonstração
@@ -72,7 +109,10 @@ export function CreationProcess() {
           </div>
 
           <div className="process-prototype__action">
-            <RollingButton href="/prototipo-gratuito" showArrow>
+            <RollingButton
+              href="/prototipo-gratuito"
+              showArrow
+            >
               Quero receber meu protótipo gratuito
             </RollingButton>
 

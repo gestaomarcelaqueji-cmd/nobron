@@ -13,7 +13,9 @@ export function GoogleSearchMockup() {
       <div className="google-tabs"><b>Todas</b><span>Maps</span><span>Imagens</span><span>Vídeos</span></div>
       <div className="google-result">
         <span className="google-url">eletricista-tb.nobron.com.br</span>
-        <h3>Eletricista em {siteConfig.city} | Instalações e manutenção</h3>
+        <div className="google-result__title">
+          Eletricista em {siteConfig.city} | Instalações e manutenção
+        </div>
         <p>Serviços elétricos com atendimento profissional, informações claras e contato direto pelo WhatsApp.</p>
         <div className="google-result__chips"><span>Instalações</span><span>Manutenção</span><span>Reparos</span></div>
         <div className="google-result__meta"><Star size={14} /> 4,9 <MapPin size={14} /> {siteConfig.city}</div>

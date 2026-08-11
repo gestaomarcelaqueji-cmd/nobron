@@ -3,6 +3,13 @@ export type AboutCopyGroup = {
   description: string;
 };
 
+export type AboutRelatedPage = {
+  prefix: string;
+  label: string;
+  href: string;
+  suffix?: string;
+};
+
 export type AboutStage = {
   id: string;
   menuLabel: string;
@@ -12,6 +19,7 @@ export type AboutStage = {
   intro?: string;
   groups?: AboutCopyGroup[];
   traits?: string[];
+  relatedPage?: AboutRelatedPage;
   density?: "normal" | "dense";
 };
 
@@ -28,7 +36,7 @@ export const aboutPageData = {
       menuLabel: "Trajetória",
       eyebrow: "01 — APRESENTAÇÃO",
       title:
-        "Por trás da noBRon, existe uma trajetória entre criação, estratégia e tecnologia.",
+        "A noBRon é conduzida por Marcela Queji, em uma trajetória entre criação, estratégia e tecnologia.",
       paragraphs: [
         "Diferentes áreas de estudo e experiência se conectam para entender o problema, definir a direção e construir soluções que façam sentido para cada empresa.",
       ],
@@ -133,6 +141,13 @@ export const aboutPageData = {
         "Estratégia organiza a direção. Design transforma essa direção em percepção. Sites e sistemas criam estrutura. SEO facilita a descoberta. Marketing movimenta a mensagem. Automação ajuda o trabalho a continuar.",
         "Cada área participa quando existe um motivo real para ela estar ali.",
       ],
+      relatedPage: {
+        prefix:
+          "Essas frentes estão organizadas nas ",
+        label: "soluções da noBRon",
+        href: "/solucoes",
+        suffix: ".",
+      },
     },
     {
       id: "09",

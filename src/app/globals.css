@@ -23,6 +23,15 @@
   --mobile-bottom-nav-space: 0px;
 }
 
+.contextual-link {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: currentColor;
+  text-underline-offset: 0.18em;
+}
+
 @media (max-width: 767px) {
   :root {
     --mobile-bottom-nav-space:

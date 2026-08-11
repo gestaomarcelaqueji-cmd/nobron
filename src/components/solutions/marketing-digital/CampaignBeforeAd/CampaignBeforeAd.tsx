@@ -1,6 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
+import Link from "next/link";
+
+import {
+  useRef,
+  useState,
+} from "react";
 
 import {
   motion,
@@ -16,61 +21,174 @@ import { marketingDigitalPageData } from "@/data/solutions/marketingDigital";
 import styles from "./CampaignBeforeAd.module.css";
 
 export function CampaignBeforeAd() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const reduceMotion = Boolean(useReducedMotion());
-  const { campaign } = marketingDigitalPageData;
-  const [activeIndex, setActiveIndex] = useState(0);
+  const sectionRef =
+    useRef<HTMLElement>(null);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start 0.85", "end 0.15"],
-  });
+  const reduceMotion =
+    Boolean(useReducedMotion());
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 105,
-    damping: 28,
-    mass: 0.42,
-  });
+  const { campaign } =
+    marketingDigitalPageData;
 
-  const trackScale = useTransform(smoothProgress, [0.08, 0.92], [0, 1]);
+  const [activeIndex, setActiveIndex] =
+    useState(0);
 
-  useMotionValueEvent(smoothProgress, "change", (value) => {
-    if (reduceMotion) return;
+  const { scrollYProgress } =
+    useScroll({
+      target: sectionRef,
+      offset: [
+        "start 0.85",
+        "end 0.15",
+      ],
+    });
 
-    const nextIndex = Math.min(
-      campaign.steps.length - 1,
-      Math.max(0, Math.floor(value * campaign.steps.length)),
+  const smoothProgress =
+    useSpring(scrollYProgress, {
+      stiffness: 105,
+      damping: 28,
+      mass: 0.42,
+    });
+
+  const trackScale =
+    useTransform(
+      smoothProgress,
+      [0.08, 0.92],
+      [0, 1],
     );
 
-    setActiveIndex(nextIndex);
-  });
+  useMotionValueEvent(
+    smoothProgress,
+    "change",
+    (value) => {
+      if (reduceMotion) return;
+
+      const nextIndex =
+        Math.min(
+          campaign.steps.length - 1,
+          Math.max(
+            0,
+            Math.floor(
+              value *
+                campaign.steps.length,
+            ),
+          ),
+        );
+
+      setActiveIndex(nextIndex);
+    },
+  );
 
   return (
-    <section ref={sectionRef} className={styles.section}>
+    <section
+      ref={sectionRef}
+      className={styles.section}
+    >
       <div className={styles.sticky}>
         <div className={styles.inner}>
-          <header className={styles.heading}>
-            <span>{campaign.eyebrow}</span>
-            <h2>{campaign.title}</h2>
-            <p>{campaign.description}</p>
+          <header
+            className={
+              styles.heading
+            }
+          >
+            <span>
+              {campaign.eyebrow}
+            </span>
+
+            <h2>
+              {campaign.title}
+            </h2>
+
+            <p>
+              {campaign.description}
+            </p>
+
+            <p>
+              {
+                campaign.relatedPage
+                  .prefix
+              }{" "}
+
+              <Link
+                className="contextual-link"
+                href={
+                  campaign.relatedPage
+                    .href
+                }
+              >
+                {
+                  campaign.relatedPage
+                    .label
+                }
+              </Link>{" "}
+
+              {
+                campaign.relatedPage
+                  .suffix
+              }
+            </p>
           </header>
 
-          <div className={styles.timeline}>
-            <div aria-hidden="true" className={styles.baseTrack} />
+          <div
+            className={
+              styles.timeline
+            }
+          >
+            <div
+              aria-hidden="true"
+              className={
+                styles.baseTrack
+              }
+            />
+
             <motion.div
               aria-hidden="true"
-              className={styles.activeTrack}
-              style={reduceMotion ? { scaleX: 1 } : { scaleX: trackScale }}
+              className={
+                styles.activeTrack
+              }
+              style={
+                reduceMotion
+                  ? {
+                      scaleX: 1,
+                    }
+                  : {
+                      scaleX:
+                        trackScale,
+                    }
+              }
             />
 
             <ol>
-              {campaign.steps.map((step, index) => (
-                <li data-active={reduceMotion || index <= activeIndex} key={step.title}>
-                  <span>{step.number}</span>
-                  <strong>{step.title}</strong>
-                  <p>{step.description}</p>
-                </li>
-              ))}
+              {campaign.steps.map(
+                (
+                  step,
+                  index,
+                ) => (
+                  <li
+                    data-active={
+                      reduceMotion ||
+                      index <=
+                        activeIndex
+                    }
+                    key={
+                      step.title
+                    }
+                  >
+                    <span>
+                      {step.number}
+                    </span>
+
+                    <strong>
+                      {step.title}
+                    </strong>
+
+                    <p>
+                      {
+                        step.description
+                      }
+                    </p>
+                  </li>
+                ),
+              )}
             </ol>
           </div>
         </div>

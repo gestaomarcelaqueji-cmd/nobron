@@ -118,7 +118,7 @@
 }
 
 
-.mock-page__copy h3 {
+.mock-page__title {
   margin: 0 0 9px;
 
   color: #20242b;
@@ -446,7 +446,7 @@
 }
 
 
-.browser-mockup--compact .mock-page__copy h3 {
+.browser-mockup--compact .mock-page__title {
   font-size: 1.15rem;
 }
 

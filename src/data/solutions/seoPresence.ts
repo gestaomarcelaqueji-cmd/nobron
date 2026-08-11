@@ -244,6 +244,13 @@ export const seoPresencePageData = {
       "Pagar para aparecer em uma busca não organiza a oferta, não explica o serviço e não prepara o próximo passo. Sem direção, o anúncio pode gerar cliques sem gerar conversas, pedidos ou vendas.",
     statement:
       "Enviar tráfego pago para uma presença incompleta é pagar para apresentar a empresa sem preparar a apresentação.",
+    relatedPage: {
+      prefix:
+        "Quando a campanha precisa de uma página própria para apresentar uma oferta específica, uma",
+      label:
+        "Landing Page pode cumprir esse papel",
+      href: "/landing-page",
+    },
     steps: [
       {
         number: "01",

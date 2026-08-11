@@ -255,11 +255,15 @@ export function FragmentedCategoryHero({
   const [isHovered, setIsHovered] =
     useState(false);
 
-  const desktopTitleId =
-    `${id}-desktop-title`;
-
-  const mobileTitleId =
-    `${id}-mobile-title`;
+  /*
+   * Existe apenas um H1 semântico no componente.
+   *
+   * Desktop e mobile possuem apresentações visuais
+   * diferentes do mesmo título, mas ambas apontam
+   * para esta única referência editorial.
+   */
+  const semanticTitleId =
+    `${id}-title`;
 
   const shards = useMemo(
     () =>
@@ -314,23 +318,30 @@ export function FragmentedCategoryHero({
 
   return (
     <>
+      {/*
+       * Único título principal semântico.
+       *
+       * Fica disponível para buscadores,
+       * leitores de tela e estrutura do documento,
+       * sem interferir no design.
+       */}
+      <h1
+        className={styles.srOnly}
+        id={semanticTitleId}
+      >
+        {title}
+      </h1>
+
       {/* ================================================
           DESKTOP
       ================================================= */}
 
       <div className={styles.desktopOnly}>
         <section
-          aria-labelledby={desktopTitleId}
+          aria-labelledby={semanticTitleId}
           className={styles.section}
         >
           <div className={styles.inner}>
-            <h1
-              className={styles.srOnly}
-              id={desktopTitleId}
-            >
-              {title}
-            </h1>
-
             <div
               aria-hidden="true"
               className={styles.titleStage}
@@ -516,7 +527,7 @@ export function FragmentedCategoryHero({
 
       <section
         ref={mobileSceneRef}
-        aria-labelledby={mobileTitleId}
+        aria-labelledby={semanticTitleId}
         className={styles.mobileOnly}
       >
         <div className={styles.mobileSticky}>
@@ -540,14 +551,21 @@ export function FragmentedCategoryHero({
               Soluções noBRon
             </span>
 
-            <h1
+            {/*
+             * É o título VISUAL do mobile.
+             *
+             * O H1 semântico já existe acima,
+             * portanto este elemento não deve
+             * criar um segundo heading.
+             */}
+            <div
+              aria-hidden="true"
               className={
                 styles.mobileTitle
               }
-              id={mobileTitleId}
             >
               {title}
-            </h1>
+            </div>
           </motion.div>
 
           <motion.div

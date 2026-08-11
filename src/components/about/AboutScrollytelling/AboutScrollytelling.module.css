@@ -202,7 +202,8 @@
   content: "";
 }
 
-.copyStage h1 {
+.copyStage h1,
+.copyStage h2 {
   max-width: 680px;
   margin:
     clamp(1.35rem, 2.5vw, 1.95rem)
@@ -216,7 +217,8 @@
   text-wrap: balance;
 }
 
-.copyStage[data-dense="true"] h1 {
+.copyStage[data-dense="true"] h1,
+.copyStage[data-dense="true"] h2 {
   font-size: clamp(2.45rem, 4.15vw, 4.55rem);
 }
 
@@ -240,6 +242,13 @@
 .introParagraph {
   max-width: 610px;
   margin-top: 1.3rem;
+}
+
+.relatedPage {
+  margin: 16px 0 0;
+  color: inherit;
+  font: inherit;
+  line-height: inherit;
 }
 
 .studyGroups {
@@ -388,7 +397,8 @@
     width: min(70vw, 860px);
   }
 
-  .copyStage h1 {
+  .copyStage h1,
+  .copyStage h2 {
     font-size: clamp(2.45rem, 4.7vw, 4.7rem);
   }
 }
@@ -451,7 +461,9 @@
   }
 
   .copyStage h1,
-  .copyStage[data-dense="true"] h1 {
+  .copyStage h2,
+  .copyStage[data-dense="true"] h1,
+  .copyStage[data-dense="true"] h2 {
     font-size: clamp(2.05rem, 8.8vw, 3.4rem);
   }
 
@@ -512,7 +524,9 @@
   }
 
   .copyStage h1,
-  .copyStage[data-dense="true"] h1 {
+  .copyStage h2,
+  .copyStage[data-dense="true"] h1,
+  .copyStage[data-dense="true"] h2 {
     font-size: clamp(2.15rem, 3.8vw, 3.85rem);
   }
 

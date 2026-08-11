@@ -10,9 +10,16 @@ export type SystemPossibility = {
   number: string;
   title: string;
   description: string;
+
   term?: {
     label: string;
     explanation: string;
+  };
+
+  relatedPage?: {
+    prefix: string;
+    label: string;
+    href: string;
   };
 };
 
@@ -175,12 +182,26 @@ export const sitesSystemsPageData = {
       {
         number: "07",
         title: "Conectar ferramentas",
+
         description:
           "Fazer duas ferramentas trocarem informações sem que alguém precise copiar e colar os mesmos dados várias vezes.",
+
         term: {
           label: "Integração",
+
           explanation:
             "Conexão que permite que duas ferramentas troquem informações automaticamente.",
+        },
+
+        relatedPage: {
+          prefix:
+            "Quando a rotina envolve conectar serviços e automatizar a troca de informações, esse trabalho também entra em",
+
+          label:
+            "Automação e Integrações",
+
+          href:
+            "/solucoes/automacao",
         },
       },
       {
@@ -238,7 +259,8 @@ export const sitesSystemsPageData = {
 
   progress: {
     eyebrow: "A tecnologia avançou",
-    title: "Hoje, uma ferramenta pode",
+    title:
+      "Hoje, uma ferramenta pode fazer muito mais pela rotina da empresa.",
     words: [
       "organizar processos",
       "automatizar etapas",

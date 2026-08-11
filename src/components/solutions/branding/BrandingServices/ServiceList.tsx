@@ -1,13 +1,13 @@
 "use client";
 
+import Link from "next/link";
+
 import {
   useEffect,
-  useMemo,
   useRef,
 } from "react";
 
 import {
-  AnimatePresence,
   motion,
   useReducedMotion,
 } from "motion/react";
@@ -17,12 +17,18 @@ import type { BrandingServiceCategory } from "@/data/solutions/branding";
 import styles from "./BrandingServices.module.css";
 
 type ServiceListProps = {
-  category: BrandingServiceCategory;
+  categories: BrandingServiceCategory[];
+  activeCategoryId: string;
 };
 
 type CategoryCopy = {
   statement: string;
   description: string;
+  relatedPage?: {
+    prefix: string;
+    label: string;
+    href: string;
+  };
 };
 
 const categoryCopies: Record<string, CategoryCopy> = {
@@ -45,6 +51,12 @@ const categoryCopies: Record<string, CategoryCopy> = {
       "Uma ideia visual forte o bastante para circular em muitos formatos.",
     description:
       "A campanha ganha uma linguagem própria, mas continua conectada à marca. A partir dela, criamos os desdobramentos para anúncios e divulgação.",
+    relatedPage: {
+      prefix:
+        "Quando o projeto também envolve estratégia, mídia, canais e acompanhamento, entra o trabalho de",
+      label: "Marketing Digital",
+      href: "/solucoes/marketing-digital",
+    },
   },
 
   commercial: {
@@ -91,161 +103,270 @@ const fallbackCopy: CategoryCopy = {
 };
 
 export function ServiceList({
-  category,
+  categories,
+  activeCategoryId,
 }: ServiceListProps) {
-  const reduceMotion = useReducedMotion();
-  const servicesRef = useRef<HTMLDivElement>(null);
+  const reduceMotion =
+    Boolean(useReducedMotion());
 
-  const copy = useMemo(() => {
-    return categoryCopies[category.id] ?? fallbackCopy;
-  }, [category.id]);
+  const viewportRefs = useRef<
+    Record<string, HTMLDivElement | null>
+  >({});
 
   useEffect(() => {
-    servicesRef.current?.scrollTo({
+    viewportRefs.current[
+      activeCategoryId
+    ]?.scrollTo({
       top: 0,
-      behavior: reduceMotion ? "auto" : "smooth",
+      behavior: reduceMotion
+        ? "auto"
+        : "smooth",
     });
-  }, [category.id, reduceMotion]);
+  }, [
+    activeCategoryId,
+    reduceMotion,
+  ]);
 
   return (
     <div className={styles.contentSide}>
-      <AnimatePresence
-        initial={false}
-        mode="wait"
-      >
-        <motion.article
-          aria-live="polite"
-          className={styles.categoryContent}
-          key={category.id}
-          initial={
-            reduceMotion
-              ? false
-              : {
-                  opacity: 0,
-                  y: 22,
-                }
-          }
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          exit={{
-            opacity: 0,
-            y: -16,
-          }}
-          transition={{
-            duration: reduceMotion ? 0 : 0.5,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        >
-          <div className={styles.categoryMeta}>
-            <span>{category.number}</span>
-          </div>
+      {categories.map((category) => {
+        const isActive =
+          category.id === activeCategoryId;
 
-          <h3>{category.title}</h3>
+        const copy =
+          categoryCopies[category.id] ??
+          fallbackCopy;
 
-          <p className={styles.categoryStatement}>
-            {copy.statement}
-          </p>
-
-          <p className={styles.categoryDescription}>
-            {copy.description}
-          </p>
-
-          <motion.div
-            aria-hidden="true"
-            className={styles.transitionLine}
-            initial={
-              reduceMotion
-                ? false
+        return (
+          <motion.article
+            aria-hidden={!isActive}
+            aria-live={
+              isActive
+                ? "polite"
+                : undefined
+            }
+            className={
+              styles.categoryContent
+            }
+            hidden={!isActive}
+            key={category.id}
+            initial={false}
+            animate={
+              isActive
+                ? {
+                    opacity: 1,
+                    y: 0,
+                  }
                 : {
-                    scaleX: 0,
+                    opacity: 0,
+                    y: 16,
                   }
             }
-            animate={{
-              scaleX: 1,
-            }}
             transition={{
-              duration: reduceMotion ? 0 : 0.8,
-              delay: reduceMotion ? 0 : 0.12,
-              ease: [0.22, 1, 0.36, 1],
+              duration:
+                reduceMotion
+                  ? 0
+                  : 0.5,
+              ease: [
+                0.22,
+                1,
+                0.36,
+                1,
+              ],
             }}
-          />
-
-          <div className={styles.servicesHeader}>
-            <span>Opções desta categoria</span>
-
-            <span>
-              {String(category.services.length).padStart(
-                2,
-                "0",
-              )}
-            </span>
-          </div>
-
-          <div
-            ref={servicesRef}
-            className={styles.servicesViewport}
           >
-            <motion.ol
-              animate="visible"
-              className={styles.servicesList}
-              initial="hidden"
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: reduceMotion
-                      ? 0
-                      : 0.045,
-                    delayChildren: reduceMotion
-                      ? 0
-                      : 0.14,
-                  },
-                },
-              }}
+            <div
+              className={
+                styles.categoryMeta
+              }
             >
-              {category.services.map(
-                (service, index) => (
-                  <motion.li
-                    key={service}
-                    variants={{
-                      hidden: {
-                        opacity: 0,
-                        y: 12,
-                      },
-                      visible: {
-                        opacity: 1,
-                        y: 0,
-                        transition: {
-                          duration: reduceMotion
-                            ? 0
-                            : 0.36,
-                          ease: [
-                            0.22,
-                            1,
-                            0.36,
-                            1,
-                          ],
-                        },
-                      },
-                    }}
-                  >
-                    <span>
-                      {String(index + 1).padStart(
-                        2,
-                        "0",
-                      )}
-                    </span>
+              <span>
+                {category.number}
+              </span>
+            </div>
 
-                    <strong>{service}</strong>
-                  </motion.li>
-                ),
-              )}
-            </motion.ol>
-          </div>
-        </motion.article>
-      </AnimatePresence>
+            <h3>
+              {category.title}
+            </h3>
+
+            <p
+              className={
+                styles.categoryStatement
+              }
+            >
+              {copy.statement}
+            </p>
+
+            <p
+              className={
+                styles.categoryDescription
+              }
+            >
+              {copy.description}
+
+              {copy.relatedPage ? (
+                <>
+                  {" "}
+                  {
+                    copy.relatedPage
+                      .prefix
+                  }{" "}
+                  <Link
+                    className="contextual-link"
+                    href={
+                      copy.relatedPage
+                        .href
+                    }
+                  >
+                    {
+                      copy.relatedPage
+                        .label
+                    }
+                  </Link>
+                  .
+                </>
+              ) : null}
+            </p>
+
+            <motion.div
+              aria-hidden="true"
+              className={
+                styles.transitionLine
+              }
+              initial={false}
+              animate={{
+                scaleX:
+                  isActive ? 1 : 0,
+              }}
+              transition={{
+                duration:
+                  reduceMotion
+                    ? 0
+                    : 0.8,
+                delay:
+                  reduceMotion
+                    ? 0
+                    : 0.12,
+                ease: [
+                  0.22,
+                  1,
+                  0.36,
+                  1,
+                ],
+              }}
+            />
+
+            <div
+              className={
+                styles.servicesHeader
+              }
+            >
+              <span>
+                Opções desta categoria
+              </span>
+
+              <span>
+                {String(
+                  category.services
+                    .length,
+                ).padStart(
+                  2,
+                  "0",
+                )}
+              </span>
+            </div>
+
+            <div
+              ref={(element) => {
+                viewportRefs.current[
+                  category.id
+                ] = element;
+              }}
+              className={
+                styles.servicesViewport
+              }
+            >
+              <motion.ol
+                className={
+                  styles.servicesList
+                }
+                initial={false}
+                animate={
+                  isActive
+                    ? "visible"
+                    : "hidden"
+                }
+                variants={{
+                  hidden: {},
+
+                  visible: {
+                    transition: {
+                      staggerChildren:
+                        reduceMotion
+                          ? 0
+                          : 0.045,
+
+                      delayChildren:
+                        reduceMotion
+                          ? 0
+                          : 0.14,
+                    },
+                  },
+                }}
+              >
+                {category.services.map(
+                  (
+                    service,
+                    index,
+                  ) => (
+                    <motion.li
+                      key={service}
+                      variants={{
+                        hidden: {
+                          opacity: 0,
+                          y: 12,
+                        },
+
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+
+                          transition: {
+                            duration:
+                              reduceMotion
+                                ? 0
+                                : 0.36,
+
+                            ease: [
+                              0.22,
+                              1,
+                              0.36,
+                              1,
+                            ],
+                          },
+                        },
+                      }}
+                    >
+                      <span>
+                        {String(
+                          index + 1,
+                        ).padStart(
+                          2,
+                          "0",
+                        )}
+                      </span>
+
+                      <strong>
+                        {service}
+                      </strong>
+                    </motion.li>
+                  ),
+                )}
+              </motion.ol>
+            </div>
+          </motion.article>
+        );
+      })}
     </div>
   );
 }

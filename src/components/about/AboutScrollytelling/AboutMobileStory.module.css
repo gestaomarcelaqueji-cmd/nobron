@@ -376,6 +376,13 @@
     margin-top: 1.45rem;
   }
 
+  .relatedPage {
+    margin: 16px 0 0;
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+  }
+
   /* =======================================================
      ESTUDOS
   ======================================================= */

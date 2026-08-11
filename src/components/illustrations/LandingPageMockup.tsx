@@ -20,7 +20,9 @@ export function LandingPageMockup({ profession, compact = false, className }: { 
       <div className="mock-page">
         <div className="mock-page__hero">
           <div className="mock-page__copy">
-            <h3>{profession.title}</h3>
+            <div className="mock-page__title">
+              {profession.title}
+            </div>
             <p>{profession.description}</p>
             <span className="mock-page__cta"><MessageCircle size={15} /> {profession.cta}</span>
           </div>

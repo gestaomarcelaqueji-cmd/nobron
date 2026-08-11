@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import {
   Building2,
   Check,
@@ -56,9 +58,16 @@ export function SeoExplanation() {
           </h2>
 
           <p>
-            É aí que entra o SEO. Organizamos sua página para deixar claro quem
-            você é, o que oferece e onde atende. Isso cria uma base mais
-            preparada para sua empresa aparecer nas buscas certas.
+            É aí que entra o{" "}
+            <Link
+              className="contextual-link"
+              href="/solucoes/seo"
+            >
+              SEO e Presença Digital
+            </Link>
+            . Organizamos sua página para deixar claro quem você é, o que
+            oferece e onde atende. Isso cria uma base mais preparada para sua
+            empresa aparecer nas buscas certas.
           </p>
         </div>
 
@@ -165,7 +174,9 @@ export function SeoExplanation() {
                   </div>
                 </div>
 
-                <h3>Serviço profissional em Telêmaco Borba | Sua empresa</h3>
+                <div className="google-result__title">
+                  Serviço profissional em Telêmaco Borba | Sua empresa
+                </div>
 
                 <p>
                   Conheça nossos serviços, veja como funciona o atendimento,

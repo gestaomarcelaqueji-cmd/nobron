@@ -452,7 +452,7 @@
   white-space: nowrap;
 }
 
-.google-result h3 {
+.google-result__title {
   margin: 11px 0 7px;
   color: #185abc;
   font-size: clamp(0.96rem, 1.6vw, 1.12rem);
