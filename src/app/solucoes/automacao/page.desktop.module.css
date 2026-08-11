@@ -1,0 +1,15 @@
+.page {
+  --automation-ink: #08090a;
+  --automation-muted: rgba(8, 9, 10, 0.64);
+  --automation-subtle: rgba(8, 9, 10, 0.38);
+  --automation-line: rgba(8, 9, 10, 0.11);
+  --automation-surface: #f4f4f1;
+  --automation-surface-strong: #e9e9e3;
+  --automation-blue: #275efe;
+  --automation-cyan: #15b8cf;
+  --automation-dark: #050505;
+
+  overflow: clip;
+  background: #ffffff;
+  color: var(--automation-ink);
+}

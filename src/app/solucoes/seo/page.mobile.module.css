@@ -1,0 +1,20 @@
+.page {
+  --seo-ink: #08090a;
+  --seo-muted:
+    rgba(8, 9, 10, 0.64);
+  --seo-subtle:
+    rgba(8, 9, 10, 0.38);
+  --seo-line:
+    rgba(8, 9, 10, 0.11);
+  --seo-surface: #f5f5f2;
+  --seo-surface-strong:
+    #ecece7;
+  --seo-blue: #275efe;
+  --seo-dark: #050505;
+
+  overflow-x: clip;
+  overflow-y: visible;
+
+  background: #ffffff;
+  color: var(--seo-ink);
+}

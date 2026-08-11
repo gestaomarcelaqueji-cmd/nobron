@@ -1,13 +1,42 @@
-import type { Metadata } from "next";
-
 import { BrandingPage } from "@/components/solutions/branding/BrandingPage/BrandingPage";
+import { StructuredData } from "@/components/seo/StructuredData";
 
-export const metadata: Metadata = {
-  title: "Branding e Design | noBRon",
+import { createPageMetadata } from "@/lib/seo";
+import { createBreadcrumbJsonLd } from "@/lib/structured-data";
+
+export const metadata = createPageMetadata({
+  title: "Branding e Design para Empresas | noBRon",
+
   description:
-    "Construímos identidades e materiais visuais capazes de representar e diferenciar a empresa.",
-};
+    "Branding, identidade visual, direção criativa e design para construir uma marca clara, reconhecível e coerente com o posicionamento da empresa.",
+
+  path: "/solucoes/branding-design",
+});
+
+const breadcrumbJsonLd = createBreadcrumbJsonLd([
+  {
+    name: "Início",
+    path: "/",
+  },
+  {
+    name: "Soluções",
+    path: "/solucoes",
+  },
+  {
+    name: "Branding e Design",
+    path: "/solucoes/branding-design",
+  },
+]);
 
 export default function BrandingRoute() {
-  return <BrandingPage />;
+  return (
+    <>
+      <StructuredData
+        id="nobron-branding-breadcrumb-jsonld"
+        data={breadcrumbJsonLd}
+      />
+
+      <BrandingPage />
+    </>
+  );
 }

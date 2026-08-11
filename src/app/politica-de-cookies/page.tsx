@@ -1,20 +1,31 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+
+import { StructuredData } from "@/components/seo/StructuredData";
+
+import { createPageMetadata } from "@/lib/seo";
+import { createBreadcrumbJsonLd } from "@/lib/structured-data";
 
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Política de Cookies | noBRon",
+
   description:
     "Saiba quais cookies e tecnologias de armazenamento são utilizados atualmente no site da noBRon.",
-  alternates: {
-    canonical: "/politica-de-cookies",
+
+  path: "/politica-de-cookies",
+});
+
+const breadcrumbJsonLd = createBreadcrumbJsonLd([
+  {
+    name: "Início",
+    path: "/",
   },
-  robots: {
-    index: true,
-    follow: true,
+  {
+    name: "Política de Cookies",
+    path: "/politica-de-cookies",
   },
-};
+]);
 
 const navigation = [
   ["01", "O que são cookies", "cookies"],
@@ -30,7 +41,13 @@ const navigation = [
 
 export default function CookiesPolicyPage() {
   return (
-    <main className={styles.page}>
+    <>
+      <StructuredData
+        id="nobron-cookies-policy-breadcrumb-jsonld"
+        data={breadcrumbJsonLd}
+      />
+
+      <main className={styles.page}>
       <div className={styles.container}>
         <header className={styles.hero}>
           <div className={styles.heroTop}>
@@ -519,7 +536,8 @@ export default function CookiesPolicyPage() {
           </article>
         </div>
       </div>
-    </main>
+      </main>
+    </>
   );
 }
 

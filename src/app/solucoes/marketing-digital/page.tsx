@@ -1,3 +1,5 @@
+import { StructuredData } from "@/components/seo/StructuredData";
+
 import { CampaignBeforeAd } from "@/components/solutions/marketing-digital/CampaignBeforeAd/CampaignBeforeAd";
 import { CampaignScenarios } from "@/components/solutions/marketing-digital/CampaignScenarios/CampaignScenarios";
 import { ChannelIntent } from "@/components/solutions/marketing-digital/ChannelIntent/ChannelIntent";
@@ -12,6 +14,9 @@ import { MeasurementPath } from "@/components/solutions/marketing-digital/Measur
 
 import { SectionRise } from "@/components/solutions/shared/SectionRise/SectionRise";
 
+import { createPageMetadata } from "@/lib/seo";
+import { createBreadcrumbJsonLd } from "@/lib/structured-data";
+
 import desktopStyles from "./page.desktop.module.css";
 import mobileStyles from "./page.mobile.module.css";
 
@@ -22,50 +27,81 @@ const styles = {
   ].join(" "),
 };
 
+export const metadata = createPageMetadata({
+  title: "Marketing Digital para Empresas | noBRon",
+
+  description:
+    "Estratégia de marketing digital, campanhas, conteúdo, canais, criativos e mensuração para conectar comunicação, público e objetivos de negócio.",
+
+  path: "/solucoes/marketing-digital",
+});
+
+const breadcrumbJsonLd = createBreadcrumbJsonLd([
+  {
+    name: "Início",
+    path: "/",
+  },
+  {
+    name: "Soluções",
+    path: "/solucoes",
+  },
+  {
+    name: "Marketing Digital",
+    path: "/solucoes/marketing-digital",
+  },
+]);
+
 export default function MarketingDigitalPage() {
   return (
-    <main className={styles.page}>
-      <MarketingDigitalHero />
+    <>
+      <StructuredData
+        id="nobron-marketing-digital-breadcrumb-jsonld"
+        data={breadcrumbJsonLd}
+      />
 
-      <SectionRise>
-        <MarketingDefinition />
-      </SectionRise>
+      <main className={styles.page}>
+        <MarketingDigitalHero />
 
-      <SectionRise>
-        <CampaignBeforeAd />
-      </SectionRise>
+        <SectionRise>
+          <MarketingDefinition />
+        </SectionRise>
 
-      <SectionRise>
-        <MarketingRoles />
-      </SectionRise>
+        <SectionRise>
+          <CampaignBeforeAd />
+        </SectionRise>
 
-      <SectionRise>
-        <ChannelIntent />
-      </SectionRise>
+        <SectionRise>
+          <MarketingRoles />
+        </SectionRise>
 
-      <SectionRise>
-        <MarketingServices />
-      </SectionRise>
+        <SectionRise>
+          <ChannelIntent />
+        </SectionRise>
 
-      <SectionRise>
-        <CreativeResponsibility />
-      </SectionRise>
+        <SectionRise>
+          <MarketingServices />
+        </SectionRise>
 
-      <SectionRise>
-        <MeasurementPath />
-      </SectionRise>
+        <SectionRise>
+          <CreativeResponsibility />
+        </SectionRise>
 
-      <SectionRise>
-        <CampaignScenarios />
-      </SectionRise>
+        <SectionRise>
+          <MeasurementPath />
+        </SectionRise>
 
-      <SectionRise>
-        <MarketingProcess />
-      </SectionRise>
+        <SectionRise>
+          <CampaignScenarios />
+        </SectionRise>
 
-      <SectionRise>
-        <MarketingDigitalFinalCta />
-      </SectionRise>
-    </main>
+        <SectionRise>
+          <MarketingProcess />
+        </SectionRise>
+
+        <SectionRise>
+          <MarketingDigitalFinalCta />
+        </SectionRise>
+      </main>
+    </>
   );
 }

@@ -1,20 +1,31 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+
+import { StructuredData } from "@/components/seo/StructuredData";
+
+import { createPageMetadata } from "@/lib/seo";
+import { createBreadcrumbJsonLd } from "@/lib/structured-data";
 
 import styles from "./page.module.css";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Política de Privacidade | noBRon",
+
   description:
     "Entenda como a noBRon coleta, utiliza, protege e trata dados pessoais em seu site, formulários e atendimentos.",
-  alternates: {
-    canonical: "/politica-de-privacidade",
+
+  path: "/politica-de-privacidade",
+});
+
+const breadcrumbJsonLd = createBreadcrumbJsonLd([
+  {
+    name: "Início",
+    path: "/",
   },
-  robots: {
-    index: true,
-    follow: true,
+  {
+    name: "Política de Privacidade",
+    path: "/politica-de-privacidade",
   },
-};
+]);
 
 const navigation = [
   ["01", "Quem é responsável", "responsavel"],
@@ -34,7 +45,13 @@ const navigation = [
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className={styles.page}>
+    <>
+      <StructuredData
+        id="nobron-privacy-policy-breadcrumb-jsonld"
+        data={breadcrumbJsonLd}
+      />
+
+      <main className={styles.page}>
       <div className={styles.container}>
         <header className={styles.hero}>
           <div className={styles.heroTop}>
@@ -744,7 +761,8 @@ export default function PrivacyPolicyPage() {
           </article>
         </div>
       </div>
-    </main>
+      </main>
+    </>
   );
 }
 

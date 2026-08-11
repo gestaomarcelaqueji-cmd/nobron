@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { StructuredData } from "@/components/seo/StructuredData";
 
 import { BenefitsMarquee } from "@/components/sections/BenefitsMarquee";
 import { CreationProcess } from "@/components/sections/CreationProcess";
@@ -14,15 +14,37 @@ import { SeoExplanation } from "@/components/sections/SeoExplanation";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { WhatsAppJourney } from "@/components/sections/WhatsAppJourney";
 
-export const metadata: Metadata = {
-  title: "noBRon | Landing Pages estratégicas",
+import { createPageMetadata } from "@/lib/seo";
+import { createBreadcrumbJsonLd } from "@/lib/structured-data";
+
+export const metadata = createPageMetadata({
+  title: "Criação de Landing Pages para Empresas | noBRon",
+
   description:
-    "Landing Pages personalizadas para apresentar serviços, transmitir confiança e transformar visitas em contatos pelo WhatsApp.",
-};
+    "Landing Pages personalizadas para apresentar serviços, transmitir confiança, organizar informações e transformar visitas em contatos pelo WhatsApp.",
+
+  path: "/landing-page",
+});
+
+const breadcrumbJsonLd = createBreadcrumbJsonLd([
+  {
+    name: "Início",
+    path: "/",
+  },
+  {
+    name: "Landing Page",
+    path: "/landing-page",
+  },
+]);
 
 export default function LandingPage() {
   return (
     <>
+      <StructuredData
+        id="nobron-landing-page-breadcrumb-jsonld"
+        data={breadcrumbJsonLd}
+      />
+
       <main>
         {/* 3. Problema real: perda de tempo */}
         <ProfessionShowcase />
