@@ -13,6 +13,7 @@ import { PublicFooter } from "@/components/layout/PublicFooter";
 import {
   DEFAULT_DESCRIPTION,
   DEFAULT_TITLE,
+  SITE_LANGUAGE,
   SITE_LOCALE,
   SITE_NAME,
   SITE_URL,
@@ -38,6 +39,7 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
 
   creator: SITE_NAME,
+
   publisher: SITE_NAME,
 
   icons: {
@@ -86,7 +88,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="pt-BR"
+      lang={SITE_LANGUAGE}
       className={`${inter.variable} ${manrope.variable}`}
     >
       <body>

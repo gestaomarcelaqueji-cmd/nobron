@@ -1,17 +1,31 @@
-import type { Metadata } from "next";
-
 import { HeroImmersive } from "@/components/HeroImmersive";
+import { StructuredData } from "@/components/seo/StructuredData";
 
-export const metadata: Metadata = {
-  title: "noBRon | Tecnologia e soluções digitais",
+import { createPageMetadata } from "@/lib/seo";
+import { createHomeJsonLd } from "@/lib/structured-data";
+
+export const metadata = createPageMetadata({
+  title: "noBRon | Estratégia, Design, Sites, SEO e Automação",
+
   description:
-    "Tecnologia, design, marketing e desenvolvimento conectados para criar soluções digitais ágeis, personalizadas e prontas para funcionar.",
-};
+    "Estratégia, branding, sites, sistemas, SEO, marketing digital e automação para empresas que querem fortalecer sua presença, organizar processos e crescer com estrutura.",
+
+  path: "/",
+});
+
+const homeJsonLd = createHomeJsonLd();
 
 export default function Home() {
   return (
-    <main>
-      <HeroImmersive />
-    </main>
+    <>
+      <StructuredData
+        id="nobron-home-jsonld"
+        data={homeJsonLd}
+      />
+
+      <main>
+        <HeroImmersive />
+      </main>
+    </>
   );
 }
