@@ -14,6 +14,16 @@ export const DEFAULT_TITLE =
 export const DEFAULT_DESCRIPTION =
   "Estratégia, branding, sites, sistemas, SEO, marketing digital e automação para empresas que querem fortalecer sua presença, organizar processos e crescer com estrutura.";
 
+export const DEFAULT_SOCIAL_IMAGE =
+  "/brand/og/og-global.png";
+
+export const DEFAULT_SOCIAL_IMAGE_ALT =
+  "noBRon — Tecnologia e soluções digitais";
+
+export const SOCIAL_IMAGE_WIDTH = 1200;
+
+export const SOCIAL_IMAGE_HEIGHT = 630;
+
 export type SitePath = "/" | `/${string}`;
 
 type PageMetadataOptions = {
@@ -29,6 +39,14 @@ export function absoluteUrl(path: SitePath = "/"): string {
   return new URL(path, `${SITE_URL}/`).toString();
 }
 
+function absoluteAssetUrl(path: string): string {
+  if (/^https?:\/\//i.test(path)) {
+    return path;
+  }
+
+  return new URL(path, `${SITE_URL}/`).toString();
+}
+
 export function createPageMetadata({
   title,
   description,
@@ -37,16 +55,12 @@ export function createPageMetadata({
   imageAlt,
   noIndex = false,
 }: PageMetadataOptions): Metadata {
-  const openGraphImages = image
-    ? [
-        {
-          url: image,
-          alt: imageAlt ?? title,
-        },
-      ]
-    : undefined;
+  const socialImage = absoluteAssetUrl(
+    image ?? DEFAULT_SOCIAL_IMAGE,
+  );
 
-  const twitterImages = image ? [image] : undefined;
+  const socialImageAlt =
+    imageAlt ?? DEFAULT_SOCIAL_IMAGE_ALT;
 
   return {
     title,
@@ -54,34 +68,32 @@ export function createPageMetadata({
     description,
 
     alternates: {
-      canonical: path,
+      canonical: absoluteUrl(path),
     },
 
     openGraph: {
       type: "website",
       locale: SITE_LOCALE,
       siteName: SITE_NAME,
-      url: path,
+      url: absoluteUrl(path),
       title,
       description,
 
-      ...(openGraphImages
-        ? {
-            images: openGraphImages,
-          }
-        : {}),
+      images: [
+        {
+          url: socialImage,
+          width: SOCIAL_IMAGE_WIDTH,
+          height: SOCIAL_IMAGE_HEIGHT,
+          alt: socialImageAlt,
+        },
+      ],
     },
 
     twitter: {
-      card: image ? "summary_large_image" : "summary",
+      card: "summary_large_image",
       title,
       description,
-
-      ...(twitterImages
-        ? {
-            images: twitterImages,
-          }
-        : {}),
+      images: [socialImage],
     },
 
     ...(noIndex

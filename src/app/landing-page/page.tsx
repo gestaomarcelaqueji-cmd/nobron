@@ -24,6 +24,11 @@ export const metadata = createPageMetadata({
     "Landing Pages personalizadas para apresentar serviços, transmitir confiança, organizar informações e transformar visitas em contatos pelo WhatsApp.",
 
   path: "/landing-page",
+
+  image: "/brand/og/og-landing-page.png",
+
+  imageAlt:
+    "noBRon — Landing Pages feitas para transformar visitas em oportunidades",
 });
 
 const breadcrumbJsonLd = createBreadcrumbJsonLd([

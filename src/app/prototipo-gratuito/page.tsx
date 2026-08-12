@@ -11,6 +11,11 @@ export const metadata = createPageMetadata({
     "Solicite gratuitamente uma proposta visual de Landing Page pensada para o seu negócio e veja como sua presença digital pode ser estruturada antes de contratar.",
 
   path: "/prototipo-gratuito",
+
+  image: "/brand/og/og-prototipo-gratuito.png",
+
+  imageAlt:
+    "noBRon — Protótipo gratuito de Landing Page",
 });
 
 const breadcrumbJsonLd = createBreadcrumbJsonLd([
