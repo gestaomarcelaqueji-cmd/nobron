@@ -140,6 +140,7 @@ export const aboutPageData = {
       paragraphs: [
         "Estratégia organiza a direção. Design transforma essa direção em percepção. Sites e sistemas criam estrutura. SEO facilita a descoberta. Marketing movimenta a mensagem. Automação ajuda o trabalho a continuar.",
         "Cada área participa quando existe um motivo real para ela estar ali.",
+        "A noBRon é desenvolvida a partir de Telêmaco Borba, Paraná, com atendimento e projetos realizados de forma digital. A cidade é a base da operação, sem limitar onde o trabalho pode acontecer.",
       ],
       relatedPage: {
         prefix:

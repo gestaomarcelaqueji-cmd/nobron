@@ -8,11 +8,20 @@ export const SITE_LOCALE = "pt_BR";
 
 export const SITE_LANGUAGE = "pt-BR";
 
+export const BRAND_SLOGAN =
+  "Feito no Brasil. Online no mundo.";
+
+export const LOCAL_CITY = "Telêmaco Borba";
+
+export const LOCAL_STATE = "Paraná";
+
+export const LOCAL_COUNTRY = "Brasil";
+
 export const DEFAULT_TITLE =
-  "noBRon | Estratégia, Design, Sites, SEO e Automação";
+  "noBRon | Sites, SEO e Marketing Digital em Telêmaco Borba";
 
 export const DEFAULT_DESCRIPTION =
-  "Estratégia, branding, sites, sistemas, SEO, marketing digital e automação para empresas que querem fortalecer sua presença, organizar processos e crescer com estrutura.";
+  "Landing pages, sites institucionais, SEO e marketing digital para profissionais e empresas. noBRon, desenvolvida a partir de Telêmaco Borba, Paraná.";
 
 export const DEFAULT_SOCIAL_IMAGE =
   "/brand/og/og-global.png";

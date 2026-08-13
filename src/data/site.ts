@@ -21,4 +21,5 @@ export const whatsappMessages = {
   seo: "Olá! Quero melhorar a presença do meu serviço nas pesquisas do Google.",
   hire: "Olá! Quero contratar minha Landing Page por R$ 200 por mês.",
   evaluate: "Olá! Gostaria que a noBRon avaliasse se uma Landing Page é adequada para o meu serviço.",
+  beautyCase: "Olá! Vi o projeto demonstrativo para profissionais de beleza e quero uma versão personalizada para o meu negócio.",
 } as const;

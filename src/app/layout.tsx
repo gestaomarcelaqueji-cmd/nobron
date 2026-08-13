@@ -12,11 +12,15 @@ import { PublicFooter } from "@/components/layout/PublicFooter";
 
 import {
   DEFAULT_DESCRIPTION,
+  DEFAULT_SOCIAL_IMAGE,
+  DEFAULT_SOCIAL_IMAGE_ALT,
   DEFAULT_TITLE,
   SITE_LANGUAGE,
   SITE_LOCALE,
   SITE_NAME,
   SITE_URL,
+  SOCIAL_IMAGE_HEIGHT,
+  SOCIAL_IMAGE_WIDTH,
 } from "@/lib/seo";
 
 const inter = Inter({
@@ -28,6 +32,11 @@ const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-display",
 });
+
+const defaultSocialImageUrl = new URL(
+  DEFAULT_SOCIAL_IMAGE,
+  `${SITE_URL}/`,
+).toString();
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -50,14 +59,31 @@ export const metadata: Metadata = {
     type: "website",
     locale: SITE_LOCALE,
     siteName: SITE_NAME,
+    url: SITE_URL,
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
+
+    images: [
+      {
+        url: defaultSocialImageUrl,
+        width: SOCIAL_IMAGE_WIDTH,
+        height: SOCIAL_IMAGE_HEIGHT,
+        alt: DEFAULT_SOCIAL_IMAGE_ALT,
+      },
+    ],
   },
 
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
+
+    images: [
+      {
+        url: defaultSocialImageUrl,
+        alt: DEFAULT_SOCIAL_IMAGE_ALT,
+      },
+    ],
   },
 
   robots: {

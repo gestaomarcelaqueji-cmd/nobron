@@ -43,6 +43,12 @@ const menuItems: MenuItem[] = [
     href: "/landing-page",
   },
   {
+    label: "Case: Beleza",
+    description:
+      "Veja uma demonstração de presença digital criada para profissionais de beleza.",
+    href: "/cases/presenca-local-beleza",
+  },
+  {
     label: "Contato",
     description:
       "Conte o momento da sua empresa e escolha a melhor forma de iniciar a conversa.",
@@ -62,7 +68,9 @@ export function FloatingHeader() {
   const isHiddenRoute =
     pathname === "/sobre" ||
     pathname === "/admin" ||
-    pathname.startsWith("/admin/");
+    pathname.startsWith("/admin/") ||
+    pathname === "/cases" ||
+    pathname.startsWith("/cases/");
 
   const [isOpen, setIsOpen] =
     useState(false);

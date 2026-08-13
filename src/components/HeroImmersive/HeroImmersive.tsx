@@ -150,6 +150,7 @@ export function HeroImmersive() {
       aria-label="Apresentação da noBRon"
     >
       <h1 className={styles.visuallyHidden}>
+        noBRon — soluções digitais a partir de Telêmaco Borba, Paraná.
         Feito no Brasil. Online no mundo.
       </h1>
 
@@ -261,6 +262,40 @@ export function HeroImmersive() {
                     Online no mundo.
                   </motion.span>
                 </div>
+
+                <motion.p
+                  className={styles.originLine}
+                  initial={
+                    prefersReducedMotion
+                      ? false
+                      : { y: 10, opacity: 0 }
+                  }
+                  animate={
+                    prefersReducedMotion
+                      ? undefined
+                      : { y: 0, opacity: 1 }
+                  }
+                  exit={
+                    prefersReducedMotion
+                      ? undefined
+                      : {
+                          y: -6,
+                          opacity: 0,
+                          transition: {
+                            duration: 0.55,
+                            ease: [0.4, 0, 0.2, 1],
+                          },
+                        }
+                  }
+                  transition={{
+                    duration: 0.75,
+                    delay: 0.55,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  <span aria-hidden="true" />
+                  Telêmaco Borba · Paraná · Brasil
+                </motion.p>
               </div>
             </motion.div>
           )}

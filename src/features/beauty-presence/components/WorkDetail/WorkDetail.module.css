@@ -1,0 +1,137 @@
+.backdrop {
+  position: fixed;
+  z-index: 125;
+  inset: 0;
+  display: grid;
+  place-items: stretch;
+  background: rgba(14, 12, 10, 0.86);
+  backdrop-filter: blur(10px);
+}
+
+.detail {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100svh;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: max(10px, env(safe-area-inset-top)) 10px calc(16px + env(safe-area-inset-bottom));
+  flex-direction: column;
+  overflow: auto;
+  background: #171311;
+  color: #fff9f4;
+}
+
+.topActions {
+  position: absolute;
+  z-index: 5;
+  top: max(16px, env(safe-area-inset-top));
+  right: 18px;
+  left: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.topActions button {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px;
+  background: rgba(20,17,15,.58);
+  color: #fff9f4;
+  backdrop-filter: blur(14px);
+  pointer-events: auto;
+}
+
+.topActions button svg { width: 18px; }
+.topActions span { padding: 8px 10px; border-radius: 10px; background: rgba(20,17,15,.5); color: rgba(255,249,244,.68); font-size: .56rem; font-weight: 760; letter-spacing: .08em; backdrop-filter: blur(14px); }
+
+.mediaShell {
+  position: relative;
+  width: 100%;
+  min-height: 62svh;
+  flex: 0 0 62svh;
+  overflow: hidden;
+  border-radius: 30px 30px 76px 30px;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.mediaShell:active { cursor: grabbing; }
+.media { width: 100%; height: 100%; min-height: 100%; }
+.media::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(8,6,5,.12), transparent 32%, rgba(8,6,5,.36)); }
+
+.copy {
+  padding: 24px 8px 10px;
+}
+
+.category { color: #d7a89f; font-size: .56rem; font-weight: 780; text-transform: uppercase; letter-spacing: .14em; }
+.copy h2 {
+  margin: 8px 0 0;
+  font-family: var(--font-display, "Bodoni Moda"), Didot, Georgia, serif;
+  font-size: clamp(2.2rem, 11vw, 3.6rem);
+  font-weight: 500;
+  line-height: .92;
+  letter-spacing: -.045em;
+}
+.copy p { margin: 11px 0 0; color: rgba(255,249,244,.56); font-size: .74rem; line-height: 1.55; }
+
+.book {
+  display: flex;
+  width: 100%;
+  min-height: 54px;
+  margin-top: 18px;
+  padding: 0 15px;
+  gap: 9px;
+  align-items: center;
+  border: 0;
+  border-radius: 18px 18px 8px 18px;
+  background: var(--beauty-accent);
+  color: #fff9f4;
+  font: inherit;
+  font-size: .69rem;
+  font-weight: 780;
+}
+.book svg { width: 17px; }
+.book svg:last-child { margin-left: auto; }
+
+.navigation {
+  display: flex;
+  padding: 4px 8px 4px;
+  gap: 8px;
+}
+.navigation button {
+  display: flex;
+  min-height: 44px;
+  flex: 1;
+  padding: 0 12px;
+  gap: 7px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 14px;
+  background: rgba(255,255,255,.04);
+  color: rgba(255,249,244,.72);
+  font: inherit;
+  font-size: .61rem;
+}
+.navigation button svg { width: 15px; }
+.navigation button:disabled { opacity: .28; }
+
+@media (min-width: 761px) {
+  .detail {
+    max-width: 1180px;
+    padding: 18px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(320px, .65fr);
+    grid-template-rows: 1fr auto;
+    gap: 22px;
+  }
+  .mediaShell { min-height: calc(100svh - 36px); height: calc(100svh - 36px); grid-row: 1 / span 2; border-radius: 36px 36px 110px 36px; }
+  .copy { align-self: end; padding: 80px 22px 0 0; }
+  .navigation { grid-column: 2; padding: 0 22px 18px 0; }
+}

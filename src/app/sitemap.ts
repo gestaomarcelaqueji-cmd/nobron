@@ -14,6 +14,7 @@ const publicRoutes = [
   "/solucoes/automacao",
   "/landing-page",
   "/prototipo-gratuito",
+  "/cases/presenca-local-beleza",
   "/contato",
   "/politica-de-privacidade",
   "/politica-de-cookies",

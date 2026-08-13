@@ -56,7 +56,12 @@ export function MobileBottomNav() {
   const pathname = usePathname();
   const [isMoreOpen, setIsMoreOpen] = useState(false);
 
-  if (pathname === "/admin" || pathname.startsWith("/admin/")) {
+  if (
+    pathname === "/admin" ||
+    pathname.startsWith("/admin/") ||
+    pathname === "/cases" ||
+    pathname.startsWith("/cases/")
+  ) {
     return null;
   }
 
@@ -141,6 +146,15 @@ export function MobileBottomNav() {
           </Link>
 
           <Link
+            href="/cases/presenca-local-beleza"
+            tabIndex={isMoreOpen ? 0 : -1}
+            onClick={() => setIsMoreOpen(false)}
+          >
+            <span>Case: Beleza</span>
+            <small>Veja uma demonstração de presença digital para profissionais de beleza.</small>
+          </Link>
+
+          <Link
             href="/politica-de-privacidade"
             tabIndex={isMoreOpen ? 0 : -1}
             onClick={() => setIsMoreOpen(false)}
@@ -162,6 +176,7 @@ export function MobileBottomNav() {
 
       <nav
         className={styles.nav}
+        data-mobile-bottom-nav
         data-home={isHome ? "true" : "false"}
         data-tone={usesDarkBackground ? "dark" : "light"}
         aria-label="Navegação principal mobile"

@@ -15,7 +15,7 @@ export const metadata = createPageMetadata({
   title: "Contato | noBRon",
 
   description:
-    "Conte o momento da sua empresa e fale com a noBRon sobre estratégia, branding, sites, sistemas, SEO, marketing digital, automação ou Landing Pages.",
+    "Fale com a noBRon, que atua a partir de Telêmaco Borba, Paraná, sobre Landing Pages, sites, SEO, marketing digital, estratégia, design, sistemas e automação.",
 
   path: "/contato",
 });

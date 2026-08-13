@@ -375,7 +375,7 @@ export const contactPageData = {
     eyebrow: "Contato direto",
     title: "Prefere conversar sem preencher?",
     description:
-      "Você também pode iniciar uma conversa direta. Não é necessário preparar briefing antes.",
+      "A noBRon atua a partir de Telêmaco Borba, Paraná, com atendimento digital para profissionais e empresas. Você também pode iniciar uma conversa direta, sem precisar preparar um briefing antes.",
     whatsappLabel: "Conversar pelo WhatsApp",
     emailLabel: "Enviar um e-mail",
 

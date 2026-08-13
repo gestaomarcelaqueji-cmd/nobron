@@ -1,0 +1,210 @@
+.section {
+  position: relative;
+  display: flex;
+  min-height: 100svh;
+  padding:
+    max(96px, calc(72px + env(safe-area-inset-top)))
+    18px
+    max(34px, calc(24px + env(safe-area-inset-bottom)));
+  overflow: hidden;
+  background: #090909;
+  color: #ffffff;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  top: -126px;
+  left: 50%;
+  width: 165%;
+  height: 190px;
+  transform: translateX(-50%);
+  border-radius: 0 0 50% 50%;
+  background: color-mix(
+    in srgb,
+    var(--beauty-secondary) 58%,
+    var(--beauty-bg)
+  );
+}
+
+.shell {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: min(100%, 620px);
+  min-height: calc(
+    100svh -
+    max(96px, calc(72px + env(safe-area-inset-top))) -
+    max(34px, calc(24px + env(safe-area-inset-bottom)))
+  );
+  margin: 0 auto;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.content {
+  width: 100%;
+  padding: 20px 0 0;
+}
+
+.kicker {
+  display: block;
+  margin-bottom: 22px;
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 0.64rem;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.content h2 {
+  max-width: 8.5ch;
+  margin: 0;
+  font-family:
+    var(--font-display, "Bodoni Moda"),
+    Didot,
+    Georgia,
+    serif;
+  font-size: clamp(3.75rem, 17vw, 5.6rem);
+  font-weight: 500;
+  line-height: 0.86;
+  letter-spacing: -0.065em;
+  text-wrap: balance;
+}
+
+.content > p {
+  max-width: 31ch;
+  margin: 28px 0 0;
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 0.88rem;
+  font-weight: 450;
+  line-height: 1.65;
+}
+
+.brandLine {
+  display: flex;
+  margin-top: 54px;
+  padding-top: 22px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.brandLine strong {
+  color: #ffffff;
+  font-size: 1.08rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.brandLine span {
+  max-width: 150px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.59rem;
+  line-height: 1.4;
+  text-align: right;
+}
+
+.content > a {
+  display: flex;
+  width: 100%;
+  min-height: 64px;
+  margin-top: 24px;
+  padding: 0 20px;
+  gap: 14px;
+  align-items: center;
+  border-radius: 22px 22px 9px 22px;
+  background: #ffffff;
+  color: #090909;
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 220ms ease;
+}
+
+.content > a svg {
+  width: 19px;
+  height: 19px;
+  margin-left: auto;
+  stroke-width: 1.8;
+}
+
+.content > a:active {
+  transform: scale(0.985);
+}
+
+.content > a:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+
+@media (min-width: 430px) and (max-width: 760px) {
+  .section {
+    padding-inline: 24px;
+  }
+
+  .content h2 {
+    max-width: 9ch;
+    font-size: clamp(4.4rem, 16vw, 5.8rem);
+  }
+
+  .content > p {
+    max-width: 34ch;
+    font-size: 0.92rem;
+  }
+}
+
+@media (min-width: 761px) {
+  .section {
+    min-height: 100svh;
+    padding: 120px 24px 80px;
+  }
+
+  .shell {
+    width: min(1120px, 100%);
+    min-height: calc(100svh - 200px);
+    justify-content: center;
+  }
+
+  .content {
+    width: min(720px, 100%);
+  }
+
+  .kicker {
+    margin-bottom: 26px;
+    font-size: 0.68rem;
+  }
+
+  .content h2 {
+    max-width: 9ch;
+    font-size: clamp(5rem, 8vw, 7.4rem);
+  }
+
+  .content > p {
+    max-width: 42ch;
+    margin-top: 32px;
+    font-size: 1rem;
+  }
+
+  .brandLine {
+    margin-top: 64px;
+  }
+
+  .content > a {
+    width: fit-content;
+    min-width: 320px;
+    min-height: 66px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content > a {
+    transition: none;
+  }
+}

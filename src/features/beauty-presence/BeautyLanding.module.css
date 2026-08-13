@@ -1,0 +1,54 @@
+.page {
+  min-height: 100vh;
+  overflow-x: clip;
+  background: var(--beauty-bg);
+  color: var(--beauty-ink);
+  font-family: Manrope, Inter, Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.page button,
+.page a,
+.page summary,
+.page select,
+.page input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page button,
+.page a {
+  touch-action: manipulation;
+}
+
+.page :focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--beauty-accent) 82%, white);
+  outline-offset: 3px;
+}
+
+.page section {
+  scroll-margin-top: 72px;
+}
+
+@media (max-width: 760px) {
+  .page {
+    padding-bottom: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page *,
+  .page *::before,
+  .page *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

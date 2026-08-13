@@ -19,7 +19,7 @@ export const metadata = createPageMetadata({
   title: "Sobre a noBRon | Estratégia, Criação e Tecnologia",
 
   description:
-    "Conheça a noBRon, sua trajetória, visão e a presença humana por trás dos projetos de estratégia, design, marketing, sites, sistemas e tecnologia.",
+    "Conheça a noBRon, desenvolvida a partir de Telêmaco Borba, Paraná, e a trajetória que conecta estratégia, design, marketing, sites, sistemas e tecnologia.",
 
   path: "/sobre",
 });

@@ -41,7 +41,7 @@
       );
   }
 
-  body {
+  body:has([data-mobile-bottom-nav]) {
     padding-bottom:
       var(--mobile-bottom-nav-space);
   }

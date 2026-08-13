@@ -1,0 +1,61 @@
+.frame {
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
+  background: color-mix(in srgb, var(--beauty-secondary) 76%, #efe7de);
+}
+
+.frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  padding: 16px;
+  place-items: end start;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 78% 18%, color-mix(in srgb, var(--beauty-accent) 21%, transparent), transparent 34%),
+    radial-gradient(circle at 22% 78%, rgba(255, 255, 255, 0.54), transparent 28%),
+    linear-gradient(145deg, color-mix(in srgb, var(--beauty-secondary) 64%, white), var(--beauty-secondary));
+  color: color-mix(in srgb, var(--beauty-ink) 62%, transparent);
+}
+
+.placeholder::before,
+.placeholder::after {
+  content: "";
+  position: absolute;
+  border: 1px solid color-mix(in srgb, var(--beauty-ink) 10%, transparent);
+  pointer-events: none;
+}
+
+.placeholder::before {
+  width: 52%;
+  aspect-ratio: 0.72;
+  top: 10%;
+  right: 8%;
+  border-radius: 48% 34% 45% 38%;
+  transform: rotate(12deg);
+}
+
+.placeholder::after {
+  width: 42%;
+  aspect-ratio: 1;
+  left: -12%;
+  bottom: -14%;
+  border-radius: 50%;
+}
+
+.placeholder span {
+  position: relative;
+  z-index: 1;
+  font-size: 0.56rem;
+  font-weight: 780;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+}

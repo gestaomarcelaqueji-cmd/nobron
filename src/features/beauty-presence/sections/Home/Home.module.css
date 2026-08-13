@@ -1,0 +1,312 @@
+.home {
+  position: relative;
+  padding: 80px 14px 96px;
+  overflow: clip;
+  background: var(--beauty-bg);
+  color: var(--beauty-ink);
+}
+
+.heroShell,
+.preview {
+  width: min(100%, 620px);
+  margin: 0 auto;
+}
+
+.heroShell {
+  position: relative;
+}
+
+.heroMediaShell {
+  position: relative;
+  height: clamp(560px, 73svh, 690px);
+  overflow: hidden;
+  border-radius: 30px 30px 108px 30px;
+  background: var(--beauty-secondary);
+  transform-origin: 50% 25%;
+}
+
+.heroMedia {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+.heroShade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(16, 12, 10, 0.08) 0%, transparent 38%),
+    linear-gradient(0deg, rgba(16, 12, 10, 0.58) 0%, transparent 54%);
+}
+
+.heroName {
+  position: absolute;
+  right: 18px;
+  bottom: 118px;
+  left: 18px;
+  z-index: 3;
+  color: #fff9f4;
+}
+
+.heroName h1 {
+  display: flex;
+  margin: 0;
+  flex-direction: column;
+  font-family: var(--font-display, "Bodoni Moda"), Didot, Georgia, serif;
+  font-size: clamp(3.5rem, 18vw, 5.2rem);
+  font-weight: 500;
+  line-height: 0.72;
+  letter-spacing: -0.07em;
+  text-transform: uppercase;
+}
+
+.heroName h1 span:last-child {
+  margin-left: 0.7ch;
+  font-style: italic;
+}
+
+.signaturePanel {
+  position: relative;
+  z-index: 4;
+  width: calc(100% - 18px);
+  min-height: 236px;
+  margin: -68px 0 0 auto;
+  padding: 26px 24px 22px;
+  border-radius: 30px 30px 14px 30px;
+  background: #1a1614;
+  color: #fff9f4;
+  box-shadow: 0 22px 52px rgba(35, 24, 20, 0.18);
+}
+
+.panelKicker {
+  color: rgba(255, 249, 244, 0.46);
+  font-size: 0.51rem;
+  font-weight: 780;
+  letter-spacing: 0.13em;
+}
+
+.signaturePanel h2 {
+  max-width: 9ch;
+  margin: 12px 0 0;
+  font-family: var(--font-display, "Bodoni Moda"), Didot, Georgia, serif;
+  font-size: clamp(2.45rem, 12vw, 3.5rem);
+  font-weight: 500;
+  line-height: 0.88;
+  letter-spacing: -0.055em;
+}
+
+.signaturePanel > p {
+  max-width: 39ch;
+  margin: 16px 0 0;
+  color: rgba(255, 249, 244, 0.56);
+  font-size: 0.72rem;
+  line-height: 1.62;
+}
+
+.panelFooter {
+  display: flex;
+  margin-top: 22px;
+  padding-right: 58px;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panelFooter a,
+.panelFooter span {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  font-size: 0.58rem;
+  text-decoration: none;
+}
+
+.panelFooter a {
+  color: #fff9f4;
+  font-weight: 760;
+}
+
+.panelFooter span {
+  color: rgba(255, 249, 244, 0.46);
+}
+
+.panelFooter svg { width: 14px; }
+
+.actionPocket {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 72px;
+  height: 72px;
+  border-top-left-radius: 42px;
+  background: var(--beauty-bg);
+  pointer-events: none;
+}
+
+.actionPocket::before,
+.actionPocket::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: transparent;
+}
+
+.actionPocket::before {
+  top: -22px;
+  right: 0;
+  border-bottom-right-radius: 22px;
+  box-shadow: 7px 7px 0 7px var(--beauty-bg);
+}
+
+.actionPocket::after {
+  bottom: 0;
+  left: -22px;
+  border-bottom-right-radius: 22px;
+  box-shadow: 7px 7px 0 7px var(--beauty-bg);
+}
+
+.bookOrb {
+  position: absolute;
+  z-index: 5;
+  right: 7px;
+  bottom: 7px;
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border: 0;
+  border-radius: 19px 19px 7px 19px;
+  background: var(--beauty-accent);
+  color: #fff9f4;
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--beauty-accent) 24%, transparent);
+  cursor: pointer;
+}
+
+.bookOrb svg { width: 20px; stroke-width: 1.7; }
+.bookOrb:active { transform: scale(0.94); }
+
+.preview {
+  padding-top: 82px;
+}
+
+.previewHeader {
+  display: flex;
+  padding: 0 4px;
+  gap: 16px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.previewHeader > div > span {
+  color: var(--beauty-accent);
+  font-size: 0.54rem;
+  font-weight: 820;
+  letter-spacing: 0.14em;
+}
+
+.previewHeader h2 {
+  margin: 8px 0 0;
+  font-family: var(--font-display, "Bodoni Moda"), Didot, Georgia, serif;
+  font-size: clamp(2.1rem, 10vw, 3rem);
+  font-weight: 500;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+}
+
+.previewHeader > a {
+  margin-bottom: 4px;
+  color: rgba(17, 17, 17, 0.58);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.previewComposition {
+  position: relative;
+  height: 600px;
+  margin-top: 26px;
+}
+
+.previewWork {
+  position: absolute;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.previewMedia { width: 100%; height: 100%; min-height: 100%; }
+
+.previewWork1 {
+  top: 0;
+  left: 0;
+  width: 78%;
+  height: 330px;
+  border-radius: 28px 28px 74px 28px;
+}
+
+.previewWork2 {
+  top: 250px;
+  right: 0;
+  width: 57%;
+  height: 250px;
+  border-radius: 66px 24px 24px 24px;
+}
+
+.previewWork3 {
+  left: 4%;
+  bottom: 0;
+  width: 50%;
+  height: 210px;
+  border-radius: 22px 58px 22px 22px;
+}
+
+.previewLabel {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: 7px 8px;
+  border-radius: 9px;
+  background: rgba(22, 18, 16, 0.62);
+  color: rgba(255, 249, 244, 0.84);
+  font-size: 0.5rem;
+  font-weight: 680;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(10px);
+}
+
+.previewCta {
+  display: flex;
+  min-height: 48px;
+  margin-top: 10px;
+  padding: 0 2px 0 4px;
+  gap: 8px;
+  align-items: center;
+  border-bottom: 1px solid color-mix(in srgb, var(--beauty-ink) 12%, transparent);
+  color: var(--beauty-ink);
+  font-size: 0.65rem;
+  font-weight: 720;
+  text-decoration: none;
+}
+
+.previewCta svg { width: 16px; margin-left: auto; }
+
+@media (min-width: 761px) {
+  .home { padding: 100px 24px 128px; }
+  .heroShell, .preview { width: min(1120px, 100%); }
+  .heroMediaShell { height: min(760px, 78svh); border-radius: 38px 38px 130px 38px; }
+  .heroName { right: 48px; bottom: 120px; left: 48px; }
+  .heroName h1 { font-size: clamp(5rem, 10vw, 9rem); }
+  .signaturePanel { width: min(520px, 46%); min-height: 280px; margin: -120px 34px 0 auto; padding: 34px; }
+  .preview { padding-top: 120px; }
+  .previewComposition { height: 760px; }
+  .previewWork1 { width: 61%; height: 520px; }
+  .previewWork2 { top: 180px; width: 38%; height: 410px; }
+  .previewWork3 { left: 16%; width: 34%; height: 280px; }
+}

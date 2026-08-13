@@ -1,0 +1,133 @@
+.topBar {
+  position: fixed;
+  z-index: 90;
+  top: max(10px, env(safe-area-inset-top));
+  right: max(14px, env(safe-area-inset-right));
+  left: max(14px, env(safe-area-inset-left));
+  display: flex;
+  width: auto;
+  max-width: 520px;
+  min-height: 56px;
+  margin-inline: auto;
+  padding: 7px 8px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 20px;
+  background: rgba(25, 21, 19, 0.78);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(22px) saturate(135%);
+  -webkit-backdrop-filter: blur(22px) saturate(135%);
+  transition:
+    min-height 220ms ease,
+    padding 220ms ease,
+    background 220ms ease,
+    border-radius 220ms ease;
+}
+
+.compact {
+  min-height: 48px;
+  padding-block: 5px;
+  border-radius: 17px;
+  background: rgba(25, 21, 19, 0.91);
+}
+
+.hidden {
+  pointer-events: none;
+}
+
+.identity {
+  display: inline-flex;
+  min-width: 0;
+  gap: 9px;
+  align-items: center;
+  color: #fff9f4;
+  text-decoration: none;
+}
+
+.monogram {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 14px 14px 14px 6px;
+  background: var(--beauty-accent);
+  color: #fffaf7;
+  font-family: var(--font-display, "Bodoni Moda"), Didot, Georgia, serif;
+  font-size: 0.82rem;
+  letter-spacing: -0.04em;
+  transition: width 220ms ease, height 220ms ease, border-radius 220ms ease;
+}
+
+.compact .monogram {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px 12px 12px 5px;
+}
+
+.brandCopy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.brandCopy strong {
+  overflow: hidden;
+  font-size: 0.68rem;
+  font-weight: 820;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  white-space: nowrap;
+}
+
+.brandCopy small {
+  max-height: 18px;
+  margin-top: 2px;
+  overflow: hidden;
+  color: rgba(255, 249, 244, 0.52);
+  font-size: 0.55rem;
+  letter-spacing: 0.04em;
+  transition: opacity 180ms ease, max-height 180ms ease, margin 180ms ease;
+}
+
+.compact .brandCopy small {
+  max-height: 0;
+  margin: 0;
+  opacity: 0;
+}
+
+.demo {
+  display: inline-flex;
+  min-height: 34px;
+  padding: 0 10px;
+  gap: 6px;
+  align-items: center;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: rgba(255, 249, 244, 0.66);
+  font: inherit;
+  font-size: 0.54rem;
+  font-weight: 780;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.demo i {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--beauty-accent) 72%, #cf8d83);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--beauty-accent) 18%, transparent);
+}
+
+@media (min-width: 761px) {
+  .topBar {
+    top: 18px;
+    right: 24px;
+    left: 24px;
+    max-width: 1120px;
+  }
+}
