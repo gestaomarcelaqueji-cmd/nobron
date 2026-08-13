@@ -293,7 +293,6 @@ export function HeroImmersive() {
                     ease: [0.16, 1, 0.3, 1],
                   }}
                 >
-                  <span aria-hidden="true" />
                   Telêmaco Borba · Paraná · Brasil
                 </motion.p>
               </div>

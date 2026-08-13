@@ -19,10 +19,10 @@ export function HeroSection() {
       <div className="hero-orb hero-orb--two" />
       <Container className="hero-grid">
         <div className="hero-copy">
-          <Badge>Landing Pages para profissionais e negócios locais</Badge>
+          <Badge>Landing Page por assinatura para profissionais, empreendedores e empresas</Badge>
           <h1 className="hero-title">
   <MaskReveal eager>
-    Landing Pages feitas
+    Landing Page por assinatura
   </MaskReveal>
 
   <MaskReveal eager delay={0.08}>
@@ -39,7 +39,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.7 }}
           >
-            Criamos uma página profissional para apresentar seus serviços, transmitir confiança e transformar visitas em contatos pelo WhatsApp.
+            Criamos Landing Pages personalizadas para apresentar serviços, organizar informações, transmitir confiança e transformar visitas em contatos pelo WhatsApp.
           </motion.p>
 
           <motion.div className="hero-price" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.55 }}>
@@ -57,7 +57,7 @@ export function HeroSection() {
             </RollingButton>
           
           </motion.div>
-          <p className="hero-microcopy">Você não precisa entender de site, SEO ou programação. A noBRon organiza tudo para você.</p>
+          <p className="hero-microcopy">Atendimento digital a partir de Telêmaco Borba, Paraná. Você não precisa entender de site, SEO ou programação. A noBRon organiza tudo para você.</p>
         </div>
 
         <motion.div

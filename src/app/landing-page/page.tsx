@@ -18,17 +18,17 @@ import { createPageMetadata } from "@/lib/seo";
 import { createBreadcrumbJsonLd } from "@/lib/structured-data";
 
 export const metadata = createPageMetadata({
-  title: "Criação de Landing Pages para Empresas | noBRon",
+  title: "Landing Page por Assinatura em Telêmaco Borba | noBRon",
 
   description:
-    "Landing Pages personalizadas para apresentar serviços, transmitir confiança, organizar informações e transformar visitas em contatos pelo WhatsApp.",
+    "Landing Page por assinatura em Telêmaco Borba para profissionais e empresas: criação, textos, publicação, hospedagem e manutenção por R$ 200/mês.",
 
   path: "/landing-page",
 
   image: "/brand/og/og-landing-page.png",
 
   imageAlt:
-    "noBRon — Landing Pages feitas para transformar visitas em oportunidades",
+    "noBRon — Landing Page por assinatura para profissionais e empresas",
 });
 
 const breadcrumbJsonLd = createBreadcrumbJsonLd([

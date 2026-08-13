@@ -1,7 +1,7 @@
 export const faqs = [
   {
-    question: "A página fica ativa enquanto eu pagar?",
-    answer: "Sim. Criação, hospedagem e manutenção estão vinculadas à mensalidade de R$ 200. Enquanto o serviço estiver ativo, a página permanece publicada.",
+    question: "Como funciona a Landing Page por assinatura?",
+    answer: "A mensalidade de R$ 200 reúne criação, publicação, hospedagem e manutenção no mesmo serviço, sem taxa inicial de criação separada. Enquanto o serviço estiver ativo, a página permanece publicada.",
   },
   {
     question: "Posso cancelar?",

@@ -17,7 +17,7 @@ import { motion } from "motion/react";
 import { BlurReveal } from "@/components/animations/BlurReveal";
 import { Container } from "@/components/ui/Container";
 import { RollingButton } from "@/components/ui/RollingButton";
-import { whatsappMessages } from "@/data/site";
+import { siteConfig, whatsappMessages } from "@/data/site";
 import { createWhatsAppUrl } from "@/lib/whatsapp";
 
 const concepts = [
@@ -43,7 +43,7 @@ const concepts = [
 
 const searchTerms = [
   "serviço que você oferece",
-  "em Telêmaco Borba",
+  `em ${siteConfig.city}`,
   "atendimento profissional",
 ];
 
@@ -67,7 +67,9 @@ export function SeoExplanation() {
             </Link>
             . Organizamos sua página para deixar claro quem você é, o que
             oferece e onde atende. Isso cria uma base mais preparada para sua
-            empresa aparecer nas buscas certas.
+            empresa aparecer nas buscas certas. Para negócios que atuam em
+            {siteConfig.city}, a cidade entra como informação real quando fizer
+            parte da área atendida — sem repetir localização artificialmente.
           </p>
         </div>
 
@@ -148,7 +150,7 @@ export function SeoExplanation() {
                 <div className="google-search-field">
                   <Search aria-hidden="true" />
 
-                  <span>serviço que você oferece em Telêmaco Borba</span>
+                  <span>serviço que você oferece em {siteConfig.city}</span>
 
                   <span className="google-search-field__button" aria-hidden="true">
                     <Search aria-hidden="true" />
@@ -175,7 +177,7 @@ export function SeoExplanation() {
                 </div>
 
                 <div className="google-result__title">
-                  Serviço profissional em Telêmaco Borba | Sua empresa
+                  Serviço profissional em {siteConfig.city} | Sua empresa
                 </div>
 
                 <p>

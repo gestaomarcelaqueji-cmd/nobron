@@ -14,7 +14,7 @@ export const siteConfig = {
 } as const;
 
 export const whatsappMessages = {
-  hero: "Olá! Conheci o serviço de Landing Page da noBRon e gostaria de saber como funciona para o meu trabalho.",
+  hero: "Olá! Conheci o serviço de Landing Page por assinatura da noBRon e gostaria de saber como funciona para o meu negócio.",
   organize: "Olá! Quero organizar as informações do meu serviço em uma Landing Page.",
   prepared: "Olá! Quero entender como a Landing Page pode ajudar meus clientes a chegarem mais preparados ao WhatsApp.",
   personalize: "Olá! Quero uma Landing Page com as cores e a identidade da minha empresa.",

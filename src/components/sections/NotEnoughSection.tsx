@@ -49,15 +49,25 @@ export function NotEnoughSection() {
           </h2>
 
           <p>
-            Quando o objetivo exige catálogo amplo, estoque, diferentes áreas
-            ou funcionalidades complexas, a estrutura correta pode ser um{" "}
+            Quando o objetivo exige catálogo amplo, várias áreas, conteúdos
+            recorrentes ou funcionalidades mais complexas, a estrutura correta
+            pode ser um{" "}
             <Link
               className="contextual-link"
               href="/solucoes/sites-sistemas"
             >
-              site completo ou sistema personalizado
+              site institucional, site completo ou sistema personalizado
             </Link>
             .
+          </p>
+
+          <p>
+            Se você ainda não sabe qual estrutura faz sentido, conte seu cenário
+            na{" "}
+            <Link className="contextual-link" href="/contato">
+              página de contato
+            </Link>
+            . A recomendação parte do que o seu negócio precisa resolver.
           </p>
 
           <RollingButton

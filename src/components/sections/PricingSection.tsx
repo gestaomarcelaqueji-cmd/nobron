@@ -58,7 +58,7 @@ export function PricingSection() {
           transition={{ duration: reducedMotion ? 0 : 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
           <h2>Criamos, publicamos e <span>continuamos cuidando.</span></h2>
-          <p>Uma Landing Page completa, sem precisar contratar profissionais diferentes para cada etapa.</p>
+          <p>Uma Landing Page por assinatura, com criação, publicação, hospedagem e manutenção reunidas no mesmo serviço.</p>
         </motion.div>
 
         <div className="pricing-timeline">
@@ -149,7 +149,7 @@ export function PricingSection() {
           transition={{ duration: reducedMotion ? 0 : 0.72, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="pricing-timeline-summary__price">
-            <small>Serviço completo</small>
+            <small>Landing Page por assinatura</small>
             <div>
               <span>R$</span>
               <strong>{siteConfig.price}</strong>
