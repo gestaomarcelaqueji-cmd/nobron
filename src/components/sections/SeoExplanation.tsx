@@ -67,7 +67,7 @@ export function SeoExplanation() {
             </Link>
             . Organizamos sua página para deixar claro quem você é, o que
             oferece e onde atende. Isso cria uma base mais preparada para sua
-            empresa aparecer nas buscas certas. Para negócios que atuam em
+            empresa aparecer nas buscas certas. Para negócios que atuam em{" "}
             {siteConfig.city}, a cidade entra como informação real quando fizer
             parte da área atendida — sem repetir localização artificialmente.
           </p>
